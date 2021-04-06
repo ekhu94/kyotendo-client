@@ -1,4 +1,3 @@
-export const SET_USERNAME = 'SET_USERNAME';
-export const SET_EMAIL = 'SET_EMAIL';
-export const SET_PASSWORD = 'SET_PASSWORD';
-export const SET_PASSWORD_CONFIRM = 'SET_PASSWORD_CONFIRM';
+export const SET_USER_AUTH = 'SET_USER_AUTH';
+
+export const GET_GAMES = 'GET_GAMES';

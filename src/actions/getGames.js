@@ -1,4 +1,5 @@
 import { api } from '../services/api';
+import { GET_GAMES } from './types';
 
 export const getGames = pageNum => {
     return async (dispatch) => {
@@ -9,6 +10,6 @@ export const getGames = pageNum => {
                 page: pageNum
             }
         });
-        dispatch({ type: 'GET_GAMES', payload: res.data.results });
+        dispatch({ type: GET_GAMES, payload: res.data.results });
     };
 };
