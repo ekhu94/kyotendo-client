@@ -5,7 +5,7 @@ export const getGames = pageNum => {
         const res = await api.rawg.get('/games', {
             params: {
                 platforms: 7,
-                ordering: '-rating',
+                ordering: '-metacritic',
                 page: pageNum
             }
         });
