@@ -60,7 +60,7 @@ const App = ({ setAuth }) => {
             });
             setAlertObj({
                 variant: 'success',
-                message: 'Thanks for signing up. Welcome to Kyotendo!'
+                message: 'Registration complete. Welcome to Kyotendo!'
             })
             setShowAlert(true)
             routerProps.history.push('/');
