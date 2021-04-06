@@ -19,7 +19,7 @@ const App = () => {
             .then(data => setAuth({
                 user: {
                     id: data.user.id,
-                    fullname: data.user.fullname
+                    username: data.user.username
                 }
             })
         )};
@@ -33,7 +33,7 @@ const App = () => {
             setAuth({
                 user: {
                     id: data.user.id,
-                    fullname: data.user.fullname
+                    username: data.user.username
                 }
             });
             setAlertObj({
@@ -57,7 +57,7 @@ const App = () => {
             setAuth({
                 user: {
                     id: data.id,
-                    fullname: data.fullname
+                    username: data.username
                 }
             });
             setAlertObj({

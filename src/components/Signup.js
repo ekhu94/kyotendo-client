@@ -3,7 +3,7 @@ import { Form, Row, Button } from 'react-bootstrap';
 import { api } from '../services/api';
 
 const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
-    const [fullname, setFullname] = useState('');
+    const [username, setUsername] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -11,7 +11,7 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
     const onFormSubmit = e => {
         e.preventDefault();
         const newUser = {
-            fullname,
+            username,
             email_address: emailAddress,
             password,
             password_confirmation: passwordConfirm
@@ -44,10 +44,10 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                             <input
                                 type="text"
                                 className="form-control"
-                                name="fullname"
-                                placeholder="Full Name"
-                                value={fullname}
-                                onChange={e => setFullname(e.target.value)}
+                                name="username"
+                                placeholder="Username"
+                                value={username}
+                                onChange={e => setUsername(e.target.value)}
                             />
                         </div>
                     </Row>
