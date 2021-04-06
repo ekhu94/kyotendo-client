@@ -38,7 +38,7 @@ const App = () => {
             });
             setAlertObj({
                 variant: 'success',
-                message: `Welcome back, ${data.user.fullname}!`
+                message: `Welcome back, ${data.user.username}!`
             })
             setShowAlert(true)
             routerProps.history.push('/');
@@ -62,7 +62,7 @@ const App = () => {
             });
             setAlertObj({
                 variant: 'success',
-                message: 'Thanks for signing up. Welcome to FROS!'
+                message: 'Thanks for signing up. Welcome to Kyotendo!'
             })
             setShowAlert(true)
             routerProps.history.push('/');
