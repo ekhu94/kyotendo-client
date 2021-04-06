@@ -5,6 +5,7 @@ import { api } from '../services/api';
 import AlertMessage from './AlertMessage';
 import ScrollTop from './ScrollTop';
 import Signup from './Signup';
+import Login from './Login';
 
 const App = () => {
     const [auth, setAuth] = useState({ user: {} });
@@ -97,6 +98,7 @@ const App = () => {
                 <div>
                     <ScrollTop />
                     <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
+                    <Route path="/login" render={routerProps => <Login onLogin={onLogin} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
                 </div>
             </Router>
         </div>
