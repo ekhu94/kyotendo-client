@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 //* React Form
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import * as yup from 'yup';
-//* CSS
-import { Form, Row, Button } from 'react-bootstrap';
+
 import { api } from '../services/api';
+import { Form, Row, Button } from 'react-bootstrap';
 
 const schema = yup.object().shape({
     username: yup.string().required(),
@@ -48,7 +48,7 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
 
     return (
         <>
-            {/* {showAlert && renderAlert()} */}
+            {showAlert && renderAlert()}
             <div className="container pt-5">
                 <h1 className="mb-3 text-center" style={{letterSpacing: '0.5rem'}}>Sign Up</h1>
                 <Form onSubmit={handleSubmit(onFormSubmit)}>
@@ -59,8 +59,6 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                                 className="form-control"
                                 name="username"
                                 placeholder="Username"
-                                // value={username}
-                                // onChange={e => setUsername(e.target.value)}
                                 {...register("username")}
                             />
                             <ErrorMessage
@@ -77,8 +75,6 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                                 className="form-control"
                                 name="email"
                                 placeholder="Email Address"
-                                // value={emailAddress}
-                                // onChange={e => setEmailAddress(e.target.value)}
                                 {...register("email")}
                             />
                             <ErrorMessage
@@ -95,8 +91,6 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                                 type="password"
                                 name="password"
                                 placeholder="Password"
-                                // value={password}
-                                // onChange={e => setPassword(e.target.value)}
                                 {...register("password")}
                             />
                             <ErrorMessage
@@ -113,8 +107,6 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                                 type="password"
                                 name="passwordConfirmation"
                                 placeholder="Confirm Password"
-                                // value={passwordConfirm}
-                                // onChange={e => setPasswordConfirm(e.target.value)}
                                 {...register("passwordConfirmation")}
                             />
                             <ErrorMessage

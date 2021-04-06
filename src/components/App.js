@@ -106,6 +106,6 @@ const mapStateToProps = state => {
     return { auth: state.auth }
 };
 
-const { setAuth } = action;
+const { setAuth } = action.auth;
 
 export default connect(mapStateToProps, { setAuth })(App);

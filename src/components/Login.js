@@ -1,17 +1,30 @@
 import React, { useState } from 'react';
+//* React Form
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { ErrorMessage } from '@hookform/error-message';
+import * as yup from 'yup';
+
 import { api } from '../services/api';
 import { Form, Row, Button } from 'react-bootstrap';
 
-const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
-    const [error, setError] = useState(false);
-    const [emailAddress, setEmailAddress] = useState('');
-    const [password, setPassword] = useState('');
+const schema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().min(6).max(16).required()
+});
 
-    const onFormSubmit = e => {
-        e.preventDefault();
+const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
+    const { register, formState: { errors }, handleSubmit } = useForm({
+        resolver: yupResolver(schema),
+    });
+    // const [error, setError] = useState(false);
+    // const [emailAddress, setEmailAddress] = useState('');
+    // const [password, setPassword] = useState('');
+
+    const onFormSubmit = data => {
         const newUser = {
-            email_address: emailAddress,
-            password
+            email_address: data.email,
+            password: data.password
         };
         api.auth.login(newUser)
             .then(res => onLogin(res, routerProps));
@@ -22,7 +35,7 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
             {showAlert && renderAlert()}
             <div className="container pt-5">
                 <h1 className="mb-5 text-center" style={{letterSpacing: '0.5rem'}}>Login</h1>
-                <Form onSubmit={onFormSubmit}>
+                <Form onSubmit={handleSubmit(onFormSubmit)}>
                     <Row className="justify-content-center align-items-center">
                         <div className="col-10 col-md-5 my-3">
                             <input
@@ -30,8 +43,14 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
                                 className="form-control"
                                 name="email"
                                 placeholder="Email Address"
-                                value={emailAddress}
-                                onChange={e => setEmailAddress(e.target.value)}
+                                {...register("email")}
+                                // value={emailAddress}
+                                // onChange={e => setEmailAddress(e.target.value)}
+                            />
+                            <ErrorMessage
+                                errors={errors}
+                                name="email"
+                                render={({ message }) => <p className="mt-1">{message}</p>}
                             />
                         </div>
                     </Row>
@@ -42,8 +61,14 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
                                 className="form-control"
                                 name="password"
                                 placeholder="Password"
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
+                                {...register("password")}
+                                // value={password}
+                                // onChange={e => setPassword(e.target.value)}
+                            />
+                            <ErrorMessage
+                                errors={errors}
+                                name="password"
+                                render={({ message }) => <p className="mt-1">{message}</p>}
                             />
                         </div>
                     </Row>
