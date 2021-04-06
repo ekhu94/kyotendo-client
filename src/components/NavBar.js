@@ -11,11 +11,11 @@ const NavBar = ({ onLogout }) => {
 
     const handleScroll = () => {
         if (window.scrollY > 25) {
-        nav.current.classList.remove('navbar-light', 'top', 'py-4')
-        nav.current.classList.add('navbar-dark', 'bg-dark', 'scrolled', 'py-2');
+        nav.current.classList.remove('navbar-light', 'top')
+        nav.current.classList.add('navbar-dark', 'nintendo-red', 'scrolled');
         } else {
-        nav.current.classList.remove("navbar-dark", 'bg-dark', 'scrolled', 'py-2');
-        nav.current.classList.add('navbar-light', 'top', 'py-4');
+        nav.current.classList.remove("navbar-dark", 'nintendo-red', 'scrolled');
+        nav.current.classList.add('navbar-light', 'top');
         }
     };
 
@@ -37,19 +37,16 @@ const NavBar = ({ onLogout }) => {
     // };
 
     return (
-        <Navbar collapseOnSelect ref={nav} bg="light" variant="light" expand="md" fixed="top" className="py-4" style={{transition: 'all 0.2s'}}>
+        <Navbar collapseOnSelect ref={nav} bg="light" variant="light" expand="md" fixed="top" className="py-3 align-items-center" style={{transition: 'all 0.2s'}}>
             <div className="container-fluid">
                 <LinkContainer to="/" exact>
-                    <Navbar.Brand id="nav-brand" href=""><span className="japanese">共天堂</span> kyotendo</Navbar.Brand>
+                    <Navbar.Brand id="nav-brand"><span className="japanese">共天堂</span> kyotendo</Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <LinkContainer to="/" exact>
                             <Nav.Link>Home</Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to="/about">
-                            <Nav.Link>About</Nav.Link>
                         </LinkContainer>
                         <NavDropdown title="Shop" id="basic-nav-dropdown">
                             <LinkContainer to="/all">
@@ -64,8 +61,8 @@ const NavBar = ({ onLogout }) => {
                         </NavDropdown>
                     </Nav>
                     <Nav className="ms-auto">
-                        <LinkContainer to="/cart">
-                            <Nav.Link><i className="shopping cart icon"></i></Nav.Link>
+                        <LinkContainer to="/about">
+                            <Nav.Link>About</Nav.Link>
                         </LinkContainer>
                         {localStorage.token && localStorage.token !== "undefined" ?
                             <NavDropdown title='Account'>
@@ -83,12 +80,12 @@ const NavBar = ({ onLogout }) => {
                             </NavDropdown>
                         :
                             <>
-                                <LinkContainer to="/login">
-                                    <Nav.Link>Login</Nav.Link>
+                                <LinkContainer to="/auth">
+                                    <Nav.Link><i className="fab fa-nintendo-switch pr-2" />Login/Signup</Nav.Link>
                                 </LinkContainer>
-                                <LinkContainer to="/signup">
+                                {/* <LinkContainer to="/signup">
                                     <Nav.Link>Signup</Nav.Link>
-                                </LinkContainer>
+                                </LinkContainer> */}
                             </>
                     }
                     </Nav>

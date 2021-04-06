@@ -1,0 +1,15 @@
+div.jumbotron.jumbotron-fluid {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    height: 600px;
+    opacity: 0.95;
+}
+
+/* @media (max-width: 481px) {
+    div.jumbotron.jumbotron-fluid {
+        background-size: cover;
+        background-position: center;
+    }
+} */

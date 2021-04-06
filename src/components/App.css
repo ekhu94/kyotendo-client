@@ -2,8 +2,13 @@ body {
     font-family: 'Kosugi Maru', sans-serif;
 }
 
+h1 {
+    font-family: 'Kosugi Maru', sans-serif;
+    letter-spacing: 0.2rem;
+}
+
 .main-container {
-    margin-top: 6rem;
+    margin-top: 4rem;
     min-height: 100vh;
 }
 

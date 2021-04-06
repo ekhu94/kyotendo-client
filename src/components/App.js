@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { api } from '../services/api';
 import action from '../actions';
 import AlertMessage from './AlertMessage';
+import Auth from './Auth';
 import HomePage from './HomePage';
 import Login from './Login';
 import NavBar from './NavBar';
@@ -87,7 +88,7 @@ const App = ({ setAuth }) => {
         })
         setShowAlert(true)
         localStorage.removeItem('token');
-        action.setAuth({});
+        setAuth({});
         window.history.pushState({}, '', '/');
         window.location.reload();
     };
@@ -99,6 +100,7 @@ const App = ({ setAuth }) => {
                     <ScrollTop />
                     <NavBar onLogout={onLogout} />
                     <Route exact path="/" render={() => <HomePage /> } />
+                    <Route path="/auth" render={() => <Auth />} />
                     <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
                     <Route path="/login" render={routerProps => <Login onLogin={onLogin} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
                 </div>
