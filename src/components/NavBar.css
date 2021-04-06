@@ -1,0 +1,24 @@
+.japanese {
+    font-family: 'Kosugi Maru', sans-serif;
+}
+
+#nav-brand {
+    letter-spacing: 0.2rem;
+    font-family: 'Pretendo';
+}
+
+a.nav-link {
+    font-size: 1.4rem;
+    margin-right: 20px;
+    letter-spacing: 0.2rem;
+}
+
+a.dropdown-item {
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
+}
+
+a.active.dropdown-item {
+    color: #000;
+    background-color: #d1d1d1;
+}

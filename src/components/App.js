@@ -3,12 +3,15 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { api } from '../services/api';
-import action from '../actions'
+import action from '../actions';
 import AlertMessage from './AlertMessage';
+import HomePage from './HomePage';
+import Login from './Login';
+import NavBar from './NavBar';
 import ScrollTop from './ScrollTop';
 import Signup from './Signup';
-import Login from './Login';
 import { propTypes } from 'react-bootstrap/esm/Image';
+import './App.css';
 
 const App = ({ setAuth }) => {
     // const [auth, setAuth] = useState({ user: {} });
@@ -92,8 +95,10 @@ const App = ({ setAuth }) => {
     return (
         <div>
             <Router>
-                <div>
+                <div className="container-fluid p-0 main-container">
                     <ScrollTop />
+                    <NavBar onLogout={onLogout} />
+                    <Route exact path="/" render={() => <HomePage /> } />
                     <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
                     <Route path="/login" render={routerProps => <Login onLogin={onLogin} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
                 </div>
