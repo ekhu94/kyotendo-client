@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { api } from '../services/api';
+import { connect } from 'react-redux';
 
+import { api } from '../services/api';
+import action from '../actions'
 import AlertMessage from './AlertMessage';
 import ScrollTop from './ScrollTop';
 import Signup from './Signup';
 import Login from './Login';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
-const App = () => {
-    const [auth, setAuth] = useState({ user: {} });
+const App = ({ setAuth }) => {
+    // const [auth, setAuth] = useState({ user: {} });
     const [showAlert, setShowAlert] = useState(false)
     const [alertObj, setAlertObj] = useState({variant:'', message:''})
 
@@ -18,10 +21,8 @@ const App = () => {
             api.auth.getCurrentUser()
             //? Need to change this
             .then(data => setAuth({
-                user: {
-                    id: data.user.id,
-                    username: data.user.username
-                }
+                id: data.user.id,
+                username: data.user.username
             })
         )};
     }, []);
@@ -32,10 +33,8 @@ const App = () => {
         if (data.jwt){
             localStorage.setItem("token", data.jwt);
             setAuth({
-                user: {
-                    id: data.user.id,
-                    username: data.user.username
-                }
+                id: data.user.id,
+                username: data.user.username
             });
             setAlertObj({
                 variant: 'success',
@@ -56,10 +55,8 @@ const App = () => {
         if (data.jwt){
             localStorage.setItem("token", data.jwt);
             setAuth({
-                user: {
-                    id: data.id,
-                    username: data.username
-                }
+                id: data.id,
+                username: data.username
             });
             setAlertObj({
                 variant: 'success',
@@ -87,7 +84,7 @@ const App = () => {
         })
         setShowAlert(true)
         localStorage.removeItem('token');
-        setAuth({...auth, user: {}});
+        action.setAuth({});
         window.history.pushState({}, '', '/');
         window.location.reload();
     };
@@ -105,4 +102,10 @@ const App = () => {
     );
 };
 
-export default App;
+const mapStateToProps = state => {
+    return { auth: state.auth }
+};
+
+const { setAuth } = action;
+
+export default connect(mapStateToProps, { setAuth })(App);

@@ -1,5 +1,9 @@
 import { getGames } from './getGames';
+import { setAuth } from './setAuth';
 
-export const action = {
-    getGames
+const action = {
+    getGames,
+    setAuth
 };
+
+export default action;

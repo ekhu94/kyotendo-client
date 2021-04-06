@@ -43,7 +43,7 @@ const getCurrentUser = () => {
 
 const rawg = axios.create({
     baseURL: RAWG_URL,
-    key: RAW_KEY
+    key: RAWG_KEY
 });
 
 export const api = {
