@@ -7,6 +7,7 @@ import action from '../actions';
 import AlertMessage from './AlertMessage';
 import Auth from './Auth';
 import ForumList from './ForumList';
+import ForumShow from './ForumShow';
 import HomePage from './HomePage';
 import Login from './Login';
 import NavBar from './NavBar';
@@ -102,6 +103,13 @@ const App = ({ setAuth, forums }) => {
                     <NavBar onLogout={onLogout} />
                     <Route exact path="/" render={() => <HomePage /> } />
                     <Route exact path="/forums" render={() => <ForumList />} />
+                    <Route
+                        path="/forums/:slug"
+                        render={routerProps => {
+                            return <ForumShow forumId={routerProps.match.params.id} forumSlug={routerProps.match.params.slug} />                      
+                        }
+                    } 
+                    />
                     <Route path="/auth" render={() => <Auth />} />
                     <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
                     <Route path="/login" render={routerProps => <Login onLogin={onLogin} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
