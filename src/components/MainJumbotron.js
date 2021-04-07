@@ -7,8 +7,8 @@ const MainJumbotron = () => {
     return (
         <Jumbotron fluid style={{backgroundImage: 'url(' + jumboImg + ')'}}>
             <Container>
-                <Row className="align-items-center justify-content-end">
-                    <h1 className="text-white">What are you playing?</h1>
+                <Row className="justify-content-center justify-content-md-end">
+                    <h1 className="text-white mt-5 align-content-end">WHAT ARE YOU PLAYING?</h1>
                 </Row>
             </Container>
         </Jumbotron>

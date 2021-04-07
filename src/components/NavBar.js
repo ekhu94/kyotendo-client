@@ -10,7 +10,7 @@ const NavBar = ({ onLogout }) => {
     const orders = useRef();
 
     const handleScroll = () => {
-        if (window.scrollY > 25) {
+        if (window.scrollY > 20) {
         nav.current.classList.remove('navbar-light', 'top')
         nav.current.classList.add('navbar-dark', 'nintendo-red', 'scrolled');
         } else {
@@ -37,7 +37,7 @@ const NavBar = ({ onLogout }) => {
     // };
 
     return (
-        <Navbar collapseOnSelect ref={nav} bg="light" variant="light" expand="md" fixed="top" className="py-3 align-items-center" style={{transition: 'all 0.2s'}}>
+        <Navbar collapseOnSelect ref={nav} bg="light" variant="light" expand="md" fixed="top" className="py-2 align-items-center" style={{transition: 'all 0.2s'}}>
             <div className="container-fluid">
                 <LinkContainer to="/" exact>
                     <Navbar.Brand id="nav-brand"><span className="japanese">共天堂</span> kyotendo</Navbar.Brand>
