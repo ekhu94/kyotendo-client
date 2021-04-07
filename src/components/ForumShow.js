@@ -1,21 +1,53 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import action from '../actions';
+import { Container, Row } from 'react-bootstrap';
 
 import PageLoader from './PageLoader';
+import PostObject from './PostObject';
 
-const ForumShow = ({ forumShow, getForumShow }) => {
+const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow }) => {
 
     useEffect(() => {
-        return () => {
-            getForumShow({})
-        }
+        getForums();
+
     }, []);
+
+    useEffect(() => {
+        if (forums.length) {
+            const selected = forums.find(f => f.slug === forumSlug);
+            getForumShow(selected.id)
+        }
+    }, [forums])
+
+        // if (forums.length !== 0) {
+        //     console.log('inside')
+        //     const forum = forums.find(f => f.slug == forumSlug);
+        //     getForumShow(forum);
+        //     console.log(forumShow)
+        // }
+
+    //    return () => {
+    //        getForumShow({});
+    //    }
+
+
+    const renderPosts = () => {
+        if (forum.posts) {
+            return forum.posts.map(post => {
+                return <PostObject key={post.id} post={post} />
+            });
+        }
+    };
 
     return (
         <div>
-            {forumShow ?
-                <div>{forumShow.name}</div>
+            {forums.length ?
+                <Container>
+                    <Row>
+                        {renderPosts()}
+                    </Row>
+                </Container>
                 :
                 <PageLoader />
             }
@@ -24,9 +56,13 @@ const ForumShow = ({ forumShow, getForumShow }) => {
 };
 
 const mapStateToProps = state => {
-    return { forumShow: state.forumShow }
+    console.log(state)
+    return {
+        forums: state.forums,
+        forum: state.forumShow
+    }
 };
 
-const { getForumShow } = action.forums;
+const { getForums, getForumShow } = action.forums;
 
-export default connect(mapStateToProps, { getForumShow })(ForumShow);
+export default connect(mapStateToProps, { getForums, getForumShow })(ForumShow);

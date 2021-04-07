@@ -110,7 +110,6 @@ const App = ({ setAuth }) => {
                         }
                     } 
                     />
-                    
                     <Route path="/auth" render={() => <Auth />} />
                     <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
                     <Route path="/login" render={routerProps => <Login onLogin={onLogin} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />

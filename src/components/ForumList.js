@@ -11,10 +11,6 @@ const ForumList = ({ forums, getForums, getForumShow }) => {
 
     useEffect(() => {
         getForums();
-
-        return () => {
-            getForums([])
-        };
     }, []);
 
     const renderForums = () => {
