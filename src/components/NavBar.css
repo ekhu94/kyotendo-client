@@ -2,6 +2,10 @@
     font-family: 'Kosugi Maru', sans-serif;
 }
 
+.scrolled {
+    opacity: 0.9;
+}
+
 #nav-brand {
     letter-spacing: 0.2rem;
     /* font-size: 1rem; */
@@ -25,6 +29,5 @@ a.active.dropdown-item {
 }
 
 .nintendo-red {
-    background-color: #e60012 !important;
-    opacity: 0.9;
+    background-color: #e60012;
 }
