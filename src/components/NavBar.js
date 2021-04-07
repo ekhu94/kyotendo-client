@@ -29,7 +29,7 @@ const NavBar = ({ onLogout, auth }) => {
     }, []);
 
     const userIconDropdown = () => {
-        return <><i className="fab fa-nintendo-switch" /> {auth.user.username}</>
+        return <><i className="fab fa-nintendo-switch mr-0" /> {auth.user.username}</>
     };
 
     // const onDropdownClick = () => {
@@ -98,7 +98,6 @@ const NavBar = ({ onLogout, auth }) => {
 };
 
 const mapStateToProps = state => {
-    console.log(state)
     return { auth: state.auth };
 };
 

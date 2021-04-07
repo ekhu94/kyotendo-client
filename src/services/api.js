@@ -41,6 +41,10 @@ const getCurrentUser = () => {
     .then(res => res.json());
 };
 
+const rails = axios.create({
+    baseURL: BACKEND_URL
+});
+
 const rawg = axios.create({
     baseURL: RAWG_URL,
     key: RAWG_KEY
@@ -52,5 +56,6 @@ export const api = {
         login,
         getCurrentUser
     },
-    rawg
+    rawg,
+    rails
 };

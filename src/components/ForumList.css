@@ -1,0 +1,31 @@
+.forum-link:hover {
+    text-decoration: none !important;
+}
+
+div.list-group-item:hover {
+    color: #00c3e3 !important;
+    transition: all 0.2s;
+}
+
+h1.text-center.mb-5 {
+    letter-spacing: 0.3s;
+}
+
+@media (max-width: 769px) {
+    h1.text-center.mb-5 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 481px) {
+    h1.text-center.mb-5 {
+        font-size: 1.7rem;
+        line-height: 2rem;
+    }
+}
+
+@media (max-width: 396px) {
+    h1.text-center.mb-5 {
+        font-size: 1.4rem;
+    }
+}

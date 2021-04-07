@@ -6,6 +6,7 @@ import { api } from '../services/api';
 import action from '../actions';
 import AlertMessage from './AlertMessage';
 import Auth from './Auth';
+import ForumList from './ForumList';
 import HomePage from './HomePage';
 import Login from './Login';
 import NavBar from './NavBar';
@@ -14,7 +15,7 @@ import Signup from './Signup';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import './App.css';
 
-const App = ({ setAuth }) => {
+const App = ({ setAuth, forums }) => {
     // const [auth, setAuth] = useState({ user: {} });
     const [showAlert, setShowAlert] = useState(false)
     const [alertObj, setAlertObj] = useState({variant:'', message:''})
@@ -100,6 +101,7 @@ const App = ({ setAuth }) => {
                     <ScrollTop />
                     <NavBar onLogout={onLogout} />
                     <Route exact path="/" render={() => <HomePage /> } />
+                    <Route exact path="/forums" render={() => <ForumList />} />
                     <Route path="/auth" render={() => <Auth />} />
                     <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
                     <Route path="/login" render={routerProps => <Login onLogin={onLogin} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
@@ -110,7 +112,10 @@ const App = ({ setAuth }) => {
 };
 
 const mapStateToProps = state => {
-    return { auth: state.auth }
+    return {
+        auth: state.auth,
+        forums: state.forums
+    }
 };
 
 const { setAuth } = action.auth;
