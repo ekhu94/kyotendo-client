@@ -4,11 +4,13 @@ import { combineReducers } from 'redux';
 
 //* RAILS API
 import forumsReducer from './forumsReducer';
+import forumShowReducer from './forumShowReducer';
 
 //* LOCAL
 import authReducer from './authReducer';
 
 export default combineReducers({
     auth: authReducer,
-    forums: forumsReducer
+    forums: forumsReducer,
+    forumShow: forumShowReducer
 });

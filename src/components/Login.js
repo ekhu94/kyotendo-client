@@ -6,7 +6,8 @@ import { ErrorMessage } from '@hookform/error-message';
 import * as yup from 'yup';
 
 import { api } from '../services/api';
-import { Form, Row, Button } from 'react-bootstrap';
+import { Card, Form, Row, Button } from 'react-bootstrap';
+import './Login.css';
 
 const schema = yup.object().shape({
     email: yup.string().email().required(),
@@ -34,10 +35,12 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
         <>
             {showAlert && renderAlert()}
             <div className="container pt-5">
-                <h1 className="mb-5 text-center" style={{letterSpacing: '0.5rem'}}>Login</h1>
+                <Row className="justify-content-center">
+                <Card className="pt-5 pb-4 col-8" style={{ borderRadius: '20px' }}>
+                <h1 className="mb-4 text-center" style={{letterSpacing: '0.5rem'}}>Kyotendo Login</h1>
                 <Form onSubmit={handleSubmit(onFormSubmit)}>
                     <Row className="justify-content-center align-items-center">
-                        <div className="col-10 col-md-5 my-3">
+                        <div className="col-10 col-md-7 my-3">
                             <input
                                 type="text"
                                 className="form-control"
@@ -50,12 +53,12 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
                             <ErrorMessage
                                 errors={errors}
                                 name="email"
-                                render={({ message }) => <p className="mt-1">{message}</p>}
+                                render={({ message }) => <p className="mt-2">{message}</p>}
                             />
                         </div>
                     </Row>
                     <Row className="justify-content-center align-items-center">
-                        <div className="col-10 col-md-5 my-3">
+                        <div className="col-10 col-md-7 my-3">
                             <input
                                 type="password"
                                 className="form-control"
@@ -68,7 +71,7 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
                             <ErrorMessage
                                 errors={errors}
                                 name="password"
-                                render={({ message }) => <p className="mt-1">{message}</p>}
+                                render={({ message }) => <p className="mt-2">{message}</p>}
                             />
                         </div>
                     </Row>
@@ -85,6 +88,8 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
                         </Button>
                     </Row>
                 </Form>
+                </Card>
+                </Row>
             </div>
         </>
     );

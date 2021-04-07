@@ -16,7 +16,7 @@ import Signup from './Signup';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import './App.css';
 
-const App = ({ setAuth, forums }) => {
+const App = ({ setAuth }) => {
     // const [auth, setAuth] = useState({ user: {} });
     const [showAlert, setShowAlert] = useState(false)
     const [alertObj, setAlertObj] = useState({variant:'', message:''})
@@ -106,10 +106,11 @@ const App = ({ setAuth, forums }) => {
                     <Route
                         path="/forums/:slug"
                         render={routerProps => {
-                            return <ForumShow forumId={routerProps.match.params.id} forumSlug={routerProps.match.params.slug} />                      
+                            return <ForumShow forumSlug={routerProps.match.params.slug} />                      
                         }
                     } 
                     />
+                    
                     <Route path="/auth" render={() => <Auth />} />
                     <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
                     <Route path="/login" render={routerProps => <Login onLogin={onLogin} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
@@ -121,8 +122,7 @@ const App = ({ setAuth, forums }) => {
 
 const mapStateToProps = state => {
     return {
-        auth: state.auth,
-        forums: state.forums
+        auth: state.auth
     }
 };
 

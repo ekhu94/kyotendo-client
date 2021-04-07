@@ -7,10 +7,14 @@ import { Container, Row, Card, ListGroup } from 'react-bootstrap';
 import PageLoader from './PageLoader';
 import './ForumList.css';
 
-const ForumList = ({ forums, getForums }) => {
+const ForumList = ({ forums, getForums, getForumShow }) => {
 
     useEffect(() => {
         getForums();
+
+        return () => {
+            getForums([])
+        };
     }, []);
 
     const renderForums = () => {
@@ -30,10 +34,14 @@ const ForumList = ({ forums, getForums }) => {
                 styles.borderLeft = 'none';
                 styles.borderRight = 'none';
                 styles.marginTop = '20px';
-                // styles.marginBottom = '20px';
             }
             return (
-                <Link key={forum.id} className="forum-link" to={`/forums/${forum.slug}`}>
+                <Link
+                    key={forum.id}
+                    className="forum-link"
+                    to={`/forums/${forum.slug}`}
+                    onClick={() => getForumShow(forum.id)}
+                >
                 <ListGroup.Item style={styles}>
                     {forum.name}
                 </ListGroup.Item>
@@ -46,7 +54,7 @@ const ForumList = ({ forums, getForums }) => {
         <div>
             {forums.length ?
             <Container style={{ marginTop: '120px' }}>
-                <h1 className="text-center mb-5">Our Forums and Communities</h1>
+                <h1 className="text-center mb-5">Kyotendo Communities</h1>
                 <Row className="justify-content-center">
                     <Card className="col-10 p-4" style={{
                         //? joycon grey
@@ -65,10 +73,12 @@ const ForumList = ({ forums, getForums }) => {
 };
 
 const mapStateToProps = state => {
-    console.log(state)
-    return { forums: state.forums }
+    return {
+        forums: state.forums,
+        forumShow: state.forumShow
+    }
 };
 
-const { getForums } = action.forums;
+const { getForums, getForumShow } = action.forums;
 
-export default connect(mapStateToProps, { getForums })(ForumList);
+export default connect(mapStateToProps, { getForums, getForumShow })(ForumList);

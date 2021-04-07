@@ -6,7 +6,8 @@ import { ErrorMessage } from '@hookform/error-message';
 import * as yup from 'yup';
 
 import { api } from '../services/api';
-import { Form, Row, Button } from 'react-bootstrap';
+import { Card, Form, Row, Button } from 'react-bootstrap';
+import './Signup.css'
 
 const schema = yup.object().shape({
     username: yup.string().required(),
@@ -50,10 +51,12 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
         <>
             {showAlert && renderAlert()}
             <div className="container pt-5">
-                <h1 className="mb-3 text-center" style={{letterSpacing: '0.5rem'}}>Sign Up</h1>
+                <Row className="justify-content-center">
+                <Card className="pt-5 pb-4 col-8" style={{ borderRadius: '20px' }}>
+                <h1 className="mb-4 text-center" style={{letterSpacing: '0.5rem'}}>Kyotendo Sign Up</h1>
                 <Form onSubmit={handleSubmit(onFormSubmit)}>
                     <Row className="justify-content-center">
-                        <div className="col-10 col-sm-8 col-md-5 my-3">
+                        <div className="col-10 col-sm-8 col-md-7 my-3">
                             <input
                                 type="text"
                                 className="form-control"
@@ -69,7 +72,7 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                         </div>
                     </Row>
                     <Row className="justify-content-center">
-                    <div className="col-10 col-sm-8 col-md-5 my-3">
+                    <div className="col-10 col-sm-8 col-md-7 my-3">
                             <input
                                 type="text"
                                 className="form-control"
@@ -85,7 +88,7 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                         </div>
                         </Row>
                     <Row className="justify-content-center">
-                        <div className="col-10 col-sm-8 col-md-5 my-3">
+                        <div className="col-10 col-sm-8 col-md-7 my-3">
                             <input
                                 className="form-control"
                                 type="password"
@@ -96,12 +99,12 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                             <ErrorMessage
                                 errors={errors}
                                 name="password"
-                                render={({ message }) => <p className="mt-1">{message}</p>}
+                                render={({ message }) => <p className="mt-2">{message}</p>}
                             />
                         </div>
                     </Row>
                     <Row className="justify-content-center">
-                        <div className="col-10 col-sm-8 col-md-5 my-3">
+                        <div className="col-10 col-sm-8 col-md-7 my-3">
                             <input
                                 className="form-control"
                                 type="password"
@@ -112,7 +115,7 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                             <ErrorMessage
                                 errors={errors}
                                 name="passwordConfirmation"
-                                render={() => <p className="mt-1">passwords must match</p>}
+                                render={() => <p className="mt-2">passwords must match</p>}
                             />
                         </div>
                     </Row>
@@ -122,13 +125,15 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                             size="lg"
                             block
                             style={{ borderRadius: '8px' }}
-                            className="col-5 col-lg-3 mt-4"
+                            className="col-6 col-lg-4 mt-4 mb-3"
                             type="submit"
                         >
-                            Create <span className="d-none d-md-inline-flex">New</span> Account
+                            Create <span className="d-none d-md-inline-flex">New Account</span>
                         </Button>
                     </Row>
                 </Form>
+                </Card>
+                </Row>
             </div>
         </>
     );

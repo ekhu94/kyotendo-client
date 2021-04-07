@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import action from '../actions';
 
-const ForumShow = ({ forumSlug }) => {
+import PageLoader from './PageLoader';
+
+const ForumShow = ({ forumShow, getForumShow }) => {
+
+    useEffect(() => {
+        return () => {
+            getForumShow({})
+        }
+    }, []);
+
     return (
-        <div>{forumSlug}</div>
+        <div>
+            {forumShow ?
+                <div>{forumShow.name}</div>
+                :
+                <PageLoader />
+            }
+        </div>
     )
 };
 
-export default ForumShow;
+const mapStateToProps = state => {
+    return { forumShow: state.forumShow }
+};
+
+const { getForumShow } = action.forums;
+
+export default connect(mapStateToProps, { getForumShow })(ForumShow);

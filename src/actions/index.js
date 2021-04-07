@@ -2,6 +2,7 @@
 import { getGames } from './getGames';
 //* RAILS API
 import { getForums } from './getForums';
+import { getForumShow } from './getForumShow';
 //* LOCAL
 import { setAuth } from './setAuth';
 
@@ -10,7 +11,8 @@ const action = {
         getGames
     },
     forums: {
-        getForums
+        getForums,
+        getForumShow
     },
     auth: {
         setAuth
