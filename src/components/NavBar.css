@@ -8,19 +8,19 @@
 
 #nav-brand {
     letter-spacing: 0.2rem;
-    /* font-size: 1rem; */
+    font-size: 1.2rem;
     font-family: 'Pretendo';
 }
 
 a.nav-link {
     font-size: 1.2rem;
-    margin-right: 20px;
-    letter-spacing: 0.1rem;
+    margin-right: 15px;
+    letter-spacing: 0.4rem;
 }
 
 a.dropdown-item {
     font-size: 1.2rem;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.4rem;
 }
 
 a.active.dropdown-item {

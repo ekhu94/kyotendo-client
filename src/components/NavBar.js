@@ -1,13 +1,14 @@
 import React, { useEffect, useRef } from "react";
+import { connect } from 'react-redux';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import './NavBar.css';
 
-const NavBar = ({ onLogout }) => {
+const NavBar = ({ onLogout, auth }) => {
     // const URL = 'https://fros-store.herokuapp.com/'  
     const nav = useRef();
-    const orders = useRef();
+    // const account = useRef();
 
     const handleScroll = () => {
         if (window.scrollY > 20) {
@@ -27,6 +28,10 @@ const NavBar = ({ onLogout }) => {
         };
     }, []);
 
+    const userIconDropdown = () => {
+        return <><i className="fab fa-nintendo-switch" /> {auth.user.username}</>
+    };
+
     // const onDropdownClick = () => {
     //     setTimeout(() => {
     //         if (window.location.href !== `${URL}orders`) {
@@ -37,7 +42,7 @@ const NavBar = ({ onLogout }) => {
     // };
 
     return (
-        <Navbar collapseOnSelect ref={nav} variant="dark" expand="md" fixed="top" className="nintendo-red py-3 align-items-center" style={{transition: 'all 0.2s'}}>
+        <Navbar collapseOnSelect ref={nav} variant="dark" expand="lg" fixed="top" className="nintendo-red py-3 align-items-center" style={{transition: 'all 0.2s'}}>
             <div className="container-fluid">
                 <LinkContainer to="/" exact>
                     <Navbar.Brand id="nav-brand"><span className="japanese">共天堂</span> kyotendo</Navbar.Brand>
@@ -48,44 +53,41 @@ const NavBar = ({ onLogout }) => {
                         <LinkContainer to="/" exact>
                             <Nav.Link>Home</Nav.Link>
                         </LinkContainer>
-                        <NavDropdown title="Shop" id="basic-nav-dropdown">
-                            <LinkContainer to="/all">
-                                <NavDropdown.Item>All</NavDropdown.Item>
-                            </LinkContainer>
-                            <LinkContainer to="/mens">
-                                <NavDropdown.Item>Mens</NavDropdown.Item>
-                            </LinkContainer>
-                            <LinkContainer to="/womens">
-                                <NavDropdown.Item>Womens</NavDropdown.Item>
-                            </LinkContainer>
-                        </NavDropdown>
+                        <LinkContainer to="/games" exact>
+                            <Nav.Link>Games</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to="/forums" exact>
+                            <Nav.Link>Forums</Nav.Link>
+                        </LinkContainer>
                     </Nav>
                     <Nav className="ms-auto">
                         <LinkContainer to="/about">
                             <Nav.Link>About</Nav.Link>
                         </LinkContainer>
                         {localStorage.token && localStorage.token !== "undefined" ?
-                            <NavDropdown title='Account'>
-                                <LinkContainer to="/orders">
-                                    <NavDropdown.Item ref={orders}>Orders</NavDropdown.Item>
-                                </LinkContainer>
-                                    <NavDropdown.Item
-                                        className=""
-                                        onClick={()=>{
-                                            onLogout()
-                                        }}
-                                    >
-                                        Logout
-                                    </NavDropdown.Item>
-                            </NavDropdown>
+                            <>
+                                <NavDropdown
+                                    title={ userIconDropdown() }
+                                    alignRight
+                                >
+                                    <LinkContainer to="/profile">
+                                        <NavDropdown.Item>Profile</NavDropdown.Item>
+                                    </LinkContainer>
+                                        <NavDropdown.Item
+                                            className=""
+                                            onClick={()=>{
+                                                onLogout()
+                                            }}
+                                        >
+                                            Logout
+                                        </NavDropdown.Item>
+                                </NavDropdown>
+                            </>
                         :
                             <>
                                 <LinkContainer to="/auth">
                                     <Nav.Link><i className="fab fa-nintendo-switch pr-2" />Login/Signup</Nav.Link>
                                 </LinkContainer>
-                                {/* <LinkContainer to="/signup">
-                                    <Nav.Link>Signup</Nav.Link>
-                                </LinkContainer> */}
                             </>
                     }
                     </Nav>
@@ -95,4 +97,9 @@ const NavBar = ({ onLogout }) => {
     );
 };
 
-export default NavBar;
+const mapStateToProps = state => {
+    console.log(state)
+    return { auth: state.auth };
+};
+
+export default connect(mapStateToProps)(NavBar);

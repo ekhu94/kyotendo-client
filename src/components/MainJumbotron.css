@@ -18,7 +18,7 @@ h1.jumbo-header.text-white {
         font-size: 2rem;
         position: relative;
         top: 100px;
-        left: -60px;
+        transition: all 0.2s;
     }
 }
 
@@ -26,7 +26,7 @@ h1.jumbo-header.text-white {
     h1.jumbo-header.text-white {
         top: 400px;
         font-size: 1.8rem;
-        left: 0;
+        transition: all 0.2s;
     }
 }
 
@@ -34,6 +34,7 @@ h1.jumbo-header.text-white {
     h1.jumbo-header.text-white {
         top: 450px;
         font-size: 1.7rem;
+        transition: all 0.2s;
     }
 }
 
@@ -41,5 +42,6 @@ h1.jumbo-header.text-white {
     h1.jumbo-header.text-white {
         top: 465px;
         font-size: 1.5rem;
+        transition: all 0.2s;
     }
 }
