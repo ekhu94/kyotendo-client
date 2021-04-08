@@ -53,7 +53,7 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
                             <ErrorMessage
                                 errors={errors}
                                 name="email"
-                                render={({ message }) => <p className="mt-2">{message}</p>}
+                                render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
                             />
                         </div>
                     </Row>
@@ -71,7 +71,7 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
                             <ErrorMessage
                                 errors={errors}
                                 name="password"
-                                render={({ message }) => <p className="mt-2">{message}</p>}
+                                render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
                             />
                         </div>
                     </Row>

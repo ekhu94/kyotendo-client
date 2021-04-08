@@ -67,7 +67,7 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                             <ErrorMessage
                                 errors={errors}
                                 name="username"
-                                render={({ message }) => <p className="mt-1">{message}</p>}
+                                render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
                             />
                         </div>
                     </Row>
@@ -83,7 +83,7 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                             <ErrorMessage
                                 errors={errors}
                                 name="email"
-                                render={({ message }) => <p className="mt-1">{message}</p>}
+                                render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
                             />
                         </div>
                         </Row>
@@ -99,7 +99,7 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                             <ErrorMessage
                                 errors={errors}
                                 name="password"
-                                render={({ message }) => <p className="mt-2">{message}</p>}
+                                render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
                             />
                         </div>
                     </Row>
@@ -115,7 +115,7 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
                             <ErrorMessage
                                 errors={errors}
                                 name="passwordConfirmation"
-                                render={() => <p className="mt-2">passwords must match</p>}
+                                render={() => <p className="mt-2 text-danger">passwords must match</p>}
                             />
                         </div>
                     </Row>
