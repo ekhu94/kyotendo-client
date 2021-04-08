@@ -6,6 +6,7 @@ import { getForumShow } from './getForumShow';
 //* LOCAL
 import { setAuth } from './setAuth';
 import { setPostIdx } from './setPostIdx';
+import { resetPostIdx } from './resetPostIdx';
 
 const action = {
     games: {
@@ -16,7 +17,8 @@ const action = {
         getForumShow
     },
     posts: {
-        setPostIdx
+        setPostIdx,
+        resetPostIdx
     },
     auth: {
         setAuth

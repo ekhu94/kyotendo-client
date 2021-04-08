@@ -6,9 +6,10 @@ import { Container, Row, Card } from 'react-bootstrap';
 import PageLoader from './PageLoader';
 import PostObject from './PostObject';
 
-const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, postIdx, setPostIdx }) => {
+const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, postIdx, setPostIdx, resetPostIdx }) => {
 
     useEffect(() => {
+        setPostIdx()
         const handleScroll = () => {
             const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
             const body = document.body;
@@ -21,7 +22,10 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, postIdx,
             }
         }
         window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+            resetPostIdx();
+        }
     }, [])
 
     useEffect(() => {
@@ -95,6 +99,6 @@ const mapStateToProps = state => {
 };
 
 const { getForums, getForumShow } = action.forums;
-const { setPostIdx } = action.posts;
+const { setPostIdx, resetPostIdx } = action.posts;
 
-export default connect(mapStateToProps, { getForums, getForumShow, setPostIdx })(ForumShow);
+export default connect(mapStateToProps, { getForums, getForumShow, setPostIdx, resetPostIdx })(ForumShow);

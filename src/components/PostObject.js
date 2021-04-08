@@ -33,27 +33,14 @@ const PostObject = ({ post }) => {
                                             {post.title}
                                             <Badge
                                                 pill
-                                                style={{backgroundColor: 'var(--red-primary)'}}
+                                                style={{backgroundColor: 'var(--red-primary)', cursor: 'default'}}
                                                 className="ml-2"
+                                                onClick={e => e.stopPropagation()}
                                             >
                                                 {post.post_type}
                                             </Badge>
-                                        </h4>
-                                        
+                                        </h4>                                      
                                     </div>
-                                    {/* <h4 className="ml-3 ml-md-0 post-title">{post.title}
-                                        <span className="ml-2 ml-sm-3">
-                                            <Button
-                                                variant="info"
-                                                size="sm"
-                                                onClick={() => setIsOpen(!isOpen)}
-                                                aria-controls="fade-disc"
-                                                aria-expanded={isOpen}
-                                            >
-                                                {isOpen ? <i className="fas fa-minus" /> : <i className="fas fa-plus"></i>}
-                                            </Button>
-                                        </span>
-                                    </h4> */}
                                 </Row>
                                 <Row className="justify-content-start">
                                     <Fade in={isOpen}>
@@ -61,13 +48,6 @@ const PostObject = ({ post }) => {
                                             {renderParagraphs(post.content_text)}
                                         </div>
                                     </Fade>
-                                    {/* {isOpen ?
-                                        <div id="fade-disc" className={`p-2 ${!isOpen ? "d-none" : ""}`}>
-                                            {renderParagraphs(post.content_text)}
-                                        </div>
-                                    :
-                                        null
-                                    } */}
                                 </Row>
                             </Container>
                         </Media.Body>
@@ -97,8 +77,9 @@ const PostObject = ({ post }) => {
                                         {post.title}
                                         <Badge
                                             pill
-                                            style={{backgroundColor: 'var(--blue-primary)'}}
+                                            style={{backgroundColor: 'var(--blue-primary)', cursor: 'default'}}
                                             className="ml-2"
+                                            onClick={e => e.stopPropagation()}
                                         >
                                             {post.post_type}
                                         </Badge>
@@ -112,10 +93,6 @@ const PostObject = ({ post }) => {
                                         <img style={{ width: '400px' }} src={post.content_url} alt={post.title} />
                                     </div>
                                 </Fade>
-                                {/* {isOpen ?
-                                    <img style={{ width: '400px' }} src={post.content_url} alt={post.title} />
-                                : null
-                                } */}
                             </Row>
                             </Container>
                         </Media.Body>
@@ -125,14 +102,6 @@ const PostObject = ({ post }) => {
                 const url = post.content_url.replace('watch?v=', 'embed/');
                 return (
                     <Media as="li" className="p-3 p-md-4" key={post.id}>
-                        {/* <img
-                            width={56}
-                            height={56}
-                            className="thumbnail-img mr-md-3 mr-lg-4 d-none d-md-block"
-                            src={post.thumbnail}
-                            alt={post.title}
-                        />
-                        show this conditionally */}
                         <Media.Body>
                             <Container>
                             <Row className="align-items-center mb-4">
@@ -147,7 +116,8 @@ const PostObject = ({ post }) => {
                                         {post.title}
                                         <Badge
                                             pill
-                                            style={{backgroundColor: 'var(--lime)'}}
+                                            style={{backgroundColor: 'var(--lime)', cursor: 'default'}}
+                                            onClick={e => e.stopPropagation()}
                                             className="ml-2"
                                         >
                                             {post.post_type}
