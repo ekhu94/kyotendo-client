@@ -58,7 +58,7 @@ const PostObject = ({ post }) => {
                         <img
                             width={56}
                             height={56}
-                            className="thumbnail-img mr-2 mr-md-4 mr-lg-5 d-none d-md-block"
+                            className="thumbnail-img mr-md-3 mr-lg-4 d-none d-md-block"
                             src={post.content_url}
                             alt={post.title}
                         />
@@ -102,7 +102,7 @@ const PostObject = ({ post }) => {
                         <img
                             width={56}
                             height={56}
-                            className="thumbnail-img mr-2 mr-md-4 mr-lg-5 d-none d-md-block"
+                            className="thumbnail-img mr-md-3 mr-lg-4 d-none d-md-block"
                             src={post.thumbnail}
                             alt={post.title}
                         />
