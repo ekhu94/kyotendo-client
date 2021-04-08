@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Card, Media, Button, Row } from 'react-bootstrap';
+import { ResponsiveEmbed, Media, Button, Row } from 'react-bootstrap';
+import './PostObject.css';
 
 const PostObject = ({ post }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -92,7 +93,16 @@ const PostObject = ({ post }) => {
                             </Row>
                             <Row className="justify-content-start">
                                 {isOpen ?
-                                    <iframe src={url} title={post.title} />
+                                    <div className="iframe-sizing">
+                                        <ResponsiveEmbed aspectRatio="16by9">
+                                            <iframe
+                                                src={url}
+                                                allow="fullscreen"
+                                                title={post.title}
+                                                className="iframe"
+                                            />
+                                        </ResponsiveEmbed>
+                                    </div>
                                 : null
                                 }
                             </Row>

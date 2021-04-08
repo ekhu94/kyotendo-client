@@ -104,7 +104,7 @@ const App = ({ setAuth }) => {
                     <Route exact path="/" render={() => <HomePage /> } />
                     <Route exact path="/forums" render={() => <ForumList />} />
                     <Route
-                        path="/forums/:slug"
+                        exact path="/forums/:slug"
                         render={routerProps => {
                             return <ForumShow forumSlug={routerProps.match.params.slug} />                      
                         }

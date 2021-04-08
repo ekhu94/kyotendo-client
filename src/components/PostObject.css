@@ -1,0 +1,56 @@
+.iframe-sizing {
+    width: 600px;
+    height: auto;
+}
+
+.iframe {
+    border-radius: 4px;
+}
+
+@media (max-width: 1200px) {
+    .iframe-sizing {
+        width: 440px;
+    }
+}
+
+@media (max-width: 1050px) {
+    .iframe-sizing {
+        width: 420px;
+    }
+}
+
+@media (max-width: 988px) {
+    .iframe-sizing {
+        width: 400px;
+    }
+}
+
+@media (max-width: 920px) {
+    .iframe-sizing {
+        width: 380px;
+    }
+}
+
+@media (max-width: 769px) {
+    .iframe-sizing {
+        width: 360px;
+    }
+}
+
+@media (max-width: 481px) {
+    .iframe-sizing {
+        width: 320px;
+    }
+}
+
+@media (max-width: 396px) {
+    .iframe-sizing {
+        width: 280px;
+    }
+}
+
+@media (max-width: 340px) {
+    .iframe-sizing {
+        width: 220px;
+    }
+}
