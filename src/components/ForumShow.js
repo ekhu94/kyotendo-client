@@ -34,8 +34,12 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow }) => {
 
     const renderPosts = () => {
         if (forum.posts) {
-            return forum.posts.map(post => {
-                return <PostObject key={post.id} post={post} />
+            return forum.posts.sort((a, b) => b.upvotes - a.upvotes).map(post => {
+                return (
+                    <Row className="justify-content-start">
+                        <PostObject key={post.id} post={post} />
+                    </Row>
+                );
             });
         }
     };
@@ -44,9 +48,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow }) => {
         <div>
             {forums.length ?
                 <Container>
-                    <Row>
-                        {renderPosts()}
-                    </Row>
+                    {renderPosts()}
                 </Container>
                 :
                 <PageLoader />

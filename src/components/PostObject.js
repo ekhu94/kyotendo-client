@@ -7,7 +7,7 @@ const PostObject = ({ post }) => {
         switch (post.post_type) {
             case 'discussion':
                 return (
-                    <Media>
+                    <Media className="my-5">
                         {/* <img
                             width={64}
                             height={64}
@@ -16,17 +16,17 @@ const PostObject = ({ post }) => {
                             alt="Generic placeholder"
                         /> */}
                         <Media.Body>
-                            <h5>{post.title}</h5>
+                            <h3 className="mb-3">{post.title}</h3>
                             {/* show this conditionally */}
                             <p>
-                                {post.content_text}
+                                {renderParagraphs(post.content_text)}
                             </p>
                         </Media.Body>
                     </Media>
                 )
             case 'image':
                 return (
-                    <Media>
+                    <Media className="my-5">
                         <img
                             width={64}
                             height={64}
@@ -36,25 +36,25 @@ const PostObject = ({ post }) => {
                         />
                         {/* show this conditionally */}
                         <Media.Body>
-                            <h5>{post.title}</h5>
-                            <img src={post.content_url} alt={post.title} />
+                            <h3 className="mb-3">{post.title}</h3>
+                            <img style={{ width: '400px' }} src={post.content_url} alt={post.title} />
                         </Media.Body>
                     </Media>
                 );
             case 'video':
+                const url = post.content_url.replace('watch?v=', 'embed/');
                 return (
-                    <Media>
-                        <iframe
+                    <Media className="my-5">
+                        <img
                             width={64}
                             height={64}
                             className="mr-3"
-                            src={post.content_url}
-                            title={post.title}
+                            src={post.thumbnail}
                         />
                         {/* show this conditionally */}
                         <Media.Body>
-                            <h5>{post.title}</h5>
-                            <iframe src={post.content_url} title={post.title} />
+                            <h3 className="mb-3">{post.title}</h3>
+                            <iframe src={url} title={post.title} />
                         </Media.Body>
                     </Media>
                 );
@@ -62,6 +62,14 @@ const PostObject = ({ post }) => {
                 return null;
         }
     }
+
+    const renderParagraphs = content => {
+        const parArr = content.replace(/&amp;#x200B;/ig, '').split(/\n+/ig)
+        console.log(parArr);
+        return parArr.map(par => {
+            return <p>{par}</p>
+        });
+    };
 
     return (
         <div>
