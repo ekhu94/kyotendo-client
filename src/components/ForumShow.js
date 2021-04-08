@@ -36,8 +36,8 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow }) => {
         if (forum.posts) {
             return forum.posts.sort((a, b) => b.upvotes - a.upvotes).map(post => {
                 return (
-                    <Row className="justify-content-start">
-                        <PostObject key={post.id} post={post} />
+                    <Row className="justify-content-start" key={post.id}>
+                        <PostObject post={post} />
                     </Row>
                 );
             });
@@ -50,7 +50,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow }) => {
                 <Container>
                     <Row className="justify-content-center">
                         <Card
-                            className="my-5 col-12 col-md-9 p-2 p-md-5"
+                            className="my-5 col-12 col-md-8 p-2 p-md-5"
                             style={{ borderRadius: '20px' }}
                         >
                             {renderPosts()}

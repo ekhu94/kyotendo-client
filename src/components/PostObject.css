@@ -7,50 +7,96 @@
     border-radius: 4px;
 }
 
+h4.post-title {
+    font-size: 1.4rem;
+}
+
 @media (max-width: 1200px) {
     .iframe-sizing {
         width: 440px;
+    }
+    img.thumbnail-img.mr-5 {
+        width: 56px;
+        height: 56px;
+    }
+    h4.post-title {
+        font-size: 1.2rem;
     }
 }
 
 @media (max-width: 1050px) {
     .iframe-sizing {
-        width: 420px;
+        width: 400px;
+    }
+    h4.post-title {
+        font-size: 1rem;
     }
 }
 
-@media (max-width: 988px) {
+@media (max-width: 994px) {
     .iframe-sizing {
-        width: 400px;
+        width: 350px;
+    }
+    h4.post-title {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 969px) {
+    .iframe-sizing {
+        width: 345px;
+    }
+    img.thumbnail-img.mr-5 {
+        width: 48px;
+        height: 48px;
     }
 }
 
 @media (max-width: 920px) {
     .iframe-sizing {
-        width: 380px;
+        width: 340px;
+    }
+    h4.post-title {
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 769px) {
     .iframe-sizing {
-        width: 360px;
+        width: 320px;
+    }
+    img.thumbnail-img.mr-5 {
+        width: 40px;
+        height: 40px;
     }
 }
 
 @media (max-width: 481px) {
     .iframe-sizing {
-        width: 320px;
+        width: 300px;
+    }
+    img.thumbnail-img.mr-5 {
+        width: 32px;
+        height: 32px;
     }
 }
 
 @media (max-width: 396px) {
     .iframe-sizing {
-        width: 280px;
+        width: 260px;
+    }
+    img.thumbnail-img.mr-5 {
+        width: 27px;
+        height: 27px;
     }
 }
 
 @media (max-width: 340px) {
     .iframe-sizing {
         width: 220px;
+    }
+    img.thumbnail-img.mr-5 {
+        width: 23px;
+        height: 23px;
     }
 }
