@@ -15,12 +15,9 @@ h4.post-title {
     .iframe-sizing {
         width: 440px;
     }
-    img.thumbnail-img.mr-5 {
-        width: 56px;
-        height: 56px;
-    }
-    h4.post-title {
-        font-size: 1.2rem;
+    img.thumbnail-img.mr-2.mr-md-4.mr-lg-5 {
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -28,8 +25,12 @@ h4.post-title {
     .iframe-sizing {
         width: 400px;
     }
+    img.thumbnail-img.mr-2.mr-md-4.mr-lg-5 {
+        width: 45px;
+        height: 45px;
+    }
     h4.post-title {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 }
 
@@ -37,8 +38,9 @@ h4.post-title {
     .iframe-sizing {
         width: 350px;
     }
-    h4.post-title {
-        font-size: 0.9rem;
+    img.thumbnail-img.mr-2.mr-md-4.mr-lg-5 {
+        width: 40px;
+        height: 40px;
     }
 }
 
@@ -46,18 +48,18 @@ h4.post-title {
     .iframe-sizing {
         width: 345px;
     }
-    img.thumbnail-img.mr-5 {
-        width: 48px;
-        height: 48px;
-    }
 }
 
 @media (max-width: 920px) {
     .iframe-sizing {
         width: 340px;
     }
+    img.thumbnail-img.mr-2.mr-md-4.mr-lg-5 {
+        width: 36px;
+        height: 36px;
+    }
     h4.post-title {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 }
 
@@ -65,9 +67,9 @@ h4.post-title {
     .iframe-sizing {
         width: 320px;
     }
-    img.thumbnail-img.mr-5 {
-        width: 40px;
-        height: 40px;
+    img.thumbnail-img.mr-2.mr-md-4.mr-lg-5 {
+        width: 34px;
+        height: 34px;
     }
 }
 
@@ -75,9 +77,12 @@ h4.post-title {
     .iframe-sizing {
         width: 300px;
     }
-    img.thumbnail-img.mr-5 {
-        width: 32px;
-        height: 32px;
+    img.thumbnail-img.mr-2.mr-md-4.mr-lg-5 {
+        width: 27px;
+        height: 27px;
+    }
+    h4.post-title {
+        font-size: 0.8rem;
     }
 }
 
@@ -85,9 +90,9 @@ h4.post-title {
     .iframe-sizing {
         width: 260px;
     }
-    img.thumbnail-img.mr-5 {
-        width: 27px;
-        height: 27px;
+    img.thumbnail-img.mr-2.mr-md-4.mr-lg-5 {
+        width: 24px;
+        height: 24px;
     }
 }
 
@@ -95,8 +100,8 @@ h4.post-title {
     .iframe-sizing {
         width: 220px;
     }
-    img.thumbnail-img.mr-5 {
-        width: 23px;
-        height: 23px;
+    img.thumbnail-img.mr-2.mr-md-4.mr-lg-5 {
+        width: 20px;
+        height: 20px;
     }
 }

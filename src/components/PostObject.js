@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ResponsiveEmbed, Media, Button, Row, Fade } from 'react-bootstrap';
+import { ResponsiveEmbed, Media, Button, Container, Row, Fade } from 'react-bootstrap';
 import './PostObject.css';
 
 const PostObject = ({ post }) => {
@@ -9,7 +9,7 @@ const PostObject = ({ post }) => {
         switch (post.post_type) {
             case 'discussion':
                 return (
-                    <Media className="my-4" key={post.id}>
+                    <Media className="my-4 p-3 p-md-4" key={post.id}>
                         {/* <img
                             width={64}
                             height={64}
@@ -18,53 +18,56 @@ const PostObject = ({ post }) => {
                             alt="Generic placeholder"
                         /> */}
                         <Media.Body>
-                            <Row className="align-items-center mb-4">
-                                <h4 className="ml-4 post-title">{post.title}
-                                    <span className="ml-1 ml-sm-2 ml-md-3 ml-lg-4">
-                                        <Button
-                                            variant="info"
-                                            size="sm"
-                                            onClick={() => setIsOpen(!isOpen)}
-                                            aria-controls="fade-disc"
-                                            aria-expanded={isOpen}
-                                        >
-                                            {isOpen ? <i className="fas fa-minus" /> : <i className="fas fa-plus"></i>}
-                                        </Button>
-                                    </span>
-                                </h4>
-                            </Row>
-                            <Row className="justify-content-start">
-                                <Fade in={isOpen}>
-                                    <div id="fade-disc" className={`p-2 ${!isOpen ? "d-none" : ""}`}>
-                                        {renderParagraphs(post.content_text)}
-                                    </div>
-                                </Fade>
-                                {/* {isOpen ?
-                                    <div id="fade-disc" className={`p-2 ${!isOpen ? "d-none" : ""}`}>
-                                        {renderParagraphs(post.content_text)}
-                                    </div>
-                                :
-                                    null
-                                } */}
-                            </Row>
+                            <Container>
+                                <Row className="align-items-center mb-4">
+                                    <h4 className="ml-3 ml-md-0 post-title">{post.title}
+                                        <span className="ml-2 ml-sm-3">
+                                            <Button
+                                                variant="info"
+                                                size="sm"
+                                                onClick={() => setIsOpen(!isOpen)}
+                                                aria-controls="fade-disc"
+                                                aria-expanded={isOpen}
+                                            >
+                                                {isOpen ? <i className="fas fa-minus" /> : <i className="fas fa-plus"></i>}
+                                            </Button>
+                                        </span>
+                                    </h4>
+                                </Row>
+                                <Row className="justify-content-start">
+                                    <Fade in={isOpen}>
+                                        <div id="fade-disc" className={`p-2 ${!isOpen ? "d-none" : ""}`}>
+                                            {renderParagraphs(post.content_text)}
+                                        </div>
+                                    </Fade>
+                                    {/* {isOpen ?
+                                        <div id="fade-disc" className={`p-2 ${!isOpen ? "d-none" : ""}`}>
+                                            {renderParagraphs(post.content_text)}
+                                        </div>
+                                    :
+                                        null
+                                    } */}
+                                </Row>
+                            </Container>
                         </Media.Body>
                     </Media>
                 )
             case 'image':
                 return (
-                    <Media className="my-4" key={post.id}>
+                    <Media className="my-4 p-3 p-md-4" key={post.id}>
                         <img
-                            width={64}
-                            height={64}
-                            className="thumbnail-img mr-5"
+                            width={56}
+                            height={56}
+                            className="thumbnail-img mr-2 mr-md-4 mr-lg-5 d-none d-md-block"
                             src={post.content_url}
                             alt={post.title}
                         />
                         {/* show this conditionally */}
                         <Media.Body>
+                            <Container>
                             <Row className="align-items-center mb-4">
-                                <h4 className="post-title">{post.title}
-                                    <span className="ml-1 ml-sm-2 ml-md-3 ml-lg-4">
+                                <h4 className="ml-3 ml-md-0 post-title">{post.title}
+                                    <span className="ml-2 ml-sm-3">
                                         <Button
                                             variant="info"
                                             size="sm"
@@ -88,25 +91,27 @@ const PostObject = ({ post }) => {
                                 : null
                                 } */}
                             </Row>
+                            </Container>
                         </Media.Body>
                     </Media>
                 );
             case 'video':
                 const url = post.content_url.replace('watch?v=', 'embed/');
                 return (
-                    <Media className="my-4" key={post.id}>
+                    <Media className="my-4 p-3 p-md-4" key={post.id}>
                         <img
-                            width={64}
-                            height={64}
-                            className="thumbnail-img mr-5"
+                            width={56}
+                            height={56}
+                            className="thumbnail-img mr-2 mr-md-4 mr-lg-5 d-none d-md-block"
                             src={post.thumbnail}
                             alt={post.title}
                         />
                         {/* show this conditionally */}
                         <Media.Body>
+                            <Container>
                             <Row className="align-items-center mb-4">
-                                <h4 className="post-title">{post.title}
-                                    <span className="ml-1 ml-sm-2 ml-md-3 ml-lg-4">
+                                <h4 className="ml-3 ml-md-0 post-title">{post.title}
+                                    <span className="ml-2 ml-sm-3">
                                         <Button
                                             variant="info"
                                             size="sm"
@@ -146,6 +151,7 @@ const PostObject = ({ post }) => {
                                 : null
                                 } */}
                             </Row>
+                            </Container>
                         </Media.Body>
                     </Media>
                 );
