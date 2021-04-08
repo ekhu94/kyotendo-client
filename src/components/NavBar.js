@@ -51,18 +51,18 @@ const NavBar = ({ onLogout, auth }) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <LinkContainer to="/" exact>
-                            <Nav.Link>Home</Nav.Link>
+                            <Nav.Link>home</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to="/games" exact>
-                            <Nav.Link>Games</Nav.Link>
+                            <Nav.Link>games</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to="/forums" exact>
-                            <Nav.Link>Forums</Nav.Link>
+                            <Nav.Link>forums</Nav.Link>
                         </LinkContainer>
                     </Nav>
                     <Nav className="ms-auto">
                         <LinkContainer to="/about">
-                            <Nav.Link>About</Nav.Link>
+                            <Nav.Link>about</Nav.Link>
                         </LinkContainer>
                         {localStorage.token && localStorage.token !== "undefined" ?
                             <>
@@ -71,7 +71,7 @@ const NavBar = ({ onLogout, auth }) => {
                                     alignRight
                                 >
                                     <LinkContainer to="/profile">
-                                        <NavDropdown.Item>Profile</NavDropdown.Item>
+                                        <NavDropdown.Item>profile</NavDropdown.Item>
                                     </LinkContainer>
                                         <NavDropdown.Item
                                             className=""
@@ -79,14 +79,14 @@ const NavBar = ({ onLogout, auth }) => {
                                                 onLogout()
                                             }}
                                         >
-                                            Logout
+                                            logout
                                         </NavDropdown.Item>
                                 </NavDropdown>
                             </>
                         :
                             <>
                                 <LinkContainer to="/auth">
-                                    <Nav.Link><i className="fab fa-nintendo-switch pr-2" />Login/Signup</Nav.Link>
+                                    <Nav.Link><i className="fab fa-nintendo-switch pr-2" />login/signup</Nav.Link>
                                 </LinkContainer>
                             </>
                     }

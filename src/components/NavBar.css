@@ -8,19 +8,20 @@
 
 #nav-brand {
     letter-spacing: 0.2rem;
-    font-size: 1.2rem;
-    font-family: 'Pretendo';
+    font-size: 1.3rem;
+    font-weight: 500 !important;
+    font-family: 'Chakra Petch', sans-serif;
 }
 
 a.nav-link {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-right: 15px;
-    letter-spacing: 0.4rem;
+    letter-spacing: 0.2rem;
 }
 
 a.dropdown-item {
-    font-size: 1.2rem;
-    letter-spacing: 0.4rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
 }
 
 a.active.dropdown-item {

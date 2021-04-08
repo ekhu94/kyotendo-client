@@ -50,7 +50,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow }) => {
                 <Container>
                     <Row className="justify-content-center">
                         <Card
-                            className="my-5 col-12 col-md-8 p-2 p-md-5"
+                            className="my-5 col-11 col-md-8 p-3 p-md-5"
                             style={{ borderRadius: '20px' }}
                         >
                             {renderPosts()}

@@ -9,6 +9,7 @@ div.list-group-item:hover {
 
 h1.text-center.mb-5 {
     letter-spacing: 0.3s;
+    font-weight: 500 !important;
 }
 
 @media (max-width: 769px) {

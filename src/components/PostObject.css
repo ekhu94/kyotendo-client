@@ -9,6 +9,14 @@
 
 h4.post-title {
     font-size: 1.4rem;
+    font-weight: 500 !important;
+    line-height: 1.8;
+}
+
+p {
+    line-height: 1.8;
+    font-weight: 300;
+    font-size: 1.1rem;
 }
 
 @media (max-width: 1200px) {
@@ -31,6 +39,9 @@ h4.post-title {
     }
     h4.post-title {
         font-size: 1.2rem;
+    }
+    p {
+        font-size: 1rem;
     }
 }
 
@@ -58,9 +69,12 @@ h4.post-title {
         width: 36px;
         height: 36px;
     }
-    h4.post-title {
+    /* h4.post-title {
         font-size: 1rem;
     }
+    p {
+        font-size: 0.8rem;
+    } */
 }
 
 @media (max-width: 769px) {
@@ -78,6 +92,9 @@ h4.post-title {
         width: 300px;
     }
     h4.post-title {
+        font-size: 1rem;
+    }
+    p {
         font-size: 0.8rem;
     }
 }
