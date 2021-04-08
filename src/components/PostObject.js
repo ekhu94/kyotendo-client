@@ -1,13 +1,14 @@
-import React from 'react';
-import { Media } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Card, Media, Button, Row } from 'react-bootstrap';
 
 const PostObject = ({ post }) => {
+    const [isOpen, setIsOpen] = useState(false);
 
     const renderPost = () => {
         switch (post.post_type) {
             case 'discussion':
                 return (
-                    <Media className="my-5">
+                    <Media className="my-4">
                         {/* <img
                             width={64}
                             height={64}
@@ -16,45 +17,85 @@ const PostObject = ({ post }) => {
                             alt="Generic placeholder"
                         /> */}
                         <Media.Body>
-                            <h3 className="mb-3">{post.title}</h3>
-                            {/* show this conditionally */}
-                            <p>
-                                {renderParagraphs(post.content_text)}
-                            </p>
+                            <Row className="align-items-center mb-4">
+                                <h4 className="ml-4">{post.title}
+                                    <span className="ml-4">
+                                        <Button variant="info" size="sm" onClick={() => setIsOpen(!isOpen)}>
+                                            {isOpen ? <i className="fas fa-minus" /> : <i className="fas fa-plus"></i>}
+                                        </Button>
+                                    </span>
+                                </h4>
+                            </Row>
+                            <Row className="justify-content-start">
+                                {isOpen ?
+                                    <div className="p-5">
+                                        {renderParagraphs(post.content_text)}
+                                    </div>
+                                :
+                                    null
+                                }
+                            </Row>
                         </Media.Body>
                     </Media>
                 )
             case 'image':
                 return (
-                    <Media className="my-5">
+                    <Media className="my-4">
                         <img
                             width={64}
                             height={64}
-                            className="mr-3"
+                            className="mr-5"
                             src={post.content_url}
                             alt={post.title}
                         />
                         {/* show this conditionally */}
                         <Media.Body>
-                            <h3 className="mb-3">{post.title}</h3>
-                            <img style={{ width: '400px' }} src={post.content_url} alt={post.title} />
+                            <Row className="align-items-center mb-4">
+                                <h4>{post.title}
+                                    <span className="ml-4">
+                                        <Button variant="info" size="sm" onClick={() => setIsOpen(!isOpen)}>
+                                            {isOpen ? <i className="fas fa-minus" /> : <i className="fas fa-plus"></i>}
+                                        </Button>
+                                    </span>
+                                </h4>
+                            </Row>
+                            <Row className="justify-content-start">
+                                {isOpen ?
+                                    <img style={{ width: '400px' }} src={post.content_url} alt={post.title} />
+                                : null
+                                }
+                            </Row>
                         </Media.Body>
                     </Media>
                 );
             case 'video':
                 const url = post.content_url.replace('watch?v=', 'embed/');
                 return (
-                    <Media className="my-5">
+                    <Media className="my-4">
                         <img
                             width={64}
                             height={64}
-                            className="mr-3"
+                            className="mr-5"
                             src={post.thumbnail}
+                            alt={post.title}
                         />
                         {/* show this conditionally */}
                         <Media.Body>
-                            <h3 className="mb-3">{post.title}</h3>
-                            <iframe src={url} title={post.title} />
+                            <Row className="align-items-center mb-4">
+                                <h4>{post.title}
+                                    <span className="ml-4">
+                                        <Button variant="info" size="sm" onClick={() => setIsOpen(!isOpen)}>
+                                            {isOpen ? <i className="fas fa-minus" /> : <i className="fas fa-plus"></i>}
+                                        </Button>
+                                    </span>
+                                </h4>
+                            </Row>
+                            <Row className="justify-content-start">
+                                {isOpen ?
+                                    <iframe src={url} title={post.title} />
+                                : null
+                                }
+                            </Row>
                         </Media.Body>
                     </Media>
                 );

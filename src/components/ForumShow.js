@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import action from '../actions';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Card } from 'react-bootstrap';
 
 import PageLoader from './PageLoader';
 import PostObject from './PostObject';
@@ -48,7 +48,14 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow }) => {
         <div>
             {forums.length ?
                 <Container>
-                    {renderPosts()}
+                    <Row className="justify-content-center">
+                        <Card
+                            className="my-5 col-12 col-md-9 p-2 p-md-5"
+                            style={{ borderRadius: '20px' }}
+                        >
+                            {renderPosts()}
+                        </Card>
+                    </Row>
                 </Container>
                 :
                 <PageLoader />
