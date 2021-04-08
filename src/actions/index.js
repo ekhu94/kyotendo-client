@@ -5,6 +5,7 @@ import { getForums } from './getForums';
 import { getForumShow } from './getForumShow';
 //* LOCAL
 import { setAuth } from './setAuth';
+import { upvote, downvote } from './upvote';
 
 const action = {
     games: {
@@ -16,6 +17,10 @@ const action = {
     },
     auth: {
         setAuth
+    },
+    vote: {
+        upvote,
+        downvote
     }
 };
 

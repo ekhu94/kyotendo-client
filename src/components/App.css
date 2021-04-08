@@ -1,3 +1,15 @@
+:root {
+    --red-primary: #ff3c28;
+    --red-secondary: #b8000f;
+    --blue-primary: #0bb9e6;
+    --blue-secondary: #4656e6;
+    --lime: #1ddc00;
+    --pink: #ff3278;
+    --warning: #e5ff00;
+    --dark: #464646;
+    --light: #828282;
+}
+
 body {
     font-family: 'Chakra Petch', sans-serif;
 }

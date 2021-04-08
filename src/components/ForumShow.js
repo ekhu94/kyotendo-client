@@ -53,7 +53,9 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow }) => {
                             className="my-5 col-11 col-md-8 p-3 p-md-5"
                             style={{ borderRadius: '20px' }}
                         >
-                            {renderPosts()}
+                            <ul className="list-unstyled">
+                                {renderPosts()}
+                            </ul>
                         </Card>
                     </Row>
                 </Container>

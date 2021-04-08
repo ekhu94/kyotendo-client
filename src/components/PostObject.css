@@ -7,10 +7,25 @@
     border-radius: 4px;
 }
 
-h4.post-title {
-    font-size: 1.4rem;
+div.post-title h4 {
+    color: var(--dark);
+    font-size: 1.3rem;
     font-weight: 500 !important;
     line-height: 1.8;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+div.post-title:hover > h4 {
+    color: var(--red-primary);
+}
+
+div.post-title:hover > h4 .badge.badge-pill {
+    color: var(--dark);
+}
+
+div.post-title:hover > h4 .badge.badge-pill {
+    color: var(--dark);
 }
 
 p {

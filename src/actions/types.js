@@ -1,4 +1,6 @@
 export const SET_USER_AUTH = 'SET_USER_AUTH';
+export const UPVOTE = 'UPVOTE';
+export const DOWNVOTE = 'DOWNVOTE';
 
 //* RAILS API
 export const GET_FORUMS = 'GET_FORUMS';

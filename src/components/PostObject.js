@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { ResponsiveEmbed, Media, Button, Container, Row, Fade } from 'react-bootstrap';
+import { ResponsiveEmbed, Media, Button, Container, Row, Fade, Badge } from 'react-bootstrap';
 import './PostObject.css';
+
+import UpvoteButtons from './UpvoteButtons';
 
 const PostObject = ({ post }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +11,7 @@ const PostObject = ({ post }) => {
         switch (post.post_type) {
             case 'discussion':
                 return (
-                    <Media className="my-4 p-3 p-md-4" key={post.id}>
+                    <Media as="li" className="my-4 p-3 p-md-4" key={post.id}>
                         {/* <img
                             width={64}
                             height={64}
@@ -54,31 +56,36 @@ const PostObject = ({ post }) => {
                 )
             case 'image':
                 return (
-                    <Media className="my-4 p-3 p-md-4" key={post.id}>
-                        <img
+                    <Media as="li" className="my-4 p-3 p-md-4" key={post.id}>
+                        {/* <img
                             width={56}
                             height={56}
                             className="thumbnail-img mr-md-3 mr-lg-4 d-none d-md-block"
                             src={post.content_url}
                             alt={post.title}
-                        />
-                        {/* show this conditionally */}
+                        /> */}
                         <Media.Body>
                             <Container>
                             <Row className="align-items-center mb-4">
-                                <h4 className="ml-3 ml-md-0 post-title">{post.title}
-                                    <span className="ml-2 ml-sm-3">
-                                        <Button
-                                            variant="info"
-                                            size="sm"
-                                            onClick={() => setIsOpen(!isOpen)}
-                                            aria-controls="fade-image"
-                                            aria-expanded={isOpen}
+                                <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
+                                <div className="col-10 col-lg-11 post-title">
+                                    <h4
+                                        onClick={() => setIsOpen(!isOpen)}
+                                        aria-controls="fade-image"
+                                        aria-expanded={isOpen}
+                                        className="d-inline mr-0 ml-3 ml-md-0"
+                                    >
+                                        {post.title}
+                                        <Badge
+                                            pill
+                                            style={{backgroundColor: 'var(--red-primary)'}}
+                                            className="ml-2"
                                         >
-                                            {isOpen ? <i className="fas fa-minus" /> : <i className="fas fa-plus"></i>}
-                                        </Button>
-                                    </span>
-                                </h4>
+                                            {post.post_type}
+                                        </Badge>
+                                    </h4>
+                                    
+                                </div>
                             </Row>
                             <Row className="justify-content-start">
                                 <Fade in={isOpen}>
@@ -98,7 +105,7 @@ const PostObject = ({ post }) => {
             case 'video':
                 const url = post.content_url.replace('watch?v=', 'embed/');
                 return (
-                    <Media className="my-4 p-3 p-md-4" key={post.id}>
+                    <Media as="li" className="my-4 p-3 p-md-4" key={post.id}>
                         <img
                             width={56}
                             height={56}

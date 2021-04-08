@@ -1,0 +1,17 @@
+.no-vote {
+    filter: grayscale(80%);
+}
+
+img.upvote-img {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+img.upvote-img:hover {
+    opacity: 0.7;
+}
+
+img.upvote-img:active {
+    transform: scale(1.2, 1.2);
+}
