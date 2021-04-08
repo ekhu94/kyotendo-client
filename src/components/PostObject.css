@@ -52,7 +52,7 @@ p {
         width: 45px;
         height: 45px;
     }
-    h4.post-title {
+    div.post-title h4 {
         font-size: 1.2rem;
     }
     p {
@@ -74,6 +74,12 @@ p {
     .iframe-sizing {
         width: 345px;
     }
+     div.post-title h4 {
+        font-size: 1rem;
+    }
+    p {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 920px) {
@@ -84,12 +90,7 @@ p {
         width: 36px;
         height: 36px;
     }
-    /* h4.post-title {
-        font-size: 1rem;
-    }
-    p {
-        font-size: 0.8rem;
-    } */
+   
 }
 
 @media (max-width: 769px) {
@@ -100,6 +101,9 @@ p {
         width: 34px;
         height: 34px;
     }
+    p {
+        font-size: 0.8rem;
+    }
 }
 
 @media (max-width: 481px) {
@@ -107,10 +111,10 @@ p {
         width: 300px;
     }
     h4.post-title {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     p {
-        font-size: 0.8rem;
+        font-size: 0.6rem;
     }
 }
 

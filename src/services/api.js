@@ -41,12 +41,6 @@ const getCurrentUser = () => {
     .then(res => res.json());
 };
 
-const changeUpvotes = async (val, id) => {
-    return await rails.patch(`/posts/${id}`, {
-        upvotes: val + 1
-    });
-}
-
 const rails = axios.create({
     baseURL: BACKEND_URL
 });
@@ -63,8 +57,5 @@ export const api = {
         signup,
         login,
         getCurrentUser
-    },
-    upvotes: {
-        changeUpvotes
     }
 };

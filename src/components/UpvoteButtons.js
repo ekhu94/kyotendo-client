@@ -3,14 +3,12 @@ import { Container, Row } from 'react-bootstrap';
 import upvoteImg from '../assets/icons/mario-upvote-icon.jpg';
 import downvoteImg from '../assets/icons/bowser-downvote-icon.jpg';
 import './UpvoteButtons.css';
-import axios from 'axios';
 import { api } from '../services/api';
 
 const UpvoteButtons = ({ postId, postUpvotes }) => {
     const [upvoteCount, setUpvoteCount] = useState(postUpvotes)
     const [upvoted, setUpvoted] = useState(false);
     const [downvoted, setDownvoted] = useState(false);
-    const { changeUpvotes } = api.upvotes;
 
     const onUpvoteClick = async () => {
         setDownvoted(false);
@@ -42,7 +40,7 @@ const UpvoteButtons = ({ postId, postUpvotes }) => {
         if (downvoted) {
             styles.color = 'var(--blue-secondary';
         }
-        return <div style={styles}>{upvoteCount}</div>
+        return <div className="text-center" style={styles}>{upvoteCount}</div>
     }
 
     return (
