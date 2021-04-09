@@ -12,13 +12,6 @@ const PostObject = ({ post }) => {
             case 'discussion':
                 return (
                     <Media as="li" className="p-3 p-md-4" key={post.id}>
-                        {/* <img
-                            width={64}
-                            height={64}
-                            className="mr-3"
-                            src="holder.js/64x64"
-                            alt="Generic placeholder"
-                        /> */}
                         <Media.Body>
                             <Container>
                                 <Row className="align-items-center mb-4">
@@ -56,13 +49,6 @@ const PostObject = ({ post }) => {
             case 'image':
                 return (
                     <Media as="li" className="p-3 p-md-4" key={post.id}>
-                        {/* <img
-                            width={56}
-                            height={56}
-                            className="thumbnail-img mr-md-3 mr-lg-4 d-none d-md-block"
-                            src={post.content_url}
-                            alt={post.title}
-                        /> */}
                         <Media.Body>
                             <Container>
                             <Row className="align-items-center mb-4">
@@ -90,7 +76,7 @@ const PostObject = ({ post }) => {
                             <Row className="justify-content-start">
                                 <Fade in={isOpen}>
                                     <div id="fade-image" className={`${!isOpen ? "d-none" : ""}`}>
-                                        <img style={{ width: '400px' }} src={post.content_url} alt={post.title} />
+                                        <img className="post-img" src={post.content_url} alt={post.title} />
                                     </div>
                                 </Fade>
                             </Row>
