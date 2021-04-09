@@ -5,6 +5,7 @@ import action from '../actions';
 import { Container, Row, Card, ListGroup } from 'react-bootstrap';
 
 import PageLoader from './PageLoader';
+import backgroundImg from '../assets/Splatoon-wallpaper-2.jpg';
 import './ForumList.css';
 
 const ForumList = ({ forums, getForums, getForumShow }) => {
@@ -30,6 +31,7 @@ const ForumList = ({ forums, getForums, getForumShow }) => {
                 styles.borderLeft = 'none';
                 styles.borderRight = 'none';
                 styles.marginTop = '20px';
+                styles.paddingBottom = '20px';
             }
             return (
                 <Link
@@ -47,17 +49,34 @@ const ForumList = ({ forums, getForums, getForumShow }) => {
     }
 
     return (
-        <div>
+        <div
+            id="forumsList-container"
+            style={{backgroundImage: `url(${backgroundImg})`}}
+        >
             {forums.length ?
-            <Container style={{ marginTop: '120px' }}>
-                <h1 className="text-center mb-5">Kyotendo Communities</h1>
+            <Container style={{ paddingTop: '70px', paddingBottom: '70px' }}>
                 <Row className="justify-content-center">
-                    <Card className="col-10 p-4" style={{
+                    <Card className="col-10 px-0" style={{
                         //? joycon grey
                         borderColor: '#989898',
-                        borderRadius: '20px'
+                        borderRadius: '20px',
                     }}>
-                        <ListGroup>
+                        <h1
+                            className="text-center py-4 mb-0"
+                            style={{
+                                color: '#fff',
+                                backgroundColor: 'var(--blue-secondary)',
+                                textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
+                                letterSpacing: "0.3em",
+                                lineHeight: '1.5',
+                                borderTopLeftRadius: '20px',
+                                borderTopRightRadius: '20px',
+                                fontWeight: "500"
+                            }}
+                        >
+                            Kyotendo Communities
+                        </h1>
+                        <ListGroup className="p-4">
                             {renderForums()}
                         </ListGroup>
                     </Card>
