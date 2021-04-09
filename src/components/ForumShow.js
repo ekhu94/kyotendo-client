@@ -9,7 +9,7 @@ import PageLoader from './PageLoader';
 import PostObject from './PostObject';
 import TopPosters from './TopPosters';
 
-const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, postIdx, setPostIdx, resetPostIdx }) => {
+const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetForumShow, postIdx, setPostIdx, resetPostIdx }) => {
     // const [bottom, setBottom] = useState(false);
 
     useEffect(() => {
@@ -45,6 +45,8 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, postIdx,
             const selected = forums.find(f => f.slug === forumSlug);
             getForumShow(selected.id)
         }
+
+        return () => resetForumShow();
     }, [forums])
 
         // if (forums.length !== 0) {
@@ -169,7 +171,7 @@ const mapStateToProps = state => {
     }
 };
 
-const { getForums, getForumShow } = action.forums;
+const { getForums, getForumShow, resetForumShow } = action.forums;
 const { setPostIdx, resetPostIdx } = action.posts;
 
-export default connect(mapStateToProps, { getForums, getForumShow, setPostIdx, resetPostIdx })(ForumShow);
+export default connect(mapStateToProps, { getForums, getForumShow, resetForumShow, setPostIdx, resetPostIdx })(ForumShow);

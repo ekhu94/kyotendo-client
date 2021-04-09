@@ -3,6 +3,7 @@ import { getGames } from './getGames';
 //* RAILS API
 import { getForums } from './getForums';
 import { getForumShow } from './getForumShow';
+import { resetForumShow } from './resetForumShow';
 import { getUsers } from './getUsers';
 //* LOCAL
 import { setAuth } from './setAuth';
@@ -15,7 +16,8 @@ const action = {
     },
     forums: {
         getForums,
-        getForumShow
+        getForumShow,
+        resetForumShow
     },
     posts: {
         setPostIdx,
