@@ -12,10 +12,8 @@ const TopPostersTop = ({ forum }) => {
             const {src, alt} = avatar.props;
             return (
                 <img
-                    className="d-none d-sm-inline d-lg-none"
+                    className="avatar-icon-top d-inline d-lg-none"
                     style={{
-                        width: '20px',
-                        height: '20px',
                         marginRight: '8px'
                     }}
                     src={src}
@@ -46,7 +44,7 @@ const TopPostersTop = ({ forum }) => {
             const topUsers = Object.keys(counter).sort((a, b) => counter[b] - counter[a]);
             return topUsers.slice(0, 5).map((u, i) => {
                 return (
-                    <Media as="li" className="col-8 col-md-5 pl-5 user-li mt-4">
+                    <Media as="li" className="col-10 col-md-6 pl-5 user-li mt-4">
                         <Media.Body>
                             <Link to={`/users/${u.split(' ').join('')}`}>
                                 <div>
@@ -67,7 +65,7 @@ const TopPostersTop = ({ forum }) => {
     }
 
     return (
-        <Row className="justify-content-center py-3">
+        <Row className="justify-content-center pt-5 py-4">
             <div className="col-9 d-block d-lg-none">
                 <Card
                     style={{
@@ -84,7 +82,7 @@ const TopPostersTop = ({ forum }) => {
                             textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
                             letterSpacing: "0.3em",
                             lineHeight: '1.2',
-                            fontSize: '1.2rem',
+                            fontSize: '1.6rem',
                             borderTopLeftRadius: '20px',
                             borderTopRightRadius: '20px',
                             fontWeight: "500"

@@ -88,7 +88,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                     <TopPostersTop forum={forum} />
                     <Row className="justify-content-center" style={{marginTop: '40px'}}>
                         <Card
-                            className="mb-5 col-11 col-lg-8 mr-0 mr-lg-5"
+                            className="mb-5 col-11 col-lg-8 mr-0 mr-lg-4"
                             style={{
                                 paddingLeft: '0',
                                 paddingRight: '0',
