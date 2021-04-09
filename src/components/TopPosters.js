@@ -12,10 +12,11 @@ const TopPosters = ({ forum }) => {
             const {src, alt} = avatar.props;
             return (
                 <img
+                    className="d-none d-lg-inline"
                     style={{
-                        width: '36px',
-                        height: '36px',
-                        marginRight: '15px'
+                        width: '30px',
+                        height: '30px',
+                        marginRight: '10px'
                     }}
                     src={src}
                     alt={alt}
@@ -46,14 +47,13 @@ const TopPosters = ({ forum }) => {
             const topUsers = Object.keys(counter).sort((a, b) => counter[b] - counter[a]);
             return topUsers.slice(0, 5).map((u, i) => {
                 return (
-                    <Media as="li" className="mt-3">
+                    <Media as="li" className="user-li mt-3">
                         <Media.Body>
                             <Link to={`/users/${u.split(' ').join('')}`}>
                                 <div>
                                     {generateAvatarJsx(idxs[i])}
                                     <span className="top-user-span" style={{
-                                            letterSpacing: '0.1rem',
-                                            fontSize: '1rem'
+                                            letterSpacing: '0.1rem'
                                         }}
                                     >
                                         {u}

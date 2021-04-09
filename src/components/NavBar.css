@@ -28,7 +28,6 @@ a.nav-link:hover {
 
 a.nav-link.active {
     /* color: var(--light) !important; */
-    transform: scale(1.1, 1.1);
     text-shadow: 1px 4px 10px rgba(0,0,0,0.71);
 }
 

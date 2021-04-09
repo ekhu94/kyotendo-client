@@ -5,6 +5,7 @@ import { Container, Row, Card, Button } from 'react-bootstrap';
 
 import './ForumShow.css';
 import backgroundImg from '../assets/forum-background.jpg';
+import ScrollTop from './ScrollTop';
 import PageLoader from './PageLoader';
 import PostObject from './PostObject';
 import TopPosters from './TopPosters';
@@ -82,8 +83,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
         >
             {forums.length ?
                 <Container fluid>
-                    {/* <Row className="justify-content-center justify-content-lg-start">
-                    </Row> */}
+                    <ScrollTop />
                     <Row className="justify-content-center" style={{paddingTop: '70px'}}>
                         <Card
                             className="mb-5 col-11 col-lg-8 mr-0 mr-lg-5"
@@ -123,7 +123,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                             >
                                 <h3
                                     id="users-title"
-                                    className="text-center m-0 p-4"
+                                    className="text-center mb-4 m-0 p-4"
                                     style={{
                                         color: '#fff',
                                         backgroundColor: 'var(--dark)',
@@ -142,11 +142,12 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                                     <Button
                                         variant="info"
                                         block
-                                        className="mt-4 p-3"
+                                        className="p-3"
                                         style={{
                                             borderRadius: '18px',
                                             letterSpacing: '0.25rem',
-                                            marginBottom: '27px'
+                                            marginTop: '28px',
+                                            marginBottom: '28px'
                                         }}
                                     >
                                         Create Post
