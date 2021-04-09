@@ -19,6 +19,10 @@ h1 {
     letter-spacing: 0.2rem;
 }
 
+a.dropdown-item:focus {
+    background-color: var(--red-primary);
+}
+
 a:hover {
     text-decoration: none;
 }

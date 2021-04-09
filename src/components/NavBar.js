@@ -9,6 +9,33 @@ const NavBar = ({ onLogout, auth }) => {
     // const URL = 'https://fros-store.herokuapp.com/'  
     const nav = useRef();
     // const account = useRef();
+    const navGames = useRef();
+    const navForums = useRef();
+    const navSwitch = useRef();
+    const navAuth = useRef();
+
+    const removeActives = () => {
+        
+        let filepath = window.location.pathname;
+        let checkGames = navGames.current;
+        let checkForums = navForums.current;
+        let checkSwitch = navSwitch.current;
+        let checkAuth = navAuth.current;
+        if (checkGames && filepath !== `/${checkGames.innerText}`) {
+            console.log('not in games route')
+            navGames.current.classList.remove('active');
+        }
+        if (checkForums && filepath !== `/${checkForums.innerText}`) {
+            console.log('not in forums route')
+            navForums.current.classList.remove('active');
+        }
+        if (checkSwitch) {
+            navSwitch.current.classList.remove('active');
+        }
+        if (checkAuth && filepath !== `/${checkAuth.innerText}`) {
+            navAuth.current.classList.remove('active');
+        }
+    }
 
     const handleScroll = () => {
         if (window.scrollY > 20) {
@@ -22,6 +49,7 @@ const NavBar = ({ onLogout, auth }) => {
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
+        
 
         return () => {
             window.removeEventListener("scroll", handleScroll);
@@ -33,7 +61,7 @@ const NavBar = ({ onLogout, auth }) => {
     };
 
     return (
-        <Navbar collapseOnSelect ref={nav} variant="dark" expand="md" fixed="top" className="nintendo-red py-3 align-items-center" style={{transition: 'all 0.2s'}}>
+        <Navbar collapseOnSelect ref={nav} variant="dark" expand="md" fixed="top" className="py-3 align-items-center" style={{backgroundColor: 'var(--red-secondary)', transition: 'all 0.3s'}}>
             <div className="container-fluid">
                 <LinkContainer to="/" exact>
                     <Navbar.Brand id="nav-brand"><span className="japanese">共天堂</span> kyotendo</Navbar.Brand>
@@ -42,15 +70,15 @@ const NavBar = ({ onLogout, auth }) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <LinkContainer to="/games" exact>
-                            <Nav.Link>games</Nav.Link>
+                            <Nav.Link active={false}>games</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to="/forums" exact>
-                            <Nav.Link>forums</Nav.Link>
+                            <Nav.Link active={false}>forums</Nav.Link>
                         </LinkContainer>
                     </Nav>
                     <Nav className="ms-auto">
                         <LinkContainer to="/about">
-                            <Nav.Link>about</Nav.Link>
+                            <Nav.Link active={false}>about</Nav.Link>
                         </LinkContainer>
                         {localStorage.token && localStorage.token !== "undefined" ?
                             <>
@@ -74,7 +102,7 @@ const NavBar = ({ onLogout, auth }) => {
                         :
                             <>
                                 <LinkContainer to="/auth">
-                                    <Nav.Link><i className="fab fa-nintendo-switch pr-2" />login/signup</Nav.Link>
+                                    <Nav.Link active={false}><i className="fab fa-nintendo-switch pr-2" />login/signup</Nav.Link>
                                 </LinkContainer>
                             </>
                     }
