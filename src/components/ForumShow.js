@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import action from '../actions';
-import { Container, Row, Card } from 'react-bootstrap';
+import { Container, Row, Card, Button } from 'react-bootstrap';
 
 import './ForumShow.css';
 import PageLoader from './PageLoader';
@@ -108,16 +108,33 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, postIdx,
                             </ul>
                         </Card>
                         <div className="col-11 col-md-3 d-none d-md-block">
-                        <Card
-                            className="position-fixed p-3 px-5"
-                            style={{
-                                borderRadius: '20px',
-                                height: '100%'
-                            }}
-                        >
-                            <h3 className="text-center">Top Users</h3>
-                            <TopPosters forum={forum} />
-                        </Card>
+                            <Card
+                                className="position-fixed p-3 px-5"
+                                style={{
+                                    borderRadius: '20px',
+                                    height: 'auto'
+                                }}
+                            >
+                                <h3
+                                    className="text-center my-4"
+                                    style={{
+                                        letterSpacing: '0.2rem',
+                                        fontSize: '2rem'
+                                    }}
+                                >
+                                    Top 5 Users
+                                </h3>
+                                <TopPosters forum={forum} />
+                                <Button
+                                    variant="info"
+                                    className="mt-3 mb-4"
+                                    style={{
+                                        borderRadius: '18px'
+                                    }}
+                                >
+                                    Create New Post
+                                </Button>
+                            </Card>
                         </div>
                     </Row>
                 </Container>

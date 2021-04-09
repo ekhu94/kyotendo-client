@@ -10,8 +10,8 @@ const TopPosters = ({ forum }) => {
         return (
             <img
                 style={{
-                    width: '40px',
-                    height: '40px',
+                    width: '36px',
+                    height: '36px',
                     marginRight: '15px'
                 }}
                 src={avatar.props.src}
@@ -30,14 +30,15 @@ const TopPosters = ({ forum }) => {
                 counter[`${username}`] ? counter[`${username}`]++ : counter[`${username}`] = 1;
             }
             const topUsers = Object.keys(counter).sort((a, b) => counter[b] - counter[a]);
-            return topUsers.slice(0, 8).map(u => {
+            return topUsers.slice(0, 5).map(u => {
                 return (
-                    <Media as="li" className="mt-4">
+                    <Media as="li" className="mt-3">
                         <Media.Body>
                         <div>
                             {generateAvatarJsx()}
                             <span style={{
-                                    letterSpacing: '0.1rem'
+                                    letterSpacing: '0.1rem',
+                                    fontSize: '1rem'
                                 }}
                             >
                                 {u}
