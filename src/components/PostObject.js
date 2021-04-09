@@ -164,7 +164,7 @@ const PostObject = ({ post }) => {
     const renderParagraphs = content => {
         const parArr = content.replace(/&amp;#x200B;/ig, '').split(/\n+/ig)
         return parArr.map(par => {
-            return <p>{par}</p>
+            return <p className="mr-4">{par}</p>
         });
     };
 

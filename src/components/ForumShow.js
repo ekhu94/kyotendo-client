@@ -98,7 +98,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, postIdx,
                                     borderTopLeftRadius: '20px',
                                     borderTopRightRadius: '20px',
                                     fontWeight: "500",
-                                    fontSize: "2.5rem"
+                                    fontSize: "2.2rem"
                                 }}
                             >
                                 {forum.name}
@@ -107,33 +107,44 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, postIdx,
                                 {renderPosts()}
                             </ul>
                         </Card>
-                        <div className="col-11 col-md-3 d-none d-md-block">
+                        <div className="mr-4 col-11 col-md-3 d-none d-md-block">
                             <Card
-                                className="position-fixed p-3 px-5"
+                                className="position-fixed"
                                 style={{
                                     borderRadius: '20px',
                                     height: 'auto'
                                 }}
                             >
                                 <h3
-                                    className="text-center my-4"
+                                    id="users-title"
+                                    className="text-center m-0 p-4"
                                     style={{
-                                        letterSpacing: '0.2rem',
-                                        fontSize: '2rem'
+                                        color: '#fff',
+                                        backgroundColor: 'var(--dark)',
+                                        textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
+                                        letterSpacing: "0.3em",
+                                        lineHeight: '1.5',
+                                        borderTopLeftRadius: '20px',
+                                        borderTopRightRadius: '20px',
+                                        fontWeight: "500"
                                     }}
                                 >
                                     Top 5 Users
                                 </h3>
-                                <TopPosters forum={forum} />
-                                <Button
-                                    variant="info"
-                                    className="mt-3 mb-4"
-                                    style={{
-                                        borderRadius: '18px'
-                                    }}
-                                >
-                                    Create New Post
-                                </Button>
+                                <div className="px-5">
+                                    <TopPosters forum={forum} />
+                                    <Button
+                                        variant="info"
+                                        block
+                                        className="mt-4 mb-4 p-3"
+                                        style={{
+                                            borderRadius: '18px',
+                                            letterSpacing: '0.25rem'
+                                        }}
+                                    >
+                                        Create New Post
+                                    </Button>
+                                </div>
                             </Card>
                         </div>
                     </Row>

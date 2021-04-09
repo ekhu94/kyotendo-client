@@ -151,6 +151,9 @@ p {
     img.post-img {
         max-width: 260px;
     }
+    h4.post-title {
+        font-size: 0.7rem;
+    }
 }
 
 @media (max-width: 340px) {
@@ -159,5 +162,8 @@ p {
     }
     img.post-img {
         max-width: 220px;
+    }
+    h4.post-title {
+        font-size: 0.6rem !important;
     }
 }
