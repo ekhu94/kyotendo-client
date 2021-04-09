@@ -149,7 +149,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                                             marginBottom: '27px'
                                         }}
                                     >
-                                        Create New Post
+                                        Create Post
                                     </Button>
                                 </div>
                             </Card>
