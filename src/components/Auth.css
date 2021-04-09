@@ -28,7 +28,7 @@ a.login-link button.btn.btn-primary.btn-block {
 }
 
 a.login-link button.btn.btn-primary.btn-block:hover {
-    background-color: var(--pink);
+    background-color: var(--blue-secondary);
 }
 
 a.signup-link button.btn.btn-primary.btn-block {
@@ -38,7 +38,7 @@ a.signup-link button.btn.btn-primary.btn-block {
 }
 
 a.signup-link button.btn.btn-primary.btn-block:hover {
-    background-color: var(--lime);
+    background-color: var(--red-secondary);
 }
 
 @media (max-width: 350px) {

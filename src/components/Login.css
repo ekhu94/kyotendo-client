@@ -4,7 +4,7 @@ h1.text-center.mb-4 {
 
 button.auth-btn {
     border: none;
-    letter-spacing: 0.2rem;
+    letter-spacing: 0.1rem;
     background-color: var(--red-primary);
 }
 
