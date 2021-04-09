@@ -1,6 +1,8 @@
 import React from 'react';
 import { Media } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import avatars from '../assets/icons/avatars/avatarIcons';
+import './TopPosters.css';
 
 const TopPosters = ({ forum }) => {
 
@@ -46,16 +48,18 @@ const TopPosters = ({ forum }) => {
                 return (
                     <Media as="li" className="mt-3">
                         <Media.Body>
-                        <div>
-                            {generateAvatarJsx(idxs[i])}
-                            <span style={{
-                                    letterSpacing: '0.1rem',
-                                    fontSize: '1rem'
-                                }}
-                            >
-                                {u}
-                            </span>
-                        </div>
+                            <Link to={`/users/${u.split(' ').join('')}`}>
+                                <div>
+                                    {generateAvatarJsx(idxs[i])}
+                                    <span className="top-user-span" style={{
+                                            letterSpacing: '0.1rem',
+                                            fontSize: '1rem'
+                                        }}
+                                    >
+                                        {u}
+                                    </span>
+                                </div>
+                            </Link>
                         </Media.Body>
                     </Media>
                 );

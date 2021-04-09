@@ -1,0 +1,7 @@
+.top-user-span {
+    color: var(--blue-secondary);
+}
+
+.top-user-span:hover {
+    color: var(--pink);
+}

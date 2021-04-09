@@ -21,7 +21,7 @@ const ForumList = ({ forums, getForums, getForumShow }) => {
                 letterSpacing: '0.1rem',
                 textDecoration: 'none',
                 //? joycon red
-                color: '#ff4554'
+                color: 'var(--dark)'
             };
             if (i === forums.length - 1) {
                 styles.border = 'none';
@@ -65,7 +65,7 @@ const ForumList = ({ forums, getForums, getForumShow }) => {
                             className="text-center py-4 mb-0"
                             style={{
                                 color: '#fff',
-                                backgroundColor: 'var(--blue-secondary)',
+                                backgroundColor: 'var(--pink)',
                                 textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
                                 letterSpacing: "0.3em",
                                 lineHeight: '1.5',
@@ -80,7 +80,12 @@ const ForumList = ({ forums, getForums, getForumShow }) => {
                             {renderForums()}
                         </ListGroup>
                         <Link id="new-forum-btn" to="/new/forum" exact>
-                            <Button block size="lg" variant="info" className="py-4">
+                            <Button
+                                block
+                                size="lg"
+                                variant="info"
+                                className="py-4"
+                            >
                                 Don't see the right forum for you? Start a new one!
                             </Button>
                         </Link>

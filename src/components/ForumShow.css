@@ -14,6 +14,10 @@ h3#users-title {
 button.btn.btn-info {
     background-color: var(--blue-primary);
     border: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     transition: all 0.6s;
 }
 button.btn.btn-info:hover {

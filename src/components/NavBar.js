@@ -32,17 +32,8 @@ const NavBar = ({ onLogout, auth }) => {
         return <><i className="fab fa-nintendo-switch mr-0" /> {auth.user.username}</>
     };
 
-    // const onDropdownClick = () => {
-    //     setTimeout(() => {
-    //         if (window.location.href !== `${URL}orders`) {
-    //             orders.current.classList.remove('active')
-    //         }
-    //     }, 1)
-        
-    // };
-
     return (
-        <Navbar collapseOnSelect ref={nav} variant="dark" expand="lg" fixed="top" className="nintendo-red py-3 align-items-center" style={{transition: 'all 0.2s'}}>
+        <Navbar collapseOnSelect ref={nav} variant="dark" expand="md" fixed="top" className="nintendo-red py-3 align-items-center" style={{transition: 'all 0.2s'}}>
             <div className="container-fluid">
                 <LinkContainer to="/" exact>
                     <Navbar.Brand id="nav-brand"><span className="japanese">共天堂</span> kyotendo</Navbar.Brand>
@@ -50,9 +41,6 @@ const NavBar = ({ onLogout, auth }) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <LinkContainer to="/" exact>
-                            <Nav.Link>home</Nav.Link>
-                        </LinkContainer>
                         <LinkContainer to="/games" exact>
                             <Nav.Link>games</Nav.Link>
                         </LinkContainer>
