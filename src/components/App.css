@@ -19,6 +19,10 @@ h1 {
     letter-spacing: 0.2rem;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 div.card {
     box-shadow: 1px 2px 22px 4px var(--dark);
 }

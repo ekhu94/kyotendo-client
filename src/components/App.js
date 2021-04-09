@@ -34,6 +34,14 @@ const App = ({ setAuth }) => {
         )};
     }, []);
 
+    useEffect(()=>{
+        let delay = alertObj.variant==='danger' ? 10000 : 5000
+        let timer = setTimeout(() => setShowAlert(false),delay)
+        return ()=>{
+            clearTimeout(timer)
+        }
+    },[alertObj]);
+
     //? Need to convert to redux
     const onLogin = (data, routerProps) => {
         //! authorization to make sure this is a user
