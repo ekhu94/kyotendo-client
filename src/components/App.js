@@ -11,6 +11,7 @@ import ForumShow from './ForumShow';
 import HomePage from './HomePage';
 import Login from './Login';
 import NavBar from './NavBar';
+import NewForumForm from './NewForumForm';
 import ScrollTop from './ScrollTop';
 import Signup from './Signup';
 import { propTypes } from 'react-bootstrap/esm/Image';
@@ -103,6 +104,7 @@ const App = ({ setAuth }) => {
                     <NavBar onLogout={onLogout} />
                     <Route exact path="/" render={() => <HomePage /> } />
                     <Route exact path="/forums" render={() => <ForumList />} />
+                    <Route exact path="/new/forum" render={() => <NewForumForm />} />
                     <Route
                         exact path="/forums/:slug"
                         render={routerProps => {

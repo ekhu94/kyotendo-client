@@ -41,7 +41,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
     // }, [postIdx]);
 
     useEffect(() => {
-        if (forums.length) {
+        if (forums && forums.length) {
             const selected = forums.find(f => f.slug === forumSlug);
             getForumShow(selected.id)
         }
