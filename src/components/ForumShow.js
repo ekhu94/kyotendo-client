@@ -4,6 +4,7 @@ import action from '../actions';
 import { Container, Row, Card, Button } from 'react-bootstrap';
 
 import './ForumShow.css';
+import backgroundImg from '../assets/forum-background.jpg';
 import PageLoader from './PageLoader';
 import PostObject from './PostObject';
 import TopPosters from './TopPosters';
@@ -73,14 +74,17 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, postIdx,
     };
 
     return (
-        <div>
+        <div
+            id="forum-container"
+            style={{backgroundImage: `url(${backgroundImg})`}}
+        >
             {forums.length ?
-                <Container className="mt-5">
+                <Container fluid>
                     {/* <Row className="justify-content-center justify-content-lg-start">
                     </Row> */}
-                    <Row className="justify-content-center" style={{marginTop: '130px'}}>
+                    <Row className="justify-content-center" style={{paddingTop: '70px'}}>
                         <Card
-                            className="mb-5 col-11 col-lg-8 mr-0 mr-md-5"
+                            className="mb-5 col-11 col-lg-8 mr-0 mr-lg-5"
                             style={{
                                 paddingLeft: '0',
                                 paddingRight: '0',
