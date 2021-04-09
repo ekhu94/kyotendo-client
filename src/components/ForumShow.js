@@ -136,10 +136,11 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, postIdx,
                                     <Button
                                         variant="info"
                                         block
-                                        className="mt-4 mb-4 p-3"
+                                        className="mt-4 p-3"
                                         style={{
                                             borderRadius: '18px',
-                                            letterSpacing: '0.25rem'
+                                            letterSpacing: '0.25rem',
+                                            marginBottom: '27px'
                                         }}
                                     >
                                         Create New Post
@@ -157,7 +158,6 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, postIdx,
 };
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
         forums: state.forums,
         forum: state.forumShow,
