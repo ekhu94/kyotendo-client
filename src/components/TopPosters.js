@@ -4,25 +4,37 @@ import avatars from '../assets/icons/avatars/avatarIcons';
 
 const TopPosters = ({ forum }) => {
 
-    const generateAvatarJsx = () => {
-        let idx = Math.floor(Math.random() * avatars.length);
-        const avatar = avatars[idx];
-        return (
-            <img
-                style={{
-                    width: '36px',
-                    height: '36px',
-                    marginRight: '15px'
-                }}
-                src={avatar.props.src}
-                alt={avatar.props.alt}
-            />
-        );
+    const generateAvatarJsx = idx => {
+        const avatar = avatars.find(a => avatars.indexOf(a) == idx);
+        if (avatar) {
+            const {src, alt} = avatar.props;
+            return (
+                <img
+                    style={{
+                        width: '36px',
+                        height: '36px',
+                        marginRight: '15px'
+                    }}
+                    src={src}
+                    alt={alt}
+                />
+            );
+        }
     }
 
     const findTopUsers = () => {
         generateAvatarJsx()
         if (forum.users) {
+            //* get an array of 5 random unique nums
+            const idxs = [];
+            while (idxs.length < 5) {
+                let idx = Math.floor(Math.random() * avatars.length);
+                if (!idxs.includes(idx)) {
+                    idxs.push(idx);
+                }
+            }
+            console.log(idxs)
+            //* get the users with the most posts
             const {users} = forum;
             const counter = {};
             for (let user of users) {
@@ -30,12 +42,12 @@ const TopPosters = ({ forum }) => {
                 counter[`${username}`] ? counter[`${username}`]++ : counter[`${username}`] = 1;
             }
             const topUsers = Object.keys(counter).sort((a, b) => counter[b] - counter[a]);
-            return topUsers.slice(0, 5).map(u => {
+            return topUsers.slice(0, 5).map((u, i) => {
                 return (
                     <Media as="li" className="mt-3">
                         <Media.Body>
                         <div>
-                            {generateAvatarJsx()}
+                            {generateAvatarJsx(idxs[i])}
                             <span style={{
                                     letterSpacing: '0.1rem',
                                     fontSize: '1rem'
