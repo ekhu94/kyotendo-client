@@ -9,6 +9,7 @@ import ScrollTop from './ScrollTop';
 import PageLoader from './PageLoader';
 import PostObject from './PostObject';
 import TopPosters from './TopPosters';
+import TopPostersTop from './TopPostersTop';
 
 const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetForumShow, postIdx, setPostIdx, resetPostIdx }) => {
     // const [bottom, setBottom] = useState(false);
@@ -84,7 +85,8 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
             {forums.length ?
                 <Container fluid>
                     <ScrollTop />
-                    <Row className="justify-content-center" style={{paddingTop: '70px'}}>
+                    <TopPostersTop forum={forum} />
+                    <Row className="justify-content-center" style={{marginTop: '40px'}}>
                         <Card
                             className="mb-5 col-11 col-lg-8 mr-0 mr-lg-5"
                             style={{

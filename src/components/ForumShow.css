@@ -11,6 +11,10 @@ h3#users-title {
     font-size: 2.2rem;
 }
 
+h3#users-title-top {
+    font-size: 1.8rem;
+}
+
 button.btn.btn-info {
     background-color: var(--blue-primary);
     border: none;
