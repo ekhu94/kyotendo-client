@@ -87,7 +87,7 @@ const TopPostersTop = ({ forum }) => {
                             fontWeight: "500"
                         }}
                     >
-                        {forum.posts && forum.posts.length ? 'Top 5 Users' : 'Start the party!'}
+                        {forum.posts && forum.posts.length ? 'Top Users' : 'Start the party!'}
                     </h3>
                     <div>
                         <Row className="justify-content-center">

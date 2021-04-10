@@ -26,13 +26,16 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
             const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
             const windowBottom = windowHeight + window.pageYOffset;
             if (windowBottom >= docHeight) {
-                setPostIdx();
+                setTimeout(() => {
+                    setPostIdx();
+                }, 1000);
             }
         }
         window.addEventListener('scroll', handleScroll);
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            resetPostIdx();
             setLoaded(false);
         }
     }, [])
@@ -141,7 +144,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                                         fontWeight: "500"
                                     }}
                                 >
-                                    {forum.posts && forum.posts.length ? 'Top 5 Users' : 'Start the party!'}
+                                    {forum.posts && forum.posts.length ? 'Top Users' : 'Start the party!'}
                                 </h3>
                                 <div className="px-5">
                                     <TopPosters forum={forum} />

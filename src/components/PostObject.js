@@ -10,7 +10,7 @@ import './PostObject.css';
 import UpvoteButtons from './UpvoteButtons';
 
 const PostObject = ({ post }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const [user, setUser] = useState({});
 
     useEffect(() => {

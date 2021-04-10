@@ -24,7 +24,7 @@ const colorThemes = [
     {
         primary: 'var(--blue-primary)',
         secondary: 'var(--tropical-green)',
-        text: 'tropic '
+        text: 'tropical '
     },
     {
         primary: 'var(--cyber-purple)',

@@ -45,6 +45,10 @@ const postForum = async forum => {
     return await rails.post('/forums', forum);
 }
 
+const createPost = async post => {
+    return await rails.post('/posts', post);
+}
+
 const rails = axios.create({
     baseURL: BACKEND_URL
 });
@@ -64,5 +68,8 @@ export const api = {
     },
     forum: {
         postForum
+    },
+    post: {
+        createPost
     }
 };

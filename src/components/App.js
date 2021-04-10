@@ -105,11 +105,15 @@ const App = ({ setAuth }) => {
         window.location.reload();
     };
 
-    const onNewPost = (data, routerProps) => {
+    const onNewPost = (forumSlug, routerProps) => {
         setAlertObj({
             variant: 'success',
-            message: `Congratulations! You have started a new forum called ${data.name}! Redirecting...`
-        })
+            message: `Congrats! Your new post is now online! Redirecting...`
+        });
+        setShowAlert(true);
+        setTimeout(() => {
+            routerProps.history.push(`/forums/${forumSlug}`);
+        }, 3000);
     };
 
     const onNewForum = (data, routerProps) => {

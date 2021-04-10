@@ -14,12 +14,10 @@ import backgroundImg from '../assets/mariokart-2.jpg';
 
 const schema = yup.object().shape({
     title: yup.string().required(),
-    content: yup.string().required(),
-    postType: yup.string().required(),
-    upvotes: yup.number()
+    content: yup.string().required()
 });
 
-const NewPostForm = ({ forumSlug, forums, getForums, forum, getForumShow, onNewPost, routerProps, showAlert, renderAlert }) => {
+const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, onNewPost, routerProps, showAlert, renderAlert }) => {
 
     useEffect(() => {
         getForums();
@@ -37,7 +35,7 @@ const NewPostForm = ({ forumSlug, forums, getForums, forum, getForumShow, onNewP
     const [typeChoice, setTypeChoice] = useState(''); 
 
     const { register, formState: { errors }, handleSubmit } = useForm({
-        resolver: yupResolver(schema),
+        resolver: yupResolver(schema)
     });
 
     const renderTypeButtons = () => {
@@ -55,9 +53,8 @@ const NewPostForm = ({ forumSlug, forums, getForums, forum, getForumShow, onNewP
             case '':
                 return null;
             case 'discussion':
-                console.log(forum)
                 return (
-                    <Form onSubmit={handleSubmit(onFormSubmit)}>
+                    <>
                         <h2 className="form-headers text-center mt-5 mb-4">Discussion Post</h2>
                         <Row className="justify-content-center">
                             <div className="col-10 col-md-8 my-3">
@@ -104,13 +101,29 @@ const NewPostForm = ({ forumSlug, forums, getForums, forum, getForumShow, onNewP
                                 Create Post
                             </Button>
                         </Row>
-                    </Form>
+                    </>
                 )
         }
     };
 
     const onFormSubmit = (data, e) => {
-
+        e.target.reset();
+        console.log('in form submit')
+        switch(typeChoice) {
+            case '':
+                return;
+            case 'discussion':
+                const newDiscPost = {
+                    title: data.title,
+                    content_text: data.content,
+                    post_type: 'discussion',
+                    upvotes: 0,
+                    user_id: auth.user.id,
+                    forum_id: forum.id
+                };
+                api.post.createPost(newDiscPost)
+                    .then(res => onNewPost(forumSlug, routerProps));
+        }
     };
 
     return (
@@ -129,7 +142,9 @@ const NewPostForm = ({ forumSlug, forums, getForums, forum, getForumShow, onNewP
                                     {renderTypeButtons()}
                                 </div>
                             </Row>
-                            {renderForm()}
+                            <Form onSubmit={handleSubmit(onFormSubmit)}>
+                                {renderForm()}
+                            </Form>
                         </Card>
                     </Row>
                 </Container>
@@ -140,14 +155,15 @@ const NewPostForm = ({ forumSlug, forums, getForums, forum, getForumShow, onNewP
 
 const mapStateToProps = state => {
     return {
+        auth: state.auth,
         forums: state.forums,
         forum: state.forumShow
     };
 }
 
-const { getForums, getForumShow, resetForumShow } = action.forums; 
+const { setAuth, getForums, getForumShow, resetForumShow } = action.forums; 
 
-export default connect(mapStateToProps, { getForums, getForumShow, resetForumShow })(NewPostForm);
+export default connect(mapStateToProps, { setAuth, getForums, getForumShow, resetForumShow })(NewPostForm);
 
 
 
