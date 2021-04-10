@@ -8,7 +8,7 @@ import PageLoader from './PageLoader';
 import backgroundImg from '../assets/Splatoon-wallpaper-2.jpg';
 import './ForumList.css';
 
-const ForumList = ({ forums, getForums, getForumShow }) => {
+const ForumList = ({ auth, forums, getForums, getForumShow }) => {
 
     useEffect(() => {
         getForums();
@@ -80,16 +80,18 @@ const ForumList = ({ forums, getForums, getForumShow }) => {
                         <ListGroup className="p-4">
                             {renderForums()}
                         </ListGroup>
-                        <Link id="new-forum-btn" to="/new/forum" exact>
-                            <Button
-                                block
-                                size="lg"
-                                variant="info"
-                                className="py-4"
-                            >
-                                Don't see the right forum for you? Start a new one!
-                            </Button>
-                        </Link>
+                        {auth.user.id ?
+                            <Link id="new-forum-btn" to="/new/forum" exact>
+                                <Button
+                                    block
+                                    size="lg"
+                                    variant="info"
+                                    className="py-4"
+                                >
+                                    Don't see the right forum for you? Start a new one!
+                                </Button>
+                            </Link>
+                        : null }
                     </Card>
                 </Row>
             </Container>
@@ -100,6 +102,7 @@ const ForumList = ({ forums, getForums, getForumShow }) => {
 
 const mapStateToProps = state => {
     return {
+        auth: state.auth,
         forums: state.forums,
         forumShow: state.forumShow
     }

@@ -154,6 +154,57 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
                         </Row>
                     </>
                 );
+            case 'video':
+                return (
+                    <>
+                        <h2 className="form-headers text-center mt-5 mb-4">Video Post</h2>
+                        <Row className="justify-content-center">
+                            <div className="col-10 col-md-8 my-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="title"
+                                    placeholder="Post title"
+                                    {...register("title")}
+                                />
+                                <ErrorMessage
+                                    errors={errors}
+                                    name="title"
+                                    render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
+                                />
+                            </div>
+                        </Row>
+                        <Row className="justify-content-center">
+                            <div className="col-10 col-md-8 my-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Video URL"
+                                    name="content"
+                                    {...register("content")}
+                                />
+                                <ErrorMessage
+                                    errors={errors}
+                                    name="content"
+                                    render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
+                                />
+                            </div>
+                        </Row>
+                        <Row className="justify-content-center">
+                            <Button
+                                id="create-new-post-btn"
+                                variant="primary"
+                                size="lg"
+                                block
+                                style={{ borderRadius: '18px' }}
+                                className="auth-btn col-7 col-sm-6 col-md-5 mt-4 mb-3"
+                                type="submit"
+                            >
+                                Create Post
+                            </Button>
+                        </Row>
+                    </>
+                );
         }
     };
 
@@ -171,9 +222,27 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
             api.post.createPost(newDiscPost)
                 .then(res => onNewPost(forumSlug, routerProps));
         } else if (typeChoice === 'image') {
-
+            const newImgPost = {
+                title: data.title,
+                content_url: data.content,
+                post_type: 'image',
+                upvotes: 0,
+                user_id: auth.user.id,
+                forum_id: forum.id
+            };
+            api.post.createPost(newImgPost)
+                .then(res => onNewPost(forumSlug, routerProps));
         } else if (typeChoice === 'video') {
-
+            const newVidPost = {
+                title: data.title,
+                content_url: data.content,
+                post_type: 'video',
+                upvotes: 0,
+                user_id: auth.user.id,
+                forum_id: forum.id
+            };
+            api.post.createPost(newVidPost)
+                .then(res => onNewPost(forumSlug, routerProps));
         } else {
             return;
         }
