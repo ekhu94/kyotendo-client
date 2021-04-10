@@ -13,7 +13,7 @@ import PostObject from './PostObject';
 import TopPosters from './TopPosters';
 import TopPostersTop from './TopPostersTop';
 
-const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetForumShow, postIdx, setPostIdx, resetPostIdx }) => {
+const ForumShow = ({ auth, forums, getForums, forumSlug, forum, getForumShow, resetForumShow, postIdx, setPostIdx, resetPostIdx }) => {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
@@ -75,7 +75,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                 <Container fluid>
                     <ScrollTop />
                     <TopPostersTop forum={forum} />
-                    <Row className="justify-content-center" style={{marginTop: '30px'}}>
+                    <Row className="justify-content-center" style={{marginTop: '10px'}}>
                         <Card
                             className="mb-5 col-11 col-lg-8 mr-0 mr-lg-4"
                             style={{
@@ -148,21 +148,44 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                                 </h3>
                                 <div className="px-5">
                                     <TopPosters forum={forum} />
-                                    <Link to={`/new/${forum.slug}/post`}>
-                                        <Button
-                                            variant="info"
-                                            block
-                                            className="p-3"
-                                            style={{
-                                                borderRadius: '18px',
-                                                letterSpacing: '0.25rem',
-                                                marginTop: '28px',
-                                                marginBottom: '28px'
-                                            }}
-                                        >
-                                            Create Post
-                                        </Button>
-                                    </Link>
+                                    {!auth.user.id ?
+                                        <Row className="justify-content-center">
+                                            <div style={{color: 'var(--dark)', marginTop: '18px'}} className="text-center">Want to post here?</div>  
+                                        </Row>
+                                    : null }
+                                    {auth.user.id ? 
+                                        <Link to={`/new/${forum.slug}/post`}>
+                                            <Button
+                                                variant="info"
+                                                block
+                                                className="p-3"
+                                                style={{
+                                                    borderRadius: '18px',
+                                                    letterSpacing: '0.2rem',
+                                                    marginTop: '24px',
+                                                    marginBottom: '24px'
+                                                }}
+                                            >
+                                                Create Post
+                                            </Button>
+                                        </Link>
+                                    :
+                                        <Link to={`/auth`}>
+                                            <Button
+                                                variant="info"
+                                                block
+                                                className="p-3"
+                                                style={{
+                                                    borderRadius: '18px',
+                                                    letterSpacing: '0.2rem',
+                                                    marginTop: '6px',
+                                                    marginBottom: '24px'
+                                                }}
+                                            >
+                                                Login/Signup
+                                            </Button>
+                                        </Link>
+                                    }
                                 </div>
                             </Card>
                         </div>
@@ -177,6 +200,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
 
 const mapStateToProps = state => {
     return {
+        auth: state.auth,
         forums: state.forums,
         forum: state.forumShow,
         postIdx: state.postIdx

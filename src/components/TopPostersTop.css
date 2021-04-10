@@ -34,9 +34,6 @@
 }
 
 @media (max-width: 326px) {
-    .user-li {
-        font-size: 0.8rem;
-    }
     .avatar-icon-top {
         width: 0;
         height: 0;

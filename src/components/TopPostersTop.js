@@ -1,10 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import action from '../actions';
 import { Media, Row, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import avatars from '../assets/icons/avatars/avatarIcons';
 import './TopPostersTop.css';
 
-const TopPostersTop = ({ forum }) => {
+const TopPostersTop = ({ auth, forum }) => {
 
     const generateAvatarJsx = idx => {
         const avatar = avatars.find(a => avatars.indexOf(a) == idx);
@@ -93,19 +95,45 @@ const TopPostersTop = ({ forum }) => {
                         <Row className="justify-content-center">
                             {findTopUsers()}
                         </Row>
+                        {!auth.user.id ?
+                            <Row className="justify-content-center">
+                                <div style={{color: 'var(--dark)', marginTop: '18px'}} className="text-center">Want to post here?</div>  
+                            </Row>
+                        : null }
                         <Row className="justify-content-center px-0 mx-0">
-                            <Button
-                                variant="info"
-                                className="p-3"
-                                style={{
-                                    borderRadius: '18px',
-                                    letterSpacing: '0.25rem',
-                                    marginTop: '25px',
-                                    marginBottom: '25px'
-                                }}
-                            >
-                                Create Post
-                            </Button>
+                            {auth.user.id ?
+                                <Link to={`/new/${forum.slug}/post`}>
+                                    <Button
+                                        variant="info"
+                                        block
+                                        className="p-3"
+                                        style={{
+                                            borderRadius: '18px',
+                                            letterSpacing: '0.2rem',
+                                            marginTop: '24px',
+                                            marginBottom: '24px'
+                                        }}
+                                    >
+                                        Create Post
+                                    </Button>
+                                </Link>
+                            :
+                                <Link to={`/auth`}>
+                                    <Button
+                                        variant="info"
+                                        block
+                                        className="p-3"
+                                        style={{
+                                            borderRadius: '18px',
+                                            letterSpacing: '0.2rem',
+                                            marginTop: '6px',
+                                            marginBottom: '24px'
+                                        }}
+                                    >
+                                        Login/Signup
+                                    </Button>
+                                </Link>
+                            }
                         </Row>
                     </div>
                 </Card>
@@ -114,4 +142,8 @@ const TopPostersTop = ({ forum }) => {
     )
 };
 
-export default TopPostersTop;
+const mapStateToProps = state => {
+    return { auth: state.auth };
+};
+
+export default connect(mapStateToProps)(TopPostersTop);
