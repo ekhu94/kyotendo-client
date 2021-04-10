@@ -22,6 +22,25 @@ h1 {
     letter-spacing: 0.2rem;
 }
 
+h2 {
+    font-family: 'Chakra Petch', sans-serif;
+    letter-spacing: 0.1rem;
+}
+
+h3 {
+    font-family: 'Chakra Petch', sans-serif;
+    letter-spacing: 0.1rem;
+}
+
+h4 {
+    font-family: 'Chakra Petch', sans-serif;
+    letter-spacing: 0.1rem;
+}
+
+textarea {
+    resize: none;
+}
+
 a.dropdown-item:focus {
     background-color: var(--light);
 }

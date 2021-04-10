@@ -15,7 +15,7 @@ div.new-forum-container {
 
 button#create-new-forum-btn {
     background-color: var(--cyber-purple);
-    transition: all 0.3s;
+    transition: all 0.5s;
 }
 
 button#create-new-forum-btn:hover {

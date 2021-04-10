@@ -132,7 +132,7 @@ const App = ({ setAuth }) => {
                     <Route exact path="/" render={() => <HomePage /> } />
                     <Route exact path="/forums" render={() => <ForumList />} />
                     <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
-                    <Route exact path="/new/post" render={routerProps => <NewPostForm onNewPost={onNewPost} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
+                    <Route exact path="/new/:slug/post" render={routerProps => <NewPostForm forumSlug={routerProps.match.params.slug} onNewPost={onNewPost} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
                     <Route
                         exact path="/forums/:slug"
                         render={routerProps => {

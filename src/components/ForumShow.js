@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import action from '../actions';
+import { Link } from 'react-router-dom';
 import { Container, Row, Card, Button } from 'react-bootstrap';
 
 import './ForumShow.css';
@@ -13,7 +14,7 @@ import TopPosters from './TopPosters';
 import TopPostersTop from './TopPostersTop';
 
 const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetForumShow, postIdx, setPostIdx, resetPostIdx }) => {
-    // const [bottom, setBottom] = useState(false);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         getForums();
@@ -32,37 +33,21 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
-            resetPostIdx();
+            setLoaded(false);
         }
     }, [])
-
-    // useEffect(() => {
-    //     if (forum.posts && postIdx > forum.posts.length) {
-    //         console.log("that's all the posts!!!")
-    //         setBottom(true);
-    //     }
-    // }, [postIdx]);
 
     useEffect(() => {
         if (forums && forums.length) {
             const selected = forums.find(f => f.slug === forumSlug);
             getForumShow(selected.id)
+            setTimeout(() => {
+                setLoaded(true)
+            }, 1000)
         }
 
-        return () => resetForumShow();
-    }, [forums])
-
-        // if (forums.length !== 0) {
-        //     console.log('inside')
-        //     const forum = forums.find(f => f.slug == forumSlug);
-        //     getForumShow(forum);
-        //     console.log(forumShow)
-        // }
-
-    //    return () => {
-    //        getForumShow({});
-    //    }
-
+        // return () => resetForumShow();
+    }, [forums]);
 
     const renderPosts = () => {
         if (forum.posts) {
@@ -83,7 +68,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
             id="forum-container"
             style={{backgroundImage: `url(${backgroundImg})`}}
         >
-            {forums.length ?
+            {loaded ?
                 <Container fluid>
                     <ScrollTop />
                     <TopPostersTop forum={forum} />
@@ -160,19 +145,21 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                                 </h3>
                                 <div className="px-5">
                                     <TopPosters forum={forum} />
-                                    <Button
-                                        variant="info"
-                                        block
-                                        className="p-3"
-                                        style={{
-                                            borderRadius: '18px',
-                                            letterSpacing: '0.25rem',
-                                            marginTop: '28px',
-                                            marginBottom: '28px'
-                                        }}
-                                    >
-                                        Create Post
-                                    </Button>
+                                    <Link to={`/new/${forum.slug}/post`}>
+                                        <Button
+                                            variant="info"
+                                            block
+                                            className="p-3"
+                                            style={{
+                                                borderRadius: '18px',
+                                                letterSpacing: '0.25rem',
+                                                marginTop: '28px',
+                                                marginBottom: '28px'
+                                            }}
+                                        >
+                                            Create Post
+                                        </Button>
+                                    </Link>
                                 </div>
                             </Card>
                         </div>

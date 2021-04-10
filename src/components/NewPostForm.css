@@ -1,3 +1,13 @@
 #new-post-card {
     margin-top: 80px;
 }
+
+#create-new-post-btn {
+    border: none;
+    background-color: var(--blue-primary);
+    transition: all 0.5s;
+}
+
+#create-new-post-btn:hover {
+    background-color: var(--red-primary);
+}

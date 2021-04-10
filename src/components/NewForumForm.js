@@ -47,7 +47,7 @@ const NewForumForm = ({ onNewForum, routerProps, showAlert, renderAlert }) => {
                                     type="text"
                                     className="form-control"
                                     name="name"
-                                    placeholder="Forum Name"
+                                    placeholder="Forum name"
                                     {...register("name")}
                                 />
                                 <ErrorMessage
