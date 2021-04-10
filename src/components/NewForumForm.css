@@ -2,6 +2,7 @@ div.new-forum-container {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    background-position-y: 3rem;
     background-attachment: fixed;
     width: 100%;
     height: 100%;
@@ -10,7 +11,7 @@ div.new-forum-container {
 }
 
 #new-forum-card {
-    margin-top: 90px;
+    margin-top: 80px;
 }
 
 button#create-new-forum-btn {
@@ -21,3 +22,32 @@ button#create-new-forum-btn {
 button#create-new-forum-btn:hover {
     background-color: var(--red-secondary);
 }
+
+h1#new-forum-header {
+    font-size: 2.2rem;
+}
+
+@media (max-width: 1025px) {
+    h1#new-forum-header {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 769px) {
+    h1#new-forum-header {
+        font-size: 1.6rem;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 481px) {
+    h1#new-forum-header {
+        font-size: 1.4rem;
+    }
+}
+/* 
+@media (max-width: 380px) {
+    h1#new-forum-header {
+        font-size: 1.3rem;
+    }
+} */

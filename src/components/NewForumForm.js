@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 import { api } from '../services/api';
 import './NewForumForm.css';
-import backgroundImg from '../assets/mario-maker.jpg';
+import backgroundImg from '../assets/nintendo-store-japan.jpg';
 
 const schema = yup.object().shape({
     name: yup.string().required(),
@@ -38,11 +38,11 @@ const NewForumForm = ({ onNewForum, routerProps, showAlert, renderAlert }) => {
             <div className="new-forum-container" style={{backgroundImage: `url(${backgroundImg})`, paddingBottom: '90px'}}>
                 <Container>
                     <Row className="justify-content-center">
-                    <Card id="new-forum-card" className="pt-5 pb-4 col-10 col-md-8" style={{ borderRadius: '20px' }}>
-                    <h1 className="mb-4 text-center" style={{letterSpacing: '0.5rem'}}>Start a New Community!</h1>
+                    <Card id="new-forum-card" className="pt-5 pb-5 col-10 col-md-8 col-lg-7" style={{ borderRadius: '20px' }}>
+                    <h1 id="new-forum-header" className="mb-4 text-center" style={{letterSpacing: '0.5rem'}}>Start a New Community!</h1>
                     <Form onSubmit={handleSubmit(onFormSubmit)}>
                         <Row className="justify-content-center">
-                            <div className="col-10 col-md-7 my-3">
+                            <div className="col-8 col-md-7 my-4">
                                 <input
                                     type="text"
                                     className="form-control"
@@ -64,7 +64,7 @@ const NewForumForm = ({ onNewForum, routerProps, showAlert, renderAlert }) => {
                                 size="lg"
                                 block
                                 style={{ borderRadius: '18px' }}
-                                className="auth-btn col-8 col-sm-6 col-md-5 mt-4 mb-3"
+                                className="auth-btn col-7 col-sm-6 col-md-5 mt-4 mb-3"
                                 type="submit"
                             >
                                 Create Forum
