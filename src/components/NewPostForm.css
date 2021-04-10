@@ -11,3 +11,80 @@
 #create-new-post-btn:hover {
     background-color: var(--red-primary);
 }
+
+button.btn {
+    border-width: 2px;
+}
+
+button.btn.btn-outline-info.btn-type-img {
+    border-color: var(--blue-primary);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+button.btn.btn-outline-danger.btn-type-disc {
+    border-color: var(--red-primary);
+}
+
+button.btn.btn-outline-success.btn-type-vid {
+    border-color: var(--lime);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+button.btn.btn-outline-info.btn-type-img:hover {
+    background-color: var(--blue-primary);
+}
+
+button.btn.btn-outline-danger.btn-type-disc:hover {
+    background-color: var(--red-primary);
+}
+
+button.btn.btn-outline-success.btn-type-vid:hover {
+    background-color: var(--lime);
+}
+
+h1.form-headers {
+    font-size: 2em !important;
+    color: #fff;
+    background-color: var(--dark);
+    text-shadow: 5px 4px 6px rgba(0,0,0,0.67);
+    letter-spacing: 0.3em;
+    line-height: 1.5;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+h2.form-headers {
+    font-size: 1.5em;
+}
+
+h3.form-headers {
+    font-size: 1.4em;
+}
+
+@media (max-width: 769px) {
+    h1.form-headers {
+        font-size: 1.7em !important;
+    }
+
+    h2.form-headers {
+        font-size: 1.4em;
+    }
+
+    h3.form-headers {
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 481px) {
+    h1.form-headers {
+        font-size: 1.4em !important;
+    }
+}
+
+@media (max-width: 380px) {
+    h1.form-headers {
+        font-size: 1.3rem !important;
+    }
+}

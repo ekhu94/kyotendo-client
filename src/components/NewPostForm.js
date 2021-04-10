@@ -40,10 +40,10 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
 
     const renderTypeButtons = () => {
         return (
-            <ButtonGroup size="lg" className="mb-4">
-                <Button className="px-4" variant="secondary" onClick={() => setTypeChoice('discussion')}>Discussion</Button>
-                <Button className="px-4" variant="secondary" onClick={() => setTypeChoice('image')}>Image</Button>
-                <Button className="px-4" variant="secondary" onClick={() => setTypeChoice('video')}>Video</Button>
+            <ButtonGroup size="sm" className="mb-4">
+                <Button className="px-3 btn-type-img" variant="outline-info" onClick={() => setTypeChoice('image')}>Image</Button>
+                <Button className="px-3 btn-type-disc" variant="outline-danger" onClick={() => setTypeChoice('discussion')}>Discussion</Button>
+                <Button className="px-3 btn-type-vid" variant="outline-success" onClick={() => setTypeChoice('video')}>Video</Button>
             </ButtonGroup>
         );
     };
@@ -254,13 +254,17 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
             <div className="new-forum-container" style={{backgroundImage: `url(${backgroundImg})`, paddingBottom: '90px'}}>
                 <Container>
                     <Row className="justify-content-center">
-                        <Card id="new-post-card" className="pt-5 pb-5 col-10 col-md-8" style={{ borderRadius: '20px' }}>
-                            <div className="form-headers">
-                                <h1 className="text-center mb-5">{forum.name}</h1>
-                                <h3 className="text-center my-3">Choose a post type</h3>
+                        <Card id="new-post-card" className="px-0 pb-5 col-10 col-md-8" style={{ borderRadius: '20px' }}>
+                            <div>
+                                <h1
+                                    className="form-headers text-center py-3 mb-5"
+                                >
+                                    {forum.name}
+                                </h1>
+                                <h3 className="form-headers text-center my-3">Choose a post type</h3>
                             </div>
                             <Row className="justify-content-center">
-                                <div className="col-12 text-center">
+                                <div className="col-12 col-md-10 text-center">
                                     {renderTypeButtons()}
                                 </div>
                             </Row>
