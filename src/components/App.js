@@ -112,7 +112,7 @@ const App = ({ setAuth }) => {
         setShowAlert(true);
         setTimeout(() => {
             routerProps.history.push('/forums');
-        }, 2000);
+        }, 3000);
     };
 
     return (

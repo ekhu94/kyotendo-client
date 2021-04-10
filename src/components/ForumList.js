@@ -65,7 +65,7 @@ const ForumList = ({ forums, getForums, getForumShow }) => {
                             className="text-center py-4 mb-0"
                             style={{
                                 color: '#fff',
-                                backgroundColor: 'var(--pink)',
+                                backgroundColor: 'var(--dark)',
                                 textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
                                 letterSpacing: "0.3em",
                                 lineHeight: '1.5',

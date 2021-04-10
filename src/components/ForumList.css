@@ -15,13 +15,13 @@ div#forums-inner-container {
 }
 
 button.btn.btn-block.btn-info.btn-lg {
-    background-color: var(--blue-secondary);
+    background-color: var(--cyber-orange);
     font-size: 1.4rem;
     letter-spacing: 0.1rem;
 }
 
 button.btn.btn-block.btn-info.btn-lg:hover {
-    background-color: var(--lime);
+    background-color: var(--cyber-purple);
 }
 
 a#new-forum-btn:hover {
@@ -33,7 +33,7 @@ a#new-forum-btn:hover {
 }
 
 div.list-group-item:hover {
-    color: var(--pink) !important;
+    color: var(--light) !important;
     transition: all 0.2s;
 }
 

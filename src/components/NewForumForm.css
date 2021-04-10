@@ -2,7 +2,6 @@ div.new-forum-container {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-position-y: 3rem;
     background-attachment: fixed;
     width: 100%;
     height: 100%;
@@ -20,7 +19,7 @@ button#create-new-forum-btn {
 }
 
 button#create-new-forum-btn:hover {
-    background-color: var(--red-secondary);
+    background-color: var(--blue-secondary);
 }
 
 h1#new-forum-header {

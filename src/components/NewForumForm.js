@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 import { api } from '../services/api';
 import './NewForumForm.css';
-import backgroundImg from '../assets/nintendo-store-japan.jpg';
+import backgroundImg from '../assets/Splatoon-wallpaper-2.jpg';
 
 const schema = yup.object().shape({
     name: yup.string().required(),

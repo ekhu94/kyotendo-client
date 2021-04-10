@@ -86,7 +86,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                 <Container fluid>
                     <ScrollTop />
                     <TopPostersTop forum={forum} />
-                    <Row className="justify-content-center" style={{marginTop: '40px'}}>
+                    <Row className="justify-content-center" style={{marginTop: '30px'}}>
                         <Card
                             className="mb-5 col-11 col-lg-8 mr-0 mr-lg-4"
                             style={{
@@ -106,7 +106,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                                     borderTopLeftRadius: '20px',
                                     borderTopRightRadius: '20px',
                                     fontWeight: "500",
-                                    fontSize: "2.2rem"
+                                    fontSize: "2rem"
                                 }}
                             >
                                 {forum.name}

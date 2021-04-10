@@ -6,6 +6,15 @@
     opacity: 0.9;
 }
 
+.sub-nav {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.scrolled-sub {
+    visibility: hidden;
+}
+
 #nav-brand {
     letter-spacing: 0.2rem;
     font-size: 1.3rem;
@@ -28,7 +37,7 @@ a.nav-link:hover {
 
 a.nav-link.active {
     /* color: var(--light) !important; */
-    text-shadow: 1px 4px 10px rgba(0,0,0,0.71);
+    text-shadow: 1px 4px 10px rgba(60, 60, 60, 0.71);
 }
 
 a.dropdown-item {

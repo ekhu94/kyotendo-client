@@ -5,20 +5,57 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import './NavBar.css';
 
+const colorThemes = [
+    {
+        primary: 'var(--red-primary)',
+        secondary: 'var(--red-secondary)',
+        text: 'classic '
+    },
+    {
+        primary: 'var(--blue-secondary)',
+        secondary: 'var(--warning)',
+        text: 'electric '
+    },
+    {
+        primary: 'var(--lime)',
+        secondary: 'var(--pink)',
+        text: 'splash '
+    },
+    {
+        primary: 'var(--blue-primary)',
+        secondary: 'var(--tropical-green)',
+        text: 'tropic '
+    },
+    {
+        primary: 'var(--cyber-purple)',
+        secondary: 'var(--cyber-orange)',
+        text: 'cyber '
+    }
+];
+
 const NavBar = ({ onLogout, auth }) => {
-    const [traditional, setTraditional] = useState(true);
+    const [themeIdx, setThemeIdx] = useState(0);
     
     const nav = useRef();
+    const navSub = useRef();
 
     const handleScroll = () => {
         if (window.scrollY > 20) {
         nav.current.classList.remove('top', 'py-3')
         nav.current.classList.add('scrolled', 'py-1');
+        navSub.current.classList.remove('sub-nav')
+        navSub.current.classList.add('scrolled-sub')
         } else {
         nav.current.classList.remove('scrolled', 'py-1');
         nav.current.classList.add('top', 'py-3');
+        navSub.current.classList.remove('scrolled-sub')
+        navSub.current.classList.add('sub-nav')
         }
     };
+
+    const handleSetTheme = () => {
+        setThemeIdx((themeIdx + 1) % 5);
+    }
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
@@ -34,7 +71,9 @@ const NavBar = ({ onLogout, auth }) => {
     };
 
     return (
-        <Navbar collapseOnSelect ref={nav} variant="dark" expand="md" fixed="top" className="py-3 align-items-center" style={{backgroundColor: 'var(--red-primary)', transition: 'all 0.3s'}}>
+        <div className="fixed-top">
+        {/* primary navbar */}
+        <Navbar collapseOnSelect ref={nav} variant="dark" expand="md" className="py-3 align-items-center" style={{backgroundColor: `${ colorThemes[themeIdx].primary }`, transition: 'all 0.3s'}}>
             <div className="container-fluid">
                 <LinkContainer to="/" exact>
                     <Navbar.Brand id="nav-brand"><span className="japanese">共天堂</span> kyotendo</Navbar.Brand>
@@ -50,9 +89,12 @@ const NavBar = ({ onLogout, auth }) => {
                         </LinkContainer>
                     </Nav>
                     <Nav className="ms-auto">
-                        <LinkContainer to="/about">
-                            <Nav.Link active={false}>about</Nav.Link>
-                        </LinkContainer>
+                        <Nav.Link onClick={handleSetTheme} active={false}>
+                            <span>
+                                {colorThemes[themeIdx].text}
+                                {themeIdx % 2 === 0 ? <i className="fas fa-fill" /> : <i className="fas fa-fill-drip" />}
+                            </span>
+                        </Nav.Link>
                         {localStorage.token && localStorage.token !== "undefined" ?
                             <>
                                 <NavDropdown
@@ -83,6 +125,10 @@ const NavBar = ({ onLogout, auth }) => {
                 </Navbar.Collapse>
             </div>
         </Navbar>
+        {/* secondary navbar */}
+        <Navbar ref={navSub} className="sub-nav" style={{transition: 'all 0.3s', opacity: '0.9', backgroundColor: `${colorThemes[themeIdx].secondary}`}}>
+        </Navbar>
+        </div>
     );
 };
 
