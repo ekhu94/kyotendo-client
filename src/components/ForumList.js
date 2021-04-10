@@ -68,6 +68,7 @@ const ForumList = ({ forums, getForums, getForumShow }) => {
                                 backgroundColor: 'var(--dark)',
                                 textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
                                 letterSpacing: "0.3em",
+                                fontSize: '1.6rem',
                                 lineHeight: '1.5',
                                 borderTopLeftRadius: '20px',
                                 borderTopRightRadius: '20px',

@@ -14,12 +14,12 @@ div.new-forum-container {
 }
 
 button#create-new-forum-btn {
-    background-color: var(--blue-primary);
+    background-color: var(--cyber-purple);
     transition: all 0.3s;
 }
 
 button#create-new-forum-btn:hover {
-    background-color: var(--blue-secondary);
+    background-color: var(--cyber-orange);
 }
 
 h1#new-forum-header {

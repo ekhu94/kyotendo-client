@@ -75,23 +75,22 @@ const TopPostersTop = ({ forum }) => {
                 >
                     <h3
                         id="users-title-top"
-                        className="text-center mb-3 m-0 p-3"
+                        className={`text-center mb-3 m-0 p-3 ${forum.posts && forum.posts.length !== 0 ? '' : 'no-post-header'}`}
                         style={{
                             color: '#fff',
                             backgroundColor: 'var(--dark)',
                             textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
                             letterSpacing: "0.3em",
                             lineHeight: '1.2',
-                            fontSize: '1.6rem',
                             borderTopLeftRadius: '20px',
                             borderTopRightRadius: '20px',
                             fontWeight: "500"
                         }}
                     >
-                        Top 5 Users
+                        {forum.posts && forum.posts.length ? 'Top 5 Users' : 'Start the party!'}
                     </h3>
                     <div>
-                        <Row className="justify-content-start">
+                        <Row className="justify-content-center">
                             {findTopUsers()}
                         </Row>
                         <Row className="justify-content-center px-0 mx-0">

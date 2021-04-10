@@ -7,7 +7,7 @@
 }
 
 .user-li {
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .avatar-icon-top {
@@ -15,9 +15,17 @@
     height: 25px;
 }
 
+#users-title-top {
+    font-size: 1.6rem;
+}
+
+#users-title-top.no-post-header {
+    font-size: 1.2rem;
+}
+
 @media (max-width: 480px) {
     .user-li {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
     .avatar-icon-top {
         width: 20px;
@@ -27,7 +35,7 @@
 
 @media (max-width: 326px) {
     .user-li {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
     .avatar-icon-top {
         width: 0;

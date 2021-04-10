@@ -5,6 +5,7 @@ import { Container, Row, Card, Button } from 'react-bootstrap';
 
 import './ForumShow.css';
 import backgroundImg from '../assets/forum-background.jpg';
+import noPostImg from '../assets/sad-pikachu.jpg';
 import ScrollTop from './ScrollTop';
 import PageLoader from './PageLoader';
 import PostObject from './PostObject';
@@ -111,11 +112,29 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                             >
                                 {forum.name}
                             </h1>
-                            <ul className="ul-unstyled">
-                                {renderPosts()}
-                            </ul>
+                            {forum.posts && forum.posts.length !== 0 ?
+                                <ul className="ul-unstyled">
+                                    {renderPosts()}
+                                </ul>
+                            :
+                                <>
+                                    <h3 className="text-center my-5">Pika pi...</h3>
+                                    <img
+                                        src={noPostImg}
+                                        alt="noposts"
+                                        style={{
+                                            width: '40%',
+                                            height: 'auto',
+                                            margin: '0 auto 3rem auto',
+                                            textAlign: 'center',
+                                            borderBottomLeft: '20px',
+                                            borderBottomRight: '20px'
+                                        }}
+                                    />
+                                </>
+                            }
                         </Card>
-                        <div className="mr-4 col-11 col-md-3 d-none d-md-block">
+                        <div className="mr-4 col-11 col-md-3 d-none d-lg-block">
                             <Card
                                 className="position-fixed"
                                 style={{
@@ -125,7 +144,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                             >
                                 <h3
                                     id="users-title"
-                                    className="text-center mb-4 m-0 p-4"
+                                    className={`text-center mb-4 m-0 p-4 ${forum.posts && forum.posts.length !== 0 ? '' : 'no-post-header'}`}
                                     style={{
                                         color: '#fff',
                                         backgroundColor: 'var(--dark)',
@@ -137,7 +156,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                                         fontWeight: "500"
                                     }}
                                 >
-                                    Top 5 Users
+                                    {forum.posts && forum.posts.length ? 'Top 5 Users' : 'Start the party!'}
                                 </h3>
                                 <div className="px-5">
                                     <TopPosters forum={forum} />
