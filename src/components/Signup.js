@@ -22,10 +22,6 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
     const { register, formState: { errors }, handleSubmit } = useForm({
         resolver: yupResolver(schema),
     });
-    // const [username, setUsername] = useState('');
-    // const [emailAddress, setEmailAddress] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [passwordConfirm, setPasswordConfirm] = useState('');
     const onFormSubmit = data => {
         const newUser = {
             username: data.username,
@@ -35,19 +31,7 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
         }
         api.auth.signup(newUser)
             .then(res => onSignup(res, routerProps))
-        //! Rerouting with routerProps has moved to onSignup in App.js
-        // routerProps.history.push('/');
     };
-
-    // const handleAuthResp = data =>{
-    //     if (!data.error) {
-    //         const { user, jwt } = data;
-    //         setUser({user: user})
-    //         localStorage.setItem('token', jwt)
-    //     } else {
-    //         console.log(data)
-    //     }
-    // }
 
     return (
         <>

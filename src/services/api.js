@@ -41,6 +41,10 @@ const getCurrentUser = () => {
     .then(res => res.json());
 };
 
+const postForum = async forum => {
+    return await rails.post('/forums', forum);
+}
+
 const rails = axios.create({
     baseURL: BACKEND_URL
 });
@@ -57,5 +61,8 @@ export const api = {
         signup,
         login,
         getCurrentUser
+    },
+    forum: {
+        postForum
     }
 };

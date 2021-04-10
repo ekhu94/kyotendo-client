@@ -104,6 +104,17 @@ const App = ({ setAuth }) => {
         window.location.reload();
     };
 
+    const onNewForum = (data, routerProps) => {
+        setAlertObj({
+            variant: 'success',
+            message: `Congratulations! You have started a new forum called ${data.name}! Redirecting...`
+        })
+        setShowAlert(true);
+        setTimeout(() => {
+            routerProps.history.push('/forums');
+        }, 2000);
+    };
+
     return (
         <div>
             <Router>
@@ -112,7 +123,7 @@ const App = ({ setAuth }) => {
                     <NavBar onLogout={onLogout} />
                     <Route exact path="/" render={() => <HomePage /> } />
                     <Route exact path="/forums" render={() => <ForumList />} />
-                    <Route exact path="/new/forum" render={() => <NewForumForm />} />
+                    <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
                     <Route
                         exact path="/forums/:slug"
                         render={routerProps => {
