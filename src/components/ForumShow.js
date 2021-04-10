@@ -150,7 +150,7 @@ const ForumShow = ({ auth, forums, getForums, forumSlug, forum, getForumShow, re
                                     <TopPosters forum={forum} />
                                     {!auth.user.id ?
                                         <Row className="justify-content-center">
-                                            <div style={{color: 'var(--dark)', marginTop: '18px'}} className="text-center">Want to post here?</div>  
+                                            <div style={{color: 'var(--dark)', marginTop: '16px'}} className="text-center">Want to post here?</div>  
                                         </Row>
                                     : null }
                                     {auth.user.id ? 
@@ -162,8 +162,8 @@ const ForumShow = ({ auth, forums, getForums, forumSlug, forum, getForumShow, re
                                                 style={{
                                                     borderRadius: '18px',
                                                     letterSpacing: '0.2rem',
-                                                    marginTop: '24px',
-                                                    marginBottom: '24px'
+                                                    marginTop: '22px',
+                                                    marginBottom: '22px'
                                                 }}
                                             >
                                                 Create Post
@@ -179,7 +179,7 @@ const ForumShow = ({ auth, forums, getForums, forumSlug, forum, getForumShow, re
                                                     borderRadius: '18px',
                                                     letterSpacing: '0.2rem',
                                                     marginTop: '6px',
-                                                    marginBottom: '24px'
+                                                    marginBottom: '22px'
                                                 }}
                                             >
                                                 Login/Signup

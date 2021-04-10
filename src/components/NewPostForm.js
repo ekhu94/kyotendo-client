@@ -11,13 +11,14 @@ import { Container, Row, Card, Form, Button, ButtonGroup } from 'react-bootstrap
 import { api } from '../services/api';
 import './NewPostForm.css';
 import backgroundImg from '../assets/mariokart-2.jpg';
+import AlertModal from './AlertModal';
 
 const schema = yup.object().shape({
     title: yup.string().required(),
     content: yup.string().required()
 });
 
-const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, onNewPost, routerProps, showAlert, renderAlert }) => {
+const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, onNewPost, routerProps, showModal, setShowModal }) => {
 
     useEffect(() => {
         getForums();
@@ -248,9 +249,13 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
         }
     };
 
+    const postCreateSuccessMsgs = {
+        header: "New Post Successfully Created!",
+        body: `Congrats! Your new post was created and uploaded to ${forum.name}!`
+    }
+
     return (
         <>
-            {showAlert && renderAlert()}
             <div className="new-forum-container" style={{backgroundImage: `url(${backgroundImg})`, paddingBottom: '90px'}}>
                 <Container>
                     <Row className="justify-content-center">
@@ -273,6 +278,7 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
                             </Form>
                         </Card>
                     </Row>
+                    <AlertModal showModal={showModal} setShowModal={setShowModal} messages={postCreateSuccessMsgs} />
                 </Container>
             </div>
         </>

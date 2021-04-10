@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import action from '../actions';
@@ -9,9 +9,24 @@ import backgroundImg from '../assets/Splatoon-wallpaper-2.jpg';
 import './ForumList.css';
 
 const ForumList = ({ auth, forums, getForums, getForumShow }) => {
+    const [changeCreateText, setChangeCreateText] = useState(false);
 
     useEffect(() => {
         getForums();
+        if (window.innerWidth < 700) setChangeCreateText(true);
+        const handleResize = () => {
+            if (window.innerWidth < 700) {
+                setChangeCreateText(true);
+            } else {
+                setChangeCreateText(false);
+            }
+        }
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+
     }, []);
 
     const renderForums = () => {
@@ -88,7 +103,11 @@ const ForumList = ({ auth, forums, getForums, getForumShow }) => {
                                     variant="info"
                                     className="py-4"
                                 >
-                                    Don't see the right forum for you? Start a new one!
+                                    {changeCreateText ? 
+                                        "Create a new forum!"
+                                    :
+                                        "Don't see the right place for you? Create a new forum!"
+                                    }
                                 </Button>
                             </Link>
                         : null }

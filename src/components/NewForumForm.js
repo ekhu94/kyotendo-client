@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 //* React Form
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,12 +11,14 @@ import { Link } from 'react-router-dom';
 import { api } from '../services/api';
 import './NewForumForm.css';
 import backgroundImg from '../assets/Splatoon-wallpaper-2.jpg';
+import AlertModal from './AlertModal';
 
 const schema = yup.object().shape({
     name: yup.string().required(),
 });
 
-const NewForumForm = ({ onNewForum, routerProps, showAlert, renderAlert }) => {
+const NewForumForm = ({ onNewForum, routerProps, showModal, setShowModal }) => {
+
     const { register, formState: { errors }, handleSubmit } = useForm({
         resolver: yupResolver(schema),
     });
@@ -32,9 +34,13 @@ const NewForumForm = ({ onNewForum, routerProps, showAlert, renderAlert }) => {
             .then(res => onNewForum(res.data, routerProps));
     };
 
+    const forumCreateSuccessMsgs = {
+        header: "New Forum Successfully Created!",
+        body: "Congrats! Your new forum is now on Kyotendo!"
+    }
+
     return (
         <>
-            {showAlert && renderAlert()}
             <div className="new-forum-container" style={{backgroundImage: `url(${backgroundImg})`, paddingBottom: '90px'}}>
                 <Container>
                     <Row className="justify-content-center">
@@ -73,6 +79,7 @@ const NewForumForm = ({ onNewForum, routerProps, showAlert, renderAlert }) => {
                     </Form>
                     </Card>
                     </Row>
+                    <AlertModal messages={forumCreateSuccessMsgs} showModal={showModal} setShowModal={setShowModal}/>
                 </Container>
             </div>
         </>

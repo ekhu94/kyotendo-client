@@ -110,8 +110,8 @@ const TopPostersTop = ({ auth, forum }) => {
                                         style={{
                                             borderRadius: '18px',
                                             letterSpacing: '0.2rem',
-                                            marginTop: '24px',
-                                            marginBottom: '24px'
+                                            marginTop: '22px',
+                                            marginBottom: '22px'
                                         }}
                                     >
                                         Create Post
@@ -127,7 +127,7 @@ const TopPostersTop = ({ auth, forum }) => {
                                             borderRadius: '18px',
                                             letterSpacing: '0.2rem',
                                             marginTop: '6px',
-                                            marginBottom: '24px'
+                                            marginBottom: '22px'
                                         }}
                                     >
                                         Login/Signup

@@ -18,7 +18,7 @@ h3#users-title.no-post-header {
 }
 
 h3#users-title-top {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
 }
 
 button.btn.btn-info {
@@ -31,7 +31,7 @@ button.btn.btn-info {
     transition: all 0.6s;
 }
 button.btn.btn-info:hover {
-    background-color: var(--red-secondary);
+    background-color: var(--red-primary);
     /* background-color: #0a9cc0; */
     /* transform: scale(1.03, 1.03); */
 }

@@ -36,8 +36,8 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
             <div className="auth-page-container" style={{backgroundImage: `url(${backgroundImg})`}}>
                 <Container>
                     <Row className="justify-content-center">
-                    <Card className="pt-5 pb-4 col-8" style={{ borderRadius: '20px' }}>
-                    <h1 className="mb-4 text-center" style={{letterSpacing: '0.5rem'}}>Kyotendo Login</h1>
+                    <Card className="p-0 pb-4 col-8" style={{ borderRadius: '20px' }}>
+                    <h1 className="login-header py-4 mb-4 text-center" style={{letterSpacing: '0.5rem'}}>Kyotendo Login</h1>
                     <Form onSubmit={handleSubmit(onFormSubmit)}>
                         <Row className="justify-content-center align-items-center">
                             <div className="col-10 col-md-7 my-3">

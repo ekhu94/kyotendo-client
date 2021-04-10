@@ -19,7 +19,7 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 import './App.css';
 
 const App = ({ setAuth }) => {
-    // const [auth, setAuth] = useState({ user: {} });
+    const [showModal, setShowModal] = useState(false);
     const [showAlert, setShowAlert] = useState(false)
     const [alertObj, setAlertObj] = useState({variant:'', message:''})
 
@@ -57,7 +57,9 @@ const App = ({ setAuth }) => {
                 message: `Welcome back, ${data.user.username}!`
             })
             setShowAlert(true)
-            routerProps.history.push('/');
+            setTimeout(() => {
+                routerProps.history.push('/');
+            }, 1000);
         } else {
             setAlertObj({
                 variant: 'danger',
@@ -79,7 +81,9 @@ const App = ({ setAuth }) => {
                 message: 'Registration complete. Welcome to Kyotendo!'
             })
             setShowAlert(true)
-            routerProps.history.push('/');
+            setTimeout(() => {
+                routerProps.history.push('/');
+            }, 1000);
         } else {
             setAlertObj({
                 variant: 'danger',
@@ -94,37 +98,29 @@ const App = ({ setAuth }) => {
     }
 
     const onLogout = () => {
-        setAlertObj({
-            variant: 'success',
-            message: 'User has successfully logged out.'
-        })
-        setShowAlert(true)
+        // setAlertObj({
+        //     variant: 'success',
+        //     message: 'Log out successful. See you again soon!'
+        // })
+        // setShowAlert(true)
         localStorage.removeItem('token');
         setAuth({});
-        window.history.pushState({}, '', '/');
-        window.location.reload();
     };
 
     const onNewPost = (forumSlug, routerProps) => {
-        setAlertObj({
-            variant: 'success',
-            message: `Congrats! Your new post is now online! Redirecting...`
-        });
-        setShowAlert(true);
+        setShowModal(true);
         setTimeout(() => {
+            setShowModal(false);
             routerProps.history.push(`/forums/${forumSlug}`);
-        }, 3000);
+        }, 2000);
     };
 
     const onNewForum = (data, routerProps) => {
-        setAlertObj({
-            variant: 'success',
-            message: `Congrats! You have started a new forum called ${data.name}! Redirecting...`
-        })
-        setShowAlert(true);
+        setShowModal(true);
         setTimeout(() => {
+            setShowModal(false);
             routerProps.history.push('/forums');
-        }, 3000);
+        }, 2000);
     };
 
     return (
@@ -132,11 +128,11 @@ const App = ({ setAuth }) => {
             <Router>
                 <div className="container-fluid p-0 main-container">
                     <ScrollTop />
-                    <NavBar onLogout={onLogout} />
+                    <NavBar onLogout={onLogout} showModal={showModal} setShowModal={setShowModal} />
                     <Route exact path="/" render={() => <HomePage /> } />
                     <Route exact path="/forums" render={() => <ForumList />} />
-                    <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
-                    <Route exact path="/new/:slug/post" render={routerProps => <NewPostForm forumSlug={routerProps.match.params.slug} onNewPost={onNewPost} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
+                    <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
+                    <Route exact path="/new/:slug/post" render={routerProps => <NewPostForm forumSlug={routerProps.match.params.slug} onNewPost={onNewPost} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                     <Route
                         exact path="/forums/:slug"
                         render={routerProps => {

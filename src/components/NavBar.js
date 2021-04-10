@@ -4,6 +4,7 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import './NavBar.css';
+import AlertModal from './AlertModal';
 
 const colorThemes = [
     {
@@ -33,7 +34,7 @@ const colorThemes = [
     }
 ];
 
-const NavBar = ({ onLogout, auth }) => {
+const NavBar = ({ onLogout, auth, showModal, setShowModal }) => {
     const [themeIdx, setThemeIdx] = useState(0);
     
     const nav = useRef();
@@ -68,6 +69,11 @@ const NavBar = ({ onLogout, auth }) => {
 
     const userIconDropdown = () => {
         return <><i className="fab fa-nintendo-switch mr-0" /> {auth.user.username}</>
+    };
+
+    const logoutMessages = {
+        header: "Logout successful!",
+        body: `See you again soon, ${auth.user.username}!`
     };
 
     return (
@@ -107,7 +113,11 @@ const NavBar = ({ onLogout, auth }) => {
                                         <NavDropdown.Item
                                             className=""
                                             onClick={()=>{
-                                                onLogout()
+                                                setShowModal(true);
+                                                setTimeout(() => {
+                                                    setShowModal(false);
+                                                    onLogout()
+                                                }, 2000);                                      
                                             }}
                                         >
                                             logout
@@ -128,6 +138,7 @@ const NavBar = ({ onLogout, auth }) => {
         {/* secondary navbar */}
         <Navbar ref={navSub} className="sub-nav" style={{transition: 'all 0.3s', opacity: '0.9', backgroundColor: `${colorThemes[themeIdx].secondary}`}}>
         </Navbar>
+        <AlertModal showModal={showModal} setShowModal={setShowModal} messages={logoutMessages} />
         </div>
     );
 };

@@ -9,6 +9,17 @@ div.auth-page-container {
     opacity: 0.9;
 }
 
+h1.auth-header {
+    font-size: 2em !important;
+    color: #fff;
+    background-color: var(--dark);
+    text-shadow: 5px 4px 6px rgba(0,0,0,0.67);
+    letter-spacing: 0.3em;
+    line-height: 1.5;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
 div.auth-page-container div.container {
     padding-top: 120px;
 }
@@ -41,7 +52,16 @@ a.signup-link button.btn.btn-primary.btn-block:hover {
     background-color: var(--red-secondary);
 }
 
+@media (max-width: 481px) {
+    h1.auth-header {
+        font-size: 1.8rem !important;
+    }
+}
+
 @media (max-width: 350px) {
+    h1.auth-header {
+        font-size: 1.6rem !important;
+    }
     div.auth-page-container div.container {
         padding-bottom: 90px;
     }
