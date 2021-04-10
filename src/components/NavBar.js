@@ -90,7 +90,7 @@ const NavBar = ({ onLogout, auth }) => {
                     </Nav>
                     <Nav className="ms-auto">
                         <Nav.Link onClick={handleSetTheme} active={false}>
-                            <span>
+                            <span style={{fontSize: '1rem'}}>
                                 {colorThemes[themeIdx].text}
                                 {themeIdx % 2 === 0 ? <i className="fas fa-fill" /> : <i className="fas fa-fill-drip" />}
                             </span>

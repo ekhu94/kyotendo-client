@@ -23,7 +23,7 @@ h1 {
 }
 
 a.dropdown-item:focus {
-    background-color: var(--red-primary);
+    background-color: var(--light);
 }
 
 a:hover {

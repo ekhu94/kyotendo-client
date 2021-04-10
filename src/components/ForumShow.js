@@ -118,7 +118,7 @@ const ForumShow = ({ forums, getForums, forumSlug, forum, getForumShow, resetFor
                                 </ul>
                             :
                                 <>
-                                    <h3 className="text-center my-5">Pika pi...</h3>
+                                    <h4 className="text-center my-5">Pika pi...there aren't any posts here yet.</h4>
                                     <img
                                         src={noPostImg}
                                         alt="noposts"

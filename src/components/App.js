@@ -12,6 +12,7 @@ import HomePage from './HomePage';
 import Login from './Login';
 import NavBar from './NavBar';
 import NewForumForm from './NewForumForm';
+import NewPostForm from './NewPostForm';
 import ScrollTop from './ScrollTop';
 import Signup from './Signup';
 import { propTypes } from 'react-bootstrap/esm/Image';
@@ -104,10 +105,17 @@ const App = ({ setAuth }) => {
         window.location.reload();
     };
 
-    const onNewForum = (data, routerProps) => {
+    const onNewPost = (data, routerProps) => {
         setAlertObj({
             variant: 'success',
             message: `Congratulations! You have started a new forum called ${data.name}! Redirecting...`
+        })
+    };
+
+    const onNewForum = (data, routerProps) => {
+        setAlertObj({
+            variant: 'success',
+            message: `Congrats! You have started a new forum called ${data.name}! Redirecting...`
         })
         setShowAlert(true);
         setTimeout(() => {
@@ -124,6 +132,7 @@ const App = ({ setAuth }) => {
                     <Route exact path="/" render={() => <HomePage /> } />
                     <Route exact path="/forums" render={() => <ForumList />} />
                     <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
+                    <Route exact path="/new/post" render={routerProps => <NewPostForm onNewPost={onNewPost} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
                     <Route
                         exact path="/forums/:slug"
                         render={routerProps => {
