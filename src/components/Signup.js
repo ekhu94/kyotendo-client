@@ -35,7 +35,7 @@ const Signup = ({ onSignup, routerProps, showAlert, renderAlert }) => {
 
     return (
         <>
-            {showAlert && renderAlert()}
+            {/* {showAlert && renderAlert()} */}
             <div className="auth-page-container" style={{backgroundImage: `url(${backgroundImg})`, paddingBottom: '90px'}}>
                 <Container>
                     <Row className="justify-content-center">

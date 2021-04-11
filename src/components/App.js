@@ -18,8 +18,9 @@ import ScrollTop from './ScrollTop';
 import Signup from './Signup';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import './App.css';
+import { render } from '@testing-library/react';
 
-const App = ({ setAuth }) => {
+const App = ({ auth, setAuth }) => {
     const [showModal, setShowModal] = useState(false);
     const [showAlert, setShowAlert] = useState(false)
     const [alertObj, setAlertObj] = useState({variant:'', message:''})
@@ -99,13 +100,16 @@ const App = ({ setAuth }) => {
     }
 
     const onLogout = () => {
-        // setAlertObj({
-        //     variant: 'success',
-        //     message: 'Log out successful. See you again soon!'
-        // })
-        // setShowAlert(true)
+        setAlertObj({
+            variant: 'success',
+            message: `Log out successful. See you again soon, ${auth.user.username}!`
+        })
+        setShowAlert(true)
         localStorage.removeItem('token');
         setAuth({});
+        // setTimeout(() => {
+        //     setShowModal(false);
+        // }, 1000);
     };
 
     const onNewPost = (forumSlug, routerProps) => {
@@ -128,8 +132,9 @@ const App = ({ setAuth }) => {
         <div>
             <Router>
                 <div className="container-fluid p-0 main-container">
+                    {showAlert && renderAlert()}
                     <ScrollTop />
-                    <NavBar onLogout={onLogout} showModal={showModal} setShowModal={setShowModal} />
+                    <NavBar onLogout={onLogout} showAlert={showAlert} renderAlert={renderAlert} />
                     <Route exact path="/" render={() => <HomePage /> } />
                     <Route exact path="/forums" render={() => <ForumList />} />
                     <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />

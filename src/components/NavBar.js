@@ -34,7 +34,7 @@ const colorThemes = [
     }
 ];
 
-const NavBar = ({ onLogout, auth, showModal, setShowModal }) => {
+const NavBar = ({ onLogout, auth, showAlert, renderAlert }) => {
     const [themeIdx, setThemeIdx] = useState(0);
     
     const nav = useRef();
@@ -113,11 +113,7 @@ const NavBar = ({ onLogout, auth, showModal, setShowModal }) => {
                                         <NavDropdown.Item
                                             className=""
                                             onClick={()=>{
-                                                setShowModal(true);
-                                                setTimeout(() => {
-                                                    setShowModal(false);
-                                                    onLogout()
-                                                }, 2000);                                      
+                                                onLogout()                                     
                                             }}
                                         >
                                             logout
@@ -138,7 +134,7 @@ const NavBar = ({ onLogout, auth, showModal, setShowModal }) => {
         {/* secondary navbar */}
         <Navbar ref={navSub} className="sub-nav" style={{transition: 'all 0.3s', opacity: '0.9', backgroundColor: `${colorThemes[themeIdx].secondary}`}}>
         </Navbar>
-        <AlertModal showModal={showModal} setShowModal={setShowModal} messages={logoutMessages} />
+        {/* <AlertModal showModal={showModal} setShowModal={setShowModal} messages={logoutMessages} /> */}
         </div>
     );
 };

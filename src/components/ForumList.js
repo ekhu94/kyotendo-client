@@ -15,7 +15,7 @@ const ForumList = ({ auth, forums, getForums, getForumShow }) => {
     useEffect(() => {
         const renderAllForums = async () => {
             await getForums();
-            if (forums.length) {
+            if (forums) {
                 setLoaded(true);
             }
         }

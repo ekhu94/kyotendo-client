@@ -2,6 +2,8 @@ import React from 'react';
 import { Container, Row, Modal } from 'react-bootstrap';
 import toadIcon from '../assets/icons/toad-modal-icon.jpg';
 
+import './AlertModal.css';
+
 const AlertModal = ({showModal, setShowModal, messages}) => {
 
     const handleClose = () => setShowModal(false)
@@ -9,8 +11,8 @@ const AlertModal = ({showModal, setShowModal, messages}) => {
     return (
         <>
             <Modal show={showModal} onHide={handleClose} backdrop='static'>
-                <Modal.Header style={{margin: '10px'}}>
-                    <Modal.Title className="text-center">{messages.header}</Modal.Title>
+                <Modal.Header className="justify-content-center">
+                    <Modal.Title className="text-center modal-header py-2">{messages.header}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{margin: '20px'}}>
                     <Container>

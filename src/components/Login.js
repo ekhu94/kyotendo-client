@@ -32,7 +32,7 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
 
     return (
         <>
-            {showAlert && renderAlert()}
+            {/* {showAlert && renderAlert()} */}
             <div className="auth-page-container" style={{backgroundImage: `url(${backgroundImg})`}}>
                 <Container>
                     <Row className="justify-content-center">
