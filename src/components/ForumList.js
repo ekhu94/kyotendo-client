@@ -8,7 +8,7 @@ import PageLoader from './PageLoader';
 import backgroundImg from '../assets/Splatoon-wallpaper-2.jpg';
 import './ForumList.css';
 
-const ForumList = ({ auth, forums, getForums, getForumShow }) => {
+const ForumList = ({ auth, forums, getForums, resetForums, getForumShow }) => {
     const [changeCreateText, setChangeCreateText] = useState(false);
     const [loaded, setLoaded] = useState(false);
 
@@ -33,6 +33,7 @@ const ForumList = ({ auth, forums, getForums, getForumShow }) => {
 
         return () => {
             window.removeEventListener('resize', handleResize);
+            resetForums();
             setLoaded(false);
         }
 
@@ -136,6 +137,6 @@ const mapStateToProps = state => {
     }
 };
 
-const { getForums, getForumShow } = action.forums;
+const { getForums, resetForums, getForumShow } = action.forums;
 
-export default connect(mapStateToProps, { getForums, getForumShow })(ForumList);
+export default connect(mapStateToProps, { getForums, resetForums, getForumShow })(ForumList);

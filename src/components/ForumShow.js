@@ -13,7 +13,7 @@ import PostObject from './PostObject';
 import TopPosters from './TopPosters';
 import TopPostersTop from './TopPostersTop';
 
-const ForumShow = ({ auth, forums, getForums, forumSlug, forum, getForumShow, resetForumShow, postIdx, setPostIdx, resetPostIdx }) => {
+const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, getForumShow, resetForumShow, postIdx, setPostIdx, resetPostIdx }) => {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
@@ -38,6 +38,7 @@ const ForumShow = ({ auth, forums, getForums, forumSlug, forum, getForumShow, re
             window.removeEventListener('scroll', handleScroll);
             resetPostIdx();
             setLoaded(false);
+            resetForums();
             resetForumShow();
         }
     }, [])
@@ -210,7 +211,7 @@ const mapStateToProps = state => {
     }
 };
 
-const { getForums, getForumShow, resetForumShow } = action.forums;
+const { getForums, resetForums, getForumShow, resetForumShow } = action.forums;
 const { setPostIdx, resetPostIdx } = action.posts;
 
-export default connect(mapStateToProps, { getForums, getForumShow, resetForumShow, setPostIdx, resetPostIdx })(ForumShow);
+export default connect(mapStateToProps, { getForums, resetForums, getForumShow, resetForumShow, setPostIdx, resetPostIdx })(ForumShow);

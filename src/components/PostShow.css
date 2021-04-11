@@ -14,7 +14,7 @@ div.post-show-container {
 }
 
 h1#post-show-header {
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: #fff;
     background-color: var(--dark);
     text-shadow: 5px 4px 6px rgba(0,0,0,0.67);

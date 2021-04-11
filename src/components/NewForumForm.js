@@ -45,7 +45,7 @@ const NewForumForm = ({ onNewForum, routerProps, showModal, setShowModal }) => {
                 <Container>
                     <Row className="justify-content-center">
                     <Card id="new-forum-card" className="p-0 pb-4 col-10 col-md-8 col-lg-7" style={{ borderRadius: '20px' }}>
-                    <h1 id="new-forum-header" className="mb-4 py-4 text-center" style={{letterSpacing: '0.5rem'}}>Start a New Community!</h1>
+                    <h1 id="new-forum-header" className="mb-4 py-4 px-1 text-center" style={{letterSpacing: '0.5rem'}}>Start a New Community!</h1>
                     <Form onSubmit={handleSubmit(onFormSubmit)}>
                         <Row className="justify-content-center">
                             <div className="col-8 col-md-7 my-4">

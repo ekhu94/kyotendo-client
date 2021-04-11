@@ -2,6 +2,7 @@
 import { getGames } from './getGames';
 //* RAILS API
 import { getForums } from './getForums';
+import { resetForums } from './resetForums';
 import { getForumShow } from './getForumShow';
 import { resetForumShow } from './resetForumShow';
 import { getPostShow } from './getPostShow';
@@ -18,6 +19,7 @@ const action = {
     },
     forums: {
         getForums,
+        resetForums,
         getForumShow,
         resetForumShow
     },
