@@ -10,10 +10,15 @@ import './ForumList.css';
 
 const ForumList = ({ auth, forums, getForums, getForumShow }) => {
     const [changeCreateText, setChangeCreateText] = useState(false);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        getForums();
-        if (window.innerWidth < 700) setChangeCreateText(true);
+        const renderAllForums = async () => {
+            await getForums();
+            if (forums.length) {
+                setLoaded(true);
+            }
+        }
         const handleResize = () => {
             if (window.innerWidth < 700) {
                 setChangeCreateText(true);
@@ -21,10 +26,14 @@ const ForumList = ({ auth, forums, getForums, getForumShow }) => {
                 setChangeCreateText(false);
             }
         }
+
+        if (window.innerWidth < 700) setChangeCreateText(true);
+        renderAllForums();
         window.addEventListener('resize', handleResize);
 
         return () => {
             window.removeEventListener('resize', handleResize);
+            setLoaded(false);
         }
 
     }, []);
@@ -68,7 +77,7 @@ const ForumList = ({ auth, forums, getForums, getForumShow }) => {
             id="forumsList-container"
             style={{backgroundImage: `url(${backgroundImg})`}}
         >
-            {forums.length ?
+            {loaded ?
             <Container id="forums-inner-container">
                 <Row className="justify-content-center">
                     <Card className="col-10 px-0" style={{

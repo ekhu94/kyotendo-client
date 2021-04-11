@@ -8,7 +8,7 @@ const PageLoader = () => {
     useEffect(() => {
         setTimeout(() => {
             setDelayed(true);
-        }, 6000);
+        }, 7000);
 
         return () => {
             setDelayed(false);

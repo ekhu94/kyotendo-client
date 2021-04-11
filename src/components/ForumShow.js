@@ -38,6 +38,7 @@ const ForumShow = ({ auth, forums, getForums, forumSlug, forum, getForumShow, re
             window.removeEventListener('scroll', handleScroll);
             resetPostIdx();
             setLoaded(false);
+            resetForumShow();
         }
     }, [])
 
@@ -52,7 +53,6 @@ const ForumShow = ({ auth, forums, getForums, forumSlug, forum, getForumShow, re
             }
         }
         fetchNewForum();
-     return () => resetForumShow();
     }, [forums]);
 
     const renderPosts = () => {
