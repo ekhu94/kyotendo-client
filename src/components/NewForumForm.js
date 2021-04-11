@@ -35,8 +35,8 @@ const NewForumForm = ({ onNewForum, routerProps, showModal, setShowModal }) => {
     };
 
     const forumCreateSuccessMsgs = {
-        header: "New Forum Successfully Created!",
-        body: "Congrats! Your new forum is now on Kyotendo!"
+        header: "New Forum Created!",
+        body: "Congrats! Your forum is now on Kyotendo!"
     }
 
     return (

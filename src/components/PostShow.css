@@ -23,3 +23,28 @@ h1#post-show-header {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
+
+@media (max-width: 1025px) {
+    h1#post-show-header {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 769px) {
+    h1#post-show-header {
+        font-size: 1.4rem;
+        line-height: 1.8;
+    }
+}
+
+@media (max-width: 481px) {
+    h1#post-show-header {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 380px) {
+    h1#post-show-header {
+        font-size: 1.2rem;
+    }
+}

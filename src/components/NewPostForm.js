@@ -250,8 +250,8 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
     };
 
     const postCreateSuccessMsgs = {
-        header: "New Post Successfully Created!",
-        body: `Congrats! Your new post was created and uploaded to ${forum.name}!`
+        header: "New Post Created!",
+        body: `Congrats! Your post was created and uploaded to ${forum.name}!`
     }
 
     return (

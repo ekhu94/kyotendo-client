@@ -8,7 +8,7 @@ import avatars from '../assets/icons/avatars/avatarIcons';
 import './PostObject.css';
 
 import UpvoteButtons from './UpvoteButtons';
-import { createPortal } from 'react-dom';
+// import { createPortal } from 'react-dom';
 
 const PostObject = ({ post }) => {
     const [isOpen, setIsOpen] = useState(true);
@@ -20,7 +20,9 @@ const PostObject = ({ post }) => {
             setUser(res.data)
         };
         getUser();
-        // getPostComments();
+        return () => {
+            setUser({});
+        };
     }, []);
 
     const renderCommentLine = () => {
