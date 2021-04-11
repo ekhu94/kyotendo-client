@@ -13,6 +13,7 @@ import Login from './Login';
 import NavBar from './NavBar';
 import NewForumForm from './NewForumForm';
 import NewPostForm from './NewPostForm';
+import PostShow from './PostShow';
 import ScrollTop from './ScrollTop';
 import Signup from './Signup';
 import { propTypes } from 'react-bootstrap/esm/Image';
@@ -139,6 +140,13 @@ const App = ({ setAuth }) => {
                             return <ForumShow forumSlug={routerProps.match.params.slug} />                      
                         }
                     } 
+                    />
+                    <Route
+                        exact path="/forums/:slug/:postId"
+                        render={routerProps => {
+                            return <PostShow postId={routerProps.match.params.postId} />
+                        }
+                    }
                     />
                     <Route path="/auth" render={() => <Auth />} />
                     <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />

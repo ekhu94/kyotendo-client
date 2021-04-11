@@ -42,15 +42,17 @@ const ForumShow = ({ auth, forums, getForums, forumSlug, forum, getForumShow, re
     }, [])
 
     useEffect(() => {
-        if (forums && forums.length) {
-            const selected = forums.find(f => f.slug === forumSlug);
-            getForumShow(selected.id)
-            setTimeout(() => {
-                setLoaded(true)
-            }, 1000)
+        const fetchNewForum = async () => {
+            if (forums && forums.length) {
+                const selected = forums.find(f => f.slug === forumSlug);
+                await getForumShow(selected.id)
+                if (forum) {
+                    setLoaded(true)
+                }
+            }
         }
-
-        // return () => resetForumShow();
+        fetchNewForum();
+     return () => resetForumShow();
     }, [forums]);
 
     const renderPosts = () => {

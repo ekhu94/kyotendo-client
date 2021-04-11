@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dimmer, Loader, Image } from 'semantic-ui-react';
 
 
 const PageLoader = () => {
+    const [delayed, setDelayed] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setDelayed(true);
+        }, 6000);
+
+        return () => {
+            setDelayed(false);
+        }
+    }, []);
+
     return (
         <div>
             <Dimmer active style={{height: '120vh'}}>
-                <Loader size='huge'>Loading...Please Wait</Loader>
+                <Loader size='huge'>{delayed ? "Please be patient....Sometimes this takes a while" : "Loading...Please wait"}</Loader>
             </Dimmer>
 
             <Image src='/images/wireframe/short-paragraph.png' />
