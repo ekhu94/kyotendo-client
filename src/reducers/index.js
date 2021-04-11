@@ -5,6 +5,7 @@ import { combineReducers } from 'redux';
 //* RAILS API
 import forumsReducer from './forumsReducer';
 import forumShowReducer from './forumShowReducer';
+import commentsReducer from './commentsReducer';
 import usersReducer from './usersReducer';
 
 //* LOCAL
@@ -16,5 +17,6 @@ export default combineReducers({
     forums: forumsReducer,
     forumShow: forumShowReducer,
     users: usersReducer,
-    postIdx: postIdxReducer
+    postIdx: postIdxReducer,
+    comments: commentsReducer
 });

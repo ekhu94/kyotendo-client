@@ -17,8 +17,6 @@ const ForumShow = ({ auth, forums, getForums, forumSlug, forum, getForumShow, re
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        getForums();
-        setPostIdx()
         const handleScroll = () => {
             const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
             const body = document.body;
@@ -31,6 +29,9 @@ const ForumShow = ({ auth, forums, getForums, forumSlug, forum, getForumShow, re
                 }, 1000);
             }
         }
+
+        getForums();
+        setPostIdx();
         window.addEventListener('scroll', handleScroll);
 
         return () => {

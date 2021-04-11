@@ -8,6 +8,7 @@ import avatars from '../assets/icons/avatars/avatarIcons';
 import './PostObject.css';
 
 import UpvoteButtons from './UpvoteButtons';
+import { createPortal } from 'react-dom';
 
 const PostObject = ({ post }) => {
     const [isOpen, setIsOpen] = useState(true);
@@ -17,9 +18,21 @@ const PostObject = ({ post }) => {
         const getUser = async () => {
             const res = await api.rails.get(`/users/${post.user_id}`);
             setUser(res.data)
-        }
+        };
         getUser();
+        // getPostComments();
     }, []);
+
+    const renderCommentLine = () => {
+        switch (post.comments.length) {
+            case 0:
+                return <p className="comment-link">No comments</p>
+            case 1:
+                return <p className="comment-link">1 comment</p>
+            default:
+                return <p className="comment-link">{post.comments.length} comments</p>
+        }
+    };
 
     const renderPost = () => {
         switch (post.post_type) {
@@ -47,7 +60,10 @@ const PostObject = ({ post }) => {
                                             >
                                                 {post.post_type}
                                             </Badge>
-                                        </h4>                                      
+                                        </h4>
+                                        <Link to={`${window.location.pathname}/${post.id}`}>
+                                            {renderCommentLine()}
+                                        </Link>                         
                                     </div>
                                 </Row>
                                 <Row className="justify-content-start">
@@ -86,7 +102,9 @@ const PostObject = ({ post }) => {
                                             {post.post_type}
                                         </Badge>
                                     </h4>
-                                    
+                                    <Link to={`${window.location.pathname}/${post.id}`}>
+                                        {renderCommentLine()}
+                                    </Link>
                                 </div>
                             </Row>
                             <Row className="justify-content-start">
@@ -126,7 +144,9 @@ const PostObject = ({ post }) => {
                                             {post.post_type}
                                         </Badge>
                                     </h4>
-                                    
+                                    <Link to={`${window.location.pathname}/${post.id}`}>
+                                        {renderCommentLine()}
+                                    </Link>
                                 </div>
                             </Row>
                             <Row className="justify-content-start">
@@ -194,9 +214,13 @@ const PostObject = ({ post }) => {
 };
 
 const mapStateToProps = state => {
-    return { users: state.users };
+    return {
+        users: state.users,
+        comments: state.comments
+    };
 };
 
 const { getUsers } = action.users;
+const { setComments } = action.comments;
 
-export default connect(mapStateToProps, { getUsers })(PostObject);
+export default connect(mapStateToProps, { getUsers, setComments })(PostObject);

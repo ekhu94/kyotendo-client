@@ -39,6 +39,16 @@ p {
     font-size: 1.1rem;
 }
 
+p.comment-link {
+    color: var(--blue-secondary);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+p.comment-link:hover {
+    color: var(--red-secondary);
+}
+
 @media (max-width: 1200px) {
     .iframe-sizing {
         width: 440px;

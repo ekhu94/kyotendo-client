@@ -6,6 +6,7 @@ export const RESET_POST_IDX = 'RESET_POST_IDX';
 export const GET_FORUMS = 'GET_FORUMS';
 export const GET_FORUM_SHOW = 'GET_FORUM_SHOW';
 export const RESET_FORUM_SHOW = 'RESET_FORUM_SHOW';
+export const SET_COMMENTS = 'SET_COMMENTS';
 export const GET_USERS = 'GET_USERS';
 
 //* RAWG API

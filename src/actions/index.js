@@ -9,6 +9,7 @@ import { getUsers } from './getUsers';
 import { setAuth } from './setAuth';
 import { setPostIdx } from './setPostIdx';
 import { resetPostIdx } from './resetPostIdx';
+import { setComments } from './setComments';
 
 const action = {
     games: {
@@ -22,6 +23,9 @@ const action = {
     posts: {
         setPostIdx,
         resetPostIdx
+    },
+    comments: {
+        setComments
     },
     users: {
         getUsers
