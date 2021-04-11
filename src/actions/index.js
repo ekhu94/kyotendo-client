@@ -4,12 +4,13 @@ import { getGames } from './getGames';
 import { getForums } from './getForums';
 import { getForumShow } from './getForumShow';
 import { resetForumShow } from './resetForumShow';
+import { getPostShow } from './getPostShow';
+import { resetPostShow } from './resetPostShow';
 import { getUsers } from './getUsers';
 //* LOCAL
 import { setAuth } from './setAuth';
 import { setPostIdx } from './setPostIdx';
 import { resetPostIdx } from './resetPostIdx';
-import { setComments } from './setComments';
 
 const action = {
     games: {
@@ -22,10 +23,9 @@ const action = {
     },
     posts: {
         setPostIdx,
-        resetPostIdx
-    },
-    comments: {
-        setComments
+        resetPostIdx,
+        getPostShow,
+        resetPostShow
     },
     users: {
         getUsers

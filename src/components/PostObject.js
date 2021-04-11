@@ -215,12 +215,10 @@ const PostObject = ({ post }) => {
 
 const mapStateToProps = state => {
     return {
-        users: state.users,
-        comments: state.comments
+        users: state.users
     };
 };
 
 const { getUsers } = action.users;
-const { setComments } = action.comments;
 
-export default connect(mapStateToProps, { getUsers, setComments })(PostObject);
+export default connect(mapStateToProps, { getUsers })(PostObject);

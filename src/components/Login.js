@@ -8,7 +8,7 @@ import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 import { api } from '../services/api';
 import { Container, Card, Form, Row, Button } from 'react-bootstrap';
-import backgroundImg from '../assets/pro-controller.jpg';
+import backgroundImg from '../assets/smash-bros-background.jpg';
 import './Login.css';
 
 const schema = yup.object().shape({
