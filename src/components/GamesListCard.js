@@ -1,18 +1,34 @@
 import React from 'react';
-import { Badge, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Badge, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
+import './GamesListCard.css';
 
 const GamesListCard = ({ game }) => {
 
     const getThreeTags = () => {
         const filter = game.tags.filter(tag => tag.language === 'eng').slice(0, 3);
-        return filter.map(tag => {
+        return filter.map((tag, i) => {
             return (
-                <Badge pill variant="info">
+                <Badge pill variant="info" className="mr-2 genre-badge" style={{backgroundColor: `${i % 2 === 0 ? 'var(--red-primary)' : 'var(--blue-primary)'}`}}>
                     {tag.name}
                 </Badge>
             )
         });
     };
+
+    const getThreeStores = () => {
+        if (game.stores && game.stores.length) {
+            const stores = game.stores.filter(s => !s.store.name.includes('PlayStation') && !s.store.name.includes('Xbox')).slice(0, 3);
+            return stores.map(s => {
+                return (
+                    <Button className="store-link-btn" variant="link">
+                        {s.store.name}
+                    </Button>
+                );
+            });
+        }
+    }
 
     const formatDate = release => {
         const date = release.split('-');
@@ -23,10 +39,10 @@ const GamesListCard = ({ game }) => {
     };
 
     return (
-        <Card className="m-2" style={{ width: '18rem', backgroundColor: `${game.dominant_color}`, border: 'none' }}>
-            <Card.Img variant="top" src={game.background_image} />
-            <Card.Body className="mb-0">
-                <Card.Title>{game.name}</Card.Title>
+        <Card className="m-2 game-card text-center" style={{ backgroundColor: `${game.dominant_color}` }}>
+            <Card.Img className="card-img" variant="top" src={game.background_image} />
+            <Card.Body className="p-0" style={{height: 'auto'}}>
+                <Card.Title className="game-card-title py-4">{game.name}</Card.Title>
                 <Card.Text>
                 {formatDate(game.released)}
                 </Card.Text>
@@ -36,11 +52,10 @@ const GamesListCard = ({ game }) => {
                     {getThreeTags()}
                 </ListGroupItem>
                 <ListGroupItem>Metacritic Rating: {game.metacritic}</ListGroupItem>
-                <ListGroupItem>Vestibulum at eros</ListGroupItem>
+                <ListGroupItem className="mb-0">Available at these stores:</ListGroupItem>
             </ListGroup>
-            <Card.Body>
-                <Card.Link href="#">Card Link</Card.Link>
-                <Card.Link href="#">Another Link</Card.Link>
+            <Card.Body className="pt-1">
+                {getThreeStores()}
             </Card.Body>
         </Card>
     );
