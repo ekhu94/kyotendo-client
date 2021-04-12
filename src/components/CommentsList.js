@@ -18,6 +18,17 @@ const CommentsList = ({ comments }) => {
         }
     }
 
+    const formatCreateDate = createdAt => {
+        const date = createdAt.split('T')[0];
+        // const time = createdAt.split('T')[1].split('.')[0];
+        const year = date.split('-')[0];
+        const month = date.split('-')[1];
+        const day = date.split('-')[2];
+        // const hour = time.split(':')[0];
+        // const min = time.split(':')[1];
+        return `${month}/${day}/${year}`;
+    };
+
     const renderComments = () => {
         if (comments) {
             return comments.map(comment => {
@@ -38,8 +49,9 @@ const CommentsList = ({ comments }) => {
                                         style={{width: '20px', height: '20px'}}
                                     />
                                     <Link to={`/users/${slug}`}>
-                                    <List.Header as='a'>{comment.user.username}</List.Header>
-                                </Link>
+                                        <List.Header as='a'>{comment.user.username}</List.Header>
+                                    </Link>
+                                    <div style={{fontSize: '0.8rem'}} className="text-muted ml-2">{formatCreateDate(comment.created_at)}</div>
                                 </Row>
                                 <Row>
                                     <List.Description>

@@ -46,7 +46,7 @@ const NewCommentForm = ({ user, post, onCommentCreate }) => {
                     />
                 </div>
                 <Row className="justify-content-end">
-                    <Button className="mr-3" variant="primary" type="submit">
+                    <Button className="mr-3 py-1 px-2" variant="primary" type="submit">
                         Comment
                     </Button>
                 </Row>
