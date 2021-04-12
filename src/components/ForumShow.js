@@ -29,8 +29,9 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
                 }, 1000);
             }
         }
-
-        getForums();
+        if (!forums.length) {
+            getForums();
+        }
         setPostIdx();
         window.addEventListener('scroll', handleScroll);
 
