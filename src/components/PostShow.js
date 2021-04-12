@@ -11,6 +11,7 @@ import './PostShow.css';
 import avatars from '../assets/icons/avatars/avatarIcons';
 import backgroundImg from '../assets/forum-background.jpg';
 import BackButton from './BackButton';
+import CommentsList from './CommentsList';
 import NewCommentForm from './NewCommentForm';
 import PageLoader from './PageLoader';
 import ScrollTop from './ScrollTop';
@@ -175,8 +176,11 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                 );
             }
         }
-    }
+    };
 
+    const onCommentSubmit = () => {
+
+    }
 
     return (
         <>
@@ -189,7 +193,12 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                                 <Card id="post-show-card" className="p-0 pb-5 col-10 col-md-8" style={{ borderRadius: '20px' }}>
                                     <h1 id="post-show-header" className="px-2 py-4 mb-4 text-center" style={{letterSpacing: '0.5rem'}}>{post.forum.name}</h1>
                                     <BackButton />
+                                    //! post content
                                     {renderPostContent()}
+                                    //! comment form
+                                    <NewCommentForm onCommentSubmit={onCommentSubmit} />
+                                    //! comment list
+                                    <CommentsList comments={post.comments} />
                                 </Card>
                             </Row>
                         </Container>
