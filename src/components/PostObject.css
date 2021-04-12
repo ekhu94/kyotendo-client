@@ -23,6 +23,11 @@ div.post-title h4 {
 
 button.align-items-center.expand-btn {
     border-radius: 8px;
+    background-color: var(--blue-secondary);
+}
+
+button.align-items-center.expand-btn:hover {
+    background-color: var(--red-secondary);
 }
 
 div.post-title:hover > h4 {

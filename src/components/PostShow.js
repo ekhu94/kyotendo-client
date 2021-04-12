@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useHistory } from 'react';
 import { connect } from 'react-redux';
 import action from '../actions';
 import { Container, Row, Card, Badge, Fade, ResponsiveEmbed } from 'react-bootstrap';
+
 import { Link } from 'react-router-dom';
 import { List, Image } from 'semantic-ui-react';
 
@@ -9,6 +10,7 @@ import { api } from '../services/api';
 import './PostShow.css';
 import avatars from '../assets/icons/avatars/avatarIcons';
 import backgroundImg from '../assets/forum-background.jpg';
+import BackButton from './BackButton';
 import PageLoader from './PageLoader';
 import ScrollTop from './ScrollTop';
 import UpvoteButtons from './UpvoteButtons';
@@ -185,6 +187,7 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                             <Row className="justify-content-center">
                                 <Card id="post-show-card" className="p-0 pb-5 col-10 col-md-8" style={{ borderRadius: '20px' }}>
                                     <h1 id="post-show-header" className="px-2 py-4 mb-4 text-center" style={{letterSpacing: '0.5rem'}}>{post.forum.name}</h1>
+                                    <BackButton />
                                     {renderPostContent()}
                                 </Card>
                             </Row>
