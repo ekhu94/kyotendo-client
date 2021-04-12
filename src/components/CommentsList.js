@@ -42,6 +42,7 @@ const CommentsList = ({ comments }) => {
                                 alt={avatar.props.alt} /> */}
                             <List.Content>
                                 <Row>
+                                    <div className="col-10 ml-4 mb-1">
                                     <img
                                         className="mr-2"
                                         src={avatar.props.src}
@@ -51,12 +52,15 @@ const CommentsList = ({ comments }) => {
                                     <Link to={`/users/${slug}`}>
                                         <List.Header as='a'>{comment.user.username}</List.Header>
                                     </Link>
-                                    <div style={{fontSize: '0.8rem'}} className="text-muted ml-2">{formatCreateDate(comment.created_at)}</div>
+                                    <span style={{fontSize: '0.8rem'}} className="text-muted ml-2">{formatCreateDate(comment.created_at)}</span>
+                                    </div>
                                 </Row>
                                 <Row>
+                                    <div className="col-10 ml-5" style={{lineHeight: '1.6'}}>
                                     <List.Description>
                                         {comment.content}
                                     </List.Description>
+                                    </div>
                                 </Row>
                             </List.Content>
                         </List.Item>
@@ -68,7 +72,7 @@ const CommentsList = ({ comments }) => {
 
     return (
         <>
-            <h3 style={{marginLeft: '28px'}}>{renderCommentsHeader()}</h3>
+            <h3 style={{marginLeft: '64px'}}>{renderCommentsHeader()}</h3>
             <List divided relaxed>
                 {renderComments()}
             </List>
