@@ -49,6 +49,10 @@ const createPost = async post => {
     return await rails.post('/posts', post);
 }
 
+const createComment = async comment => {
+    return await rails.post('/comments', comment);
+}
+
 const rails = axios.create({
     baseURL: BACKEND_URL
 });
@@ -71,5 +75,8 @@ export const api = {
     },
     post: {
         createPost
+    },
+    comment: {
+        createComment
     }
 };

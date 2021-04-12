@@ -11,6 +11,7 @@ import './PostShow.css';
 import avatars from '../assets/icons/avatars/avatarIcons';
 import backgroundImg from '../assets/forum-background.jpg';
 import BackButton from './BackButton';
+import NewCommentForm from './NewCommentForm';
 import PageLoader from './PageLoader';
 import ScrollTop from './ScrollTop';
 import UpvoteButtons from './UpvoteButtons';
