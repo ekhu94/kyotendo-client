@@ -58,9 +58,9 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
 
     const renderGameCards = () => {
         if (loaded) {
-            return gamesList.filter((g, i) => gamesList.indexOf(g) === i).map(game => {
+            return gamesList.filter((g, i) => gamesList.indexOf(g) === i).map((game, i) => {
                 return (
-                    <GamesListCard key={game.id} game={game} />
+                    <GamesListCard key={game.id} game={game} idx={i} />
                 );
             });
         }
@@ -75,7 +75,7 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
                 <Container className="pb-5" style={{paddingTop: '100px'}}>
                     <Row className="justify-content-center">
                         <div className="col-10">
-                            <h1 className="mb-5 text-center games-list-header">Nintendo Games List</h1>
+                            <h1 className="mb-5 p-2 text-center games-list-header">Nintendo Games List</h1>
                         </div>
                     </Row>
                     <Row className="justify-content-center">
@@ -88,6 +88,7 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
 };
 
 const mapStateToProps = state => {
+    console.log(state.games)
     return {
         games: state.games,
         gamePage: state.gamePage

@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 
 import './GamesListCard.css';
 
-const GamesListCard = ({ game }) => {
+const headerColors = ['var(--red-secondary)', 'var(--lime)', 'var(--blue-secondary)', 'var(--pink)']
+
+const GamesListCard = ({ game, idx }) => {
 
     const getThreeTags = () => {
-        if (game.tags && game.tags.length) {
-            const filter = game.tags.filter(tag => tag.language === 'eng').slice(0, 3);
-            return filter.map((tag, i) => {
+        if (game.genres && game.genres.length) {
+            return game.genres.map(genre => {
                 return (
-                    <Badge pill variant="info" className="mr-2 genre-badge" style={{backgroundColor: `${i % 2 === 0 ? 'var(--red-primary)' : 'var(--blue-primary)'}`}}>
-                        {tag.name}
+                    <Badge pill variant="info" className="mr-2 genre-badge" style={{backgroundColor: 'var(--red-primary)'}}>
+                        {genre.name}
                     </Badge>
                 )
             });
@@ -43,27 +44,27 @@ const GamesListCard = ({ game }) => {
     };
 
     return (
-        <Link to={`/games/${game.slug}`} exact>
-            <Card className="m-2 game-card text-center" style={{ backgroundColor: `${game.dominant_color}` }}>
-                <Card.Img className="card-img" variant="top" src={game.background_image} />
-                <Card.Body className="p-0" style={{height: 'auto'}}>
-                    <Card.Title className="game-card-title py-4">{game.name}</Card.Title>
-                    <Card.Text>
-                    {formatDate(game.released)}
-                    </Card.Text>
-                </Card.Body>
-                <ListGroup className="list-group-flush">
-                    <ListGroupItem>
-                        {getThreeTags()}
-                    </ListGroupItem>
-                    <ListGroupItem>Metacritic Rating: {game.metacritic}</ListGroupItem>
-                    <ListGroupItem className="mb-0">Available at these stores:</ListGroupItem>
-                </ListGroup>
-                <Card.Body className="pt-1">
-                    {getThreeStores()}
-                </Card.Body>
-            </Card>
-        </Link>
+        <Card className="m-2 my-4 my-md-2 game-card text-center" style={{ backgroundColor: `${game.dominant_color}` }}>
+            <Link to={`/games/${game.slug}`} exact>
+            <Card.Img className="card-img" variant="top" src={game.background_image} />
+            <Card.Body className="p-0" style={{height: 'auto'}}>
+                <Card.Title className="game-card-title py-4" style={{backgroundColor: `${headerColors[idx % 4]}`}}>{game.name}</Card.Title>
+            </Card.Body>
+            </Link>
+            <Card.Text className="mb-0">
+                {formatDate(game.released)}
+            </Card.Text>
+            <ListGroup className="list-group-flush mt-0">
+                <ListGroupItem>
+                    {getThreeTags()}
+                </ListGroupItem>
+                <ListGroupItem>Metacritic Rating: {game.metacritic}</ListGroupItem>
+                <ListGroupItem className="mb-0">{game.stores && game.stores.length ? 'Available at these stores:' : 'No stores provided at this time'}</ListGroupItem>
+            </ListGroup>
+            <Card.Body className="pt-1">
+                {getThreeStores()}
+            </Card.Body>
+        </Card>
     );
 };
 
