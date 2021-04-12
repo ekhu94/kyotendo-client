@@ -13,6 +13,7 @@ div#games-container {
 h1.games-list-header {
     font-size: 3rem !important;
     color: #fff;
+    box-shadow: 1px 2px 22px 4px var(--dark);
     background-color: var(--red-secondary);
     text-shadow: 5px 4px 6px rgba(0,0,0,0.67);
     letter-spacing: 0.2em;
@@ -37,6 +38,12 @@ h1.games-list-header {
 @media (max-width: 520px) {
     h1.games-list-header {
         font-size: 1.9rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    h1.games-list-header {
+        font-size: 1.8rem !important;
     }
 }
 

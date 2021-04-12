@@ -15,6 +15,12 @@ div.card.game-card {
     border: none;
     border-radius: 12px;
     color: #000;
+    transition: all 0.3s;
+}
+
+div.card.game-card:hover {
+    transform: scale(0.95, 0.95);
+    filter: contrast(130%);
 }
 
 div.card-title.game-card-title {

@@ -11,6 +11,7 @@ import { getUsers } from './getUsers';
 //* LOCAL
 import { setAuth } from './setAuth';
 import { setGamePage } from './setGamePage';
+import { resetGamesList } from './resetGamesList';
 import { resetGamePage } from './resetGamePage';
 import { setPostIdx } from './setPostIdx';
 import { resetPostIdx } from './resetPostIdx';
@@ -19,7 +20,8 @@ const action = {
     games: {
         getGames,
         setGamePage,
-        resetGamePage
+        resetGamePage,
+        resetGamesList
     },
     forums: {
         getForums,

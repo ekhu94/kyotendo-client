@@ -9,6 +9,7 @@ import Auth from './Auth';
 import ForumList from './ForumList';
 import ForumShow from './ForumShow';
 import GamesList from './GamesList';
+import GameShow from './GameShow';
 import HomePage from './HomePage';
 import Login from './Login';
 import NavBar from './NavBar';
@@ -140,6 +141,7 @@ const App = ({ auth, setAuth }) => {
                     <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                     <Route exact path="/new/:slug/post" render={routerProps => <NewPostForm forumSlug={routerProps.match.params.slug} onNewPost={onNewPost} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                     <Route exact path="/games" render={() => <GamesList />} />
+                    <Route exact path="/games/:slug" render={routerProps => <GameShow gameSlug={routerProps.match.params.slug} />} />
                     <Route exact path="/forums" render={() => <ForumList />} />
                     <Route
                         exact path="/forums/:slug"
