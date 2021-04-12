@@ -24,9 +24,26 @@ h1#post-show-header {
     border-top-right-radius: 20px;
 }
 
-@media (max-width: 1025px) {
+div.post-title-show h4 {
+    color: var(--dark);
+    font-size: 1.3rem;
+    font-weight: 500 !important;
+    line-height: 1.8;
+    transition: all 0.3s;
+}
+
+@media (max-width: 1050px) {
     h1#post-show-header {
         font-size: 1.5rem;
+    }
+    div.post-title-show h4 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 969px) {
+    div.post-title-show h4 {
+        font-size: 1rem;
     }
 }
 
@@ -43,8 +60,11 @@ h1#post-show-header {
     }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 396px) {
     h1#post-show-header {
         font-size: 1.2rem;
+    }
+    div.post-title-show h4 {
+        font-size: 0.9rem;
     }
 }

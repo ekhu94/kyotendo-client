@@ -38,8 +38,8 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
             window.removeEventListener('scroll', handleScroll);
             resetPostIdx();
             setLoaded(false);
-            resetForums();
-            resetForumShow();
+            // resetForums();
+            // resetForumShow();
         }
     }, [])
 
