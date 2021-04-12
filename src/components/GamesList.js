@@ -11,24 +11,54 @@ import PageLoader from './PageLoader';
 
 const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) => {
     const [loaded, setLoaded] = useState(false);
+    const [gamesList, setGamesList] = useState([]);
 
-    useEffect(() => {
+    useEffect(() => {    
         getGames(gamePage);
+
+        const handleScroll = () => {
+            const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+            const body = document.body;
+            const html = document.documentElement;
+            const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+            const windowBottom = windowHeight + window.pageYOffset;
+            if (windowBottom >= docHeight) {    
+                console.log('bottom reached')       
+                setTimeout(() => {
+                    setLoaded(false);
+                    setGamePage();
+                    console.log(`now on page ${gamePage}`)
+                }, 1000);
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
 
         return () => {
             resetGamePage();
+            window.removeEventListener('scroll', handleScroll);
         }
     }, []);
 
     useEffect(() => {
-        if (games.length) {
+        if (!gamesList.length) setGamesList(games);
+        if (gamesList.length && !loaded) {
             setLoaded(true);
         }
     }, [games]);
 
+    useEffect(() => {
+        getGames(gamePage)
+        console.log('games: ', games)
+        if (games.length) {
+            setGamesList([...gamesList, ...games])
+            setLoaded(true)
+        }
+    }, [gamePage]);
+
     const renderGameCards = () => {
         if (loaded) {
-            return games.map(game => {
+            return gamesList.filter((g, i) => gamesList.indexOf(g) === i).map(game => {
                 return (
                     <GamesListCard key={game.id} game={game} />
                 );
@@ -42,7 +72,12 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
             style={{backgroundImage: `url(${backgroundImg})`}}
         >
             {loaded ?
-                <Container className="py-5">
+                <Container className="pb-5" style={{paddingTop: '100px'}}>
+                    <Row className="justify-content-center">
+                        <div className="col-10">
+                            <h1 className="mb-5 text-center games-list-header">Nintendo Games List</h1>
+                        </div>
+                    </Row>
                     <Row className="justify-content-center">
                         {renderGameCards()}
                     </Row>
@@ -53,7 +88,6 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
 };
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
         games: state.games,
         gamePage: state.gamePage

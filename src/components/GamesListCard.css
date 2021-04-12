@@ -4,6 +4,7 @@ img.card-img {
     border-top-right-radius: 12px;
     height: auto;
     min-height: 200px;
+    max-height: 300px;
     /* min-width: 100%;
     min-height: 200px; */
 }

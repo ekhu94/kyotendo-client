@@ -8,3 +8,16 @@ div#games-container {
     min-height: 100vh !important;
     opacity: 0.9;
 }
+
+h1.games-list-header {
+    font-size: 4rem !important;
+    color: #fff;
+    background-color: var(--dark);
+    text-shadow: 5px 4px 6px rgba(0,0,0,0.67);
+    letter-spacing: 0.2em;
+    line-height: 1.5;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    /* padding-left: 5px;
+    padding-right: 5px; */
+}
