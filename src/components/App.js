@@ -8,6 +8,7 @@ import AlertMessage from './AlertMessage';
 import Auth from './Auth';
 import ForumList from './ForumList';
 import ForumShow from './ForumShow';
+import GamesList from './GamesList';
 import HomePage from './HomePage';
 import Login from './Login';
 import NavBar from './NavBar';
@@ -45,7 +46,6 @@ const App = ({ auth, setAuth }) => {
         }
     },[alertObj]);
 
-    //? Need to convert to redux
     const onLogin = (data, routerProps) => {
         //! authorization to make sure this is a user
         if (data.jwt){
@@ -136,9 +136,11 @@ const App = ({ auth, setAuth }) => {
                     <ScrollTop />
                     <NavBar onLogout={onLogout} showAlert={showAlert} renderAlert={renderAlert} />
                     <Route exact path="/" render={() => <HomePage /> } />
-                    <Route exact path="/forums" render={() => <ForumList />} />
+                    
                     <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                     <Route exact path="/new/:slug/post" render={routerProps => <NewPostForm forumSlug={routerProps.match.params.slug} onNewPost={onNewPost} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
+                    <Route exact path="/games" render={() => <GamesList />} />
+                    <Route exact path="/forums" render={() => <ForumList />} />
                     <Route
                         exact path="/forums/:slug"
                         render={routerProps => {

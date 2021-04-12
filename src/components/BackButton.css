@@ -1,0 +1,8 @@
+button.ui.red.mini.back-btn {
+    font-family: 'Chakra Petch', sans-serif;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    letter-spacing: 0.1rem;
+}
