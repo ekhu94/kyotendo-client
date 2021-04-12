@@ -29,7 +29,7 @@ const PostObject = ({ post }) => {
         switch (post.comments.length) {
             case 0:
                 return (
-                    <div>
+                    <div className="ml-3 ml-md-0">
                         <span className="comment-link">No comments</span>
                         <Button
                             className="ml-3 py-1 py-md-2 px-2 px-md-3 align-items-center expand-btn"
@@ -45,7 +45,7 @@ const PostObject = ({ post }) => {
                 );
             case 1:
                 return (
-                    <div>
+                    <div className="ml-3 ml-md-0">
                         <span className="comment-link">1 comment</span>
                         <Button
                             className="ml-3 py-1 py-md-2 px-2 px-md-3 align-items-center expand-btn"
@@ -60,7 +60,7 @@ const PostObject = ({ post }) => {
                 );
             default:
                 return (
-                    <div>
+                    <div className="ml-3 ml-md-0">
                         <span className="comment-link">{post.comments.length} comments</span>
                         <Button
                             className="ml-3 py-1 py-md-2 px-2 px-md-3 align-items-center expand-btn"
