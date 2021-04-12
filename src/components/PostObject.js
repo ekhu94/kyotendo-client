@@ -28,11 +28,51 @@ const PostObject = ({ post }) => {
     const renderCommentLine = () => {
         switch (post.comments.length) {
             case 0:
-                return <p className="comment-link">No comments</p>
+                return (
+                    <div>
+                        <span className="comment-link">No comments</span>
+                        <Button
+                            className="ml-3 py-1 py-md-2 px-2 px-md-3 align-items-center expand-btn"
+                            variant="info"
+                            style={{cursor: 'pointer'}}
+                            onClick={() => setIsOpen(!isOpen)}
+                            aria-controls="fade-disc"
+                            aria-expanded={isOpen}
+                        >
+                            <i className={`fas ${isOpen ? 'fa-minus' : 'fa-plus'}`} />
+                        </Button>
+                    </div>
+                );
             case 1:
-                return <p className="comment-link">1 comment</p>
+                return (
+                    <div>
+                        <span className="comment-link">1 comment</span>
+                        <Button
+                            className="ml-3 py-1 py-md-2 px-2 px-md-3 align-items-center expand-btn"
+                            variant="info"
+                            onClick={() => setIsOpen(!isOpen)}
+                            aria-controls="fade-image"
+                            aria-expanded={isOpen}
+                        >
+                            <i className={`fas ${isOpen ? 'fa-minus' : 'fa-plus'}`} />
+                        </Button>
+                    </div>
+                );
             default:
-                return <p className="comment-link">{post.comments.length} comments</p>
+                return (
+                    <div>
+                        <span className="comment-link">{post.comments.length} comments</span>
+                        <Button
+                            className="ml-3 py-1 py-md-2 px-2 px-md-3 align-items-center expand-btn"
+                            variant="info"
+                            onClick={() => setIsOpen(!isOpen)}
+                            aria-controls="fade-video"
+                            aria-expanded={isOpen}
+                        >
+                            <i className={`fas ${isOpen ? 'fa-minus' : 'fa-plus'}`} />
+                        </Button>
+                    </div>
+                );
         }
     };
 
@@ -47,6 +87,7 @@ const PostObject = ({ post }) => {
                                     <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
                                     <div className="col-10 post-title">
                                         {renderUserLink()}
+                                        <Link to={`${window.location.pathname}/${post.id}`}>
                                         <h4
                                             onClick={() => setIsOpen(!isOpen)}
                                             aria-controls="fade-disc"
@@ -63,9 +104,8 @@ const PostObject = ({ post }) => {
                                                 {post.post_type}
                                             </Badge>
                                         </h4>
-                                        <Link to={`${window.location.pathname}/${post.id}`}>
-                                            {renderCommentLine()}
-                                        </Link>                         
+                                        </Link>
+                                        {renderCommentLine()}                     
                                     </div>
                                 </Row>
                                 <Row className="justify-content-start">
@@ -88,10 +128,8 @@ const PostObject = ({ post }) => {
                                 <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
                                 <div className="col-10 post-title">
                                     {renderUserLink()}
+                                    <Link to={`${window.location.pathname}/${post.id}`}>
                                     <h4
-                                        onClick={() => setIsOpen(!isOpen)}
-                                        aria-controls="fade-image"
-                                        aria-expanded={isOpen}
                                         className="d-inline mr-0 ml-3 ml-md-0"
                                     >
                                         {post.title}
@@ -104,9 +142,8 @@ const PostObject = ({ post }) => {
                                             {post.post_type}
                                         </Badge>
                                     </h4>
-                                    <Link to={`${window.location.pathname}/${post.id}`}>
-                                        {renderCommentLine()}
                                     </Link>
+                                    {renderCommentLine()}
                                 </div>
                             </Row>
                             <Row className="justify-content-start">
@@ -130,10 +167,8 @@ const PostObject = ({ post }) => {
                                 <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
                                 <div className="col-10 post-title">
                                     {renderUserLink()}
+                                    <Link to={`${window.location.pathname}/${post.id}`}>
                                     <h4
-                                        onClick={() => setIsOpen(!isOpen)}
-                                        aria-controls="fade-image"
-                                        aria-expanded={isOpen}
                                         className="d-inline mr-0 ml-3 ml-md-0"
                                     >
                                         {post.title}
@@ -146,9 +181,8 @@ const PostObject = ({ post }) => {
                                             {post.post_type}
                                         </Badge>
                                     </h4>
-                                    <Link to={`${window.location.pathname}/${post.id}`}>
-                                        {renderCommentLine()}
                                     </Link>
+                                    {renderCommentLine()}                                   
                                 </div>
                             </Row>
                             <Row className="justify-content-start">
@@ -190,7 +224,7 @@ const PostObject = ({ post }) => {
                             {slug}
                         </Link>
                         <img
-                            className="ml-2"
+                            className="mx-2"
                             src={avatar.props.src}
                             alt={avatar.props.alt}
                             style={{width: '20px', height: '20px'}}

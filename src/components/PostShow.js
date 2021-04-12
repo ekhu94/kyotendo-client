@@ -17,7 +17,7 @@ import UpvoteButtons from './UpvoteButtons';
 const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
     const [loaded, setLoaded] = useState(false);
     // const [isOpen, setIsOpen] = useState(false)
-    const [user, setUser] = useState({});
+    // const [user, setUser] = useState({});
 
     useEffect(() => {
         
@@ -61,7 +61,7 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                                 </h4>
                             </div>
                         </Row>
-                        <Row className="justify-content-center my-4">
+                        <Row className="justify-content-center my-3">
                             <div className="col-10 p-2">
                                 {renderParagraphs(post.content_text)}
                             </div>
@@ -90,7 +90,7 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                                 </h4>
                             </div>
                         </Row>
-                        <Row className="justify-content-center my-4">
+                        <Row className="justify-content-center my-3">
                             <div id="fade-image">
                                 <img className="post-img" src={post.content_url} alt={post.title} />
                             </div>
@@ -121,7 +121,7 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                                     </h4>
                                 </div>
                             </Row>
-                            <Row className="justify-content-center my-4">
+                            <Row className="justify-content-center my-3">
                                 <div id="fade-video" className="iframe-sizing">
                                     <ResponsiveEmbed aspectRatio="16by9">
                                         <iframe
