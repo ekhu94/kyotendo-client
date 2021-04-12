@@ -7,9 +7,16 @@ import avatars from '../assets/icons/avatars/avatarIcons';
 
 const CommentsList = ({ comments }) => {
 
-    useEffect(() => {
-        console.log(comments)
-    }, []);
+    const renderCommentsHeader = () => {
+        switch (comments.length) {
+            case 0:
+                return "No comments"
+            case 1:
+                return "1 comment"
+            default:
+                return `${comments.length} comments`
+        }
+    }
 
     const renderComments = () => {
         if (comments) {
@@ -48,9 +55,12 @@ const CommentsList = ({ comments }) => {
     };
 
     return (
-        <List divided relaxed>
-            {renderComments()}
-        </List>
+        <>
+            <h3 style={{marginLeft: '28px'}}>{renderCommentsHeader()}</h3>
+            <List divided relaxed>
+                {renderComments()}
+            </List>
+        </>
     );
 };
 

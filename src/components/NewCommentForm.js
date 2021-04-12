@@ -12,7 +12,7 @@ const schema = yup.object().shape({
     content: yup.string().required(),
 });
 
-const NewCommentForm = ({ user, post }) => {
+const NewCommentForm = ({ user, post, onCommentCreate }) => {
     const { register, formState: { errors }, handleSubmit } = useForm({
         resolver: yupResolver(schema),
     });
@@ -20,12 +20,12 @@ const NewCommentForm = ({ user, post }) => {
     const onFormSubmit = (data, e) => {
         e.target.reset();
         const newComment = {
-            content: data.name,
+            content: data.content,
             post_id: post.id,
             user_id: user.id
         }
-        api.comment.postComment(newComment)
-            .then((res) => console.log(res));
+        api.comment.createComment(newComment)
+            .then(onCommentCreate);
     };
 
     return (

@@ -30,6 +30,7 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
         return () => {
             // resetPostShow();
             setLoaded(false);
+            resetPostShow();
         }
     }, []);
 
@@ -178,8 +179,8 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
         }
     };
 
-    const onCommentSubmit = () => {
-
+    const onCommentCreate = () => {
+        getPostShow(postId);
     }
 
     return (
@@ -196,7 +197,7 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                                     {/* post content */}
                                     {renderPostContent()}
                                     {/* comment form */}
-                                    <NewCommentForm user={post.user} post={post} onCommentSubmit={onCommentSubmit} />
+                                    <NewCommentForm user={post.user} post={post} onCommentCreate={onCommentCreate} />
                                     {/* comment list */}
                                     <CommentsList comments={post.comments} />
                                 </Card>
