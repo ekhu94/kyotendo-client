@@ -1,0 +1,4 @@
+div.ui.divided.list.video-list {
+    overflow-y: scroll;
+    height: 550px;
+}

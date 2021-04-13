@@ -11,7 +11,7 @@ const YoutubeSearch = ({ gameSlug, onSearchSubmit }) => {
 
     return (
         <Row className="justify-content-center">
-            <Form className="my-5 col-11" onSubmit={onFormSubmit}>
+            <Form className="mt-5 mb-4 col-11" onSubmit={onFormSubmit}>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Control
                         type="text"

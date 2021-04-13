@@ -3,6 +3,8 @@ div.item.video-item.youtube-item {
     transition: all 0.4s;
     /* align-items: center !important; */
     cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 div.item.video-item.youtube-item:hover {

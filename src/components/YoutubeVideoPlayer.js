@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Container, Row, Card } from 'react-bootstrap';
+import { Container, Row, Card, Button } from 'react-bootstrap';
 
 import './YoutubeVideoPlayer.css';
 import backgroundImg from '../assets/Animal-crossing-4.jpg';
@@ -43,12 +43,15 @@ const YoutubeVideoPlayer = ({ gameSlug }) => {
                             onSearchSubmit={search}
                         />
                         <Row className="justify-content-center">
-                            <div className="col-7">
+                            <div className="col-10 col-lg-7">
                                 <YoutubeDetail
                                     video={selectedVideo}
                                 />
+                                <Button className="p-3 youtube-save-btn" variant="success" size="lg" block>
+                                    Save To Collection
+                                </Button>
                             </div>
-                            <div className="col-4">
+                            <div className="col-11 col-lg-4">
                                 <YoutubeVideoList
                                     videos={videos}
                                     onVideoSelect={setSelectedVideo}

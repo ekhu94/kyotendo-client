@@ -4,7 +4,7 @@ const YoutubeDetail = ({ video }) => {
     if (!video) return <div>Loading...</div>
     const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`
     return (
-        <div>
+        <div style={{marginTop: '10px'}}>
             <div className="ui embed">
                 <iframe
                     title="video player"

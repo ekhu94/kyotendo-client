@@ -1,4 +1,5 @@
 import React from 'react';
+import './YoutubeVideoList.css';
 import YoutubeItem from './YoutubeItem';
 
 const YoutubeVideoList = ({ videos, onVideoSelect }) => {
@@ -13,7 +14,7 @@ const YoutubeVideoList = ({ videos, onVideoSelect }) => {
     });
 
     return (
-        <div className="ui relaxed divided list">
+        <div className="ui relaxed divided list video-list">
             {renderedVideos}
         </div>
     );
