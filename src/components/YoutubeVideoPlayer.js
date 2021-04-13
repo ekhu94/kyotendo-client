@@ -12,7 +12,7 @@ import useVideos from '../hooks/useVideos';
 
 const YoutubeVideoPlayer = ({ gameSlug }) => {
     const [selectedVideo, setSelectedVideo] = useState(null);
-    const {videos, search} = useVideos(`${gameSlug} video game`);
+    const {videos, search} = useVideos(`${gameSlug} video game playthrough`);
 
     useEffect(() => {
         
@@ -40,6 +40,7 @@ const YoutubeVideoPlayer = ({ gameSlug }) => {
                     <Card style={{borderRadius: '20px'}} className="col-10 col-md-12 p-0">
                         <h1 className="youtube-header text-center py-4">{formatSlug()} Videos</h1>
                         <YoutubeSearch
+                            gameSlug={gameSlug.split('-').join(' ')}
                             onSearchSubmit={search}
                         />
                         <Row className="justify-content-center">

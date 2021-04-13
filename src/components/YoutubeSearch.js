@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Row } from 'react-bootstrap';
 
 const YoutubeSearch = ({ gameSlug, onSearchSubmit }) => {
     const [term, setTerm] = useState('');
+
+    useEffect(() => {
+        console.log(gameSlug)
+    }, []);
 
     const onFormSubmit = e => {
         e.preventDefault();
@@ -15,10 +19,13 @@ const YoutubeSearch = ({ gameSlug, onSearchSubmit }) => {
                 <Form.Group controlId="formBasicEmail">
                     <Form.Control
                         type="text"
-                        placeholder="Video Search..."
+                        placeholder={gameSlug ? `Results for ${gameSlug}...` : 'Video search...'}
                         value={term}
                         onChange={e => setTerm(e.target.value)}
                     />
+                    <Form.Text className="text-muted">
+                        Not seeing the results you want? Try a different search!
+                    </Form.Text>
                 </Form.Group>
             </Form>
         </Row>
