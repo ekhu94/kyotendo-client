@@ -19,7 +19,7 @@ div.card.game-card {
 }
 
 div.card.game-card:hover {
-    transform: scale(0.95, 0.95);
+    transform: scale(1.05, 1);
     filter: contrast(110%);
 }
 
