@@ -9,7 +9,7 @@ const GameShow = ({ gameSlug }) => {
         <div>{gameSlug}</div>
         <div>{gameSlug}</div>
         <div>{gameSlug}</div>
-        <BackButton />
+        <BackButton label="back to all games" />
         </div>
     );
 };

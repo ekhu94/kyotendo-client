@@ -48,12 +48,12 @@ h1.games-list-header {
 
 @media (max-width: 480px) {
     h1.games-list-header {
-        font-size: 1.8rem !important;
+        font-size: 1.6rem !important;
     }
 }
 
 @media (max-width: 396px) {
     h1.games-list-header {
-        font-size: 1.6rem;
+        font-size: 1.4rem !important;
     }
 }

@@ -16,6 +16,10 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
     const [sortBy, setSortBy] = useState('new');
 
     useEffect(() => {
+
+        if (gamePage > games.length + 20) {
+            resetGamePage();
+        }
         setGamePage();
         getGames();
 
@@ -36,7 +40,6 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
 
         return () => {
             // resetGamesList();
-            // resetGamePage();
             // setGamesList([])
             window.removeEventListener('scroll', handleScroll);
         }
@@ -57,7 +60,7 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
     const renderGameCards = () => {
         if (games.length) {
             switch (sortBy) {
-                case 'name':
+                case 'title':
                     return games.sort((a, b) => a.slug > b.slug ? 1 : -1).slice(0, gamePage).map((game, i) => {
                         return (
                             <GamesListCard key={game.id} game={game} idx={i} />
@@ -96,7 +99,7 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
                     <Row className="justify-content-center">
                     <Card className="p-0 games-header-card col-10 mb-3">
                         <h1 className="mb-3 p-4 text-center games-list-header">Nintendo Games List</h1>
-                        <h3 className="text-center mb-3">sorting by <span style={{color: 'var(--blue-primary)'}}>{sortBy}</span></h3>
+                        <h3 className="text-center mb-3">sort by <span style={{color: 'var(--blue-primary)'}}>{sortBy}</span></h3>
                         <Row className="justify-content-center">
                             <GamesSortButtons onSortClick={onSortClick} />
                         </Row>
