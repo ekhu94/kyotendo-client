@@ -4,6 +4,7 @@ import { Container, Row, Card, Button } from 'react-bootstrap';
 
 import './YoutubeVideoPlayer.css';
 import backgroundImg from '../assets/Animal-crossing-4.jpg';
+import BackButton from './BackButton';
 import YoutubeDetail from './YoutubeDetail';
 import YoutubeSearch from './YoutubeSearch';
 import YoutubeVideoList from './YoutubeVideoList';
@@ -36,19 +37,20 @@ const YoutubeVideoPlayer = ({ gameSlug }) => {
             style={{backgroundImage: `url(${backgroundImg})`}}
         >
             <Container>
-                <Row className="justify-content-center mt-4">
+                <BackButton label="back to game page" />
+                <Row className="justify-content-center mt-2">
                     <Card style={{borderRadius: '20px'}} className="col-10 col-md-12 p-0">
                         <h1 className="youtube-header text-center py-4">{formatSlug()} Videos</h1>
                         <YoutubeSearch
                             gameSlug={gameSlug.split('-').join(' ')}
                             onSearchSubmit={search}
                         />
-                        <Row className="justify-content-center">
-                            <div className="col-10 col-lg-7">
+                        <Row className="justify-content-center mb-5">
+                            <div className="col-11 col-lg-7">
                                 <YoutubeDetail
                                     video={selectedVideo}
                                 />
-                                <Button className="p-3 youtube-save-btn" variant="success" size="lg" block>
+                                <Button className="p-3 my-4 mt-4 mb-lg-0 youtube-save-btn" variant="outline-success" size="lg" block>
                                     Save To Collection
                                 </Button>
                             </div>

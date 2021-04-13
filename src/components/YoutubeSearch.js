@@ -19,11 +19,12 @@ const YoutubeSearch = ({ gameSlug, onSearchSubmit }) => {
                 <Form.Group controlId="formBasicEmail">
                     <Form.Control
                         type="text"
+                        size="lg"
                         placeholder={gameSlug ? `Results for ${gameSlug}...` : 'Video search...'}
                         value={term}
                         onChange={e => setTerm(e.target.value)}
                     />
-                    <Form.Text className="text-muted">
+                    <Form.Text className="text-muted mt-1">
                         Not seeing the results you want? Try a different search!
                     </Form.Text>
                 </Form.Group>

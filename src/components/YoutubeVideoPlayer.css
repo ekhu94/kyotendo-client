@@ -23,6 +23,16 @@ h1.youtube-header {
     opacity: 0.95;
 }
 
+button.btn.btn-outline-success.youtube-save-btn {
+    border-color: var(--luigi-green);
+    transition: all 0.4s;
+    /* background-color: var(--luigi-green); */
+}
+
+button.btn.btn-outline-success.youtube-save-btn:hover {
+    background-color: var(--luigi-green);
+}
+
 @media (max-width: 1080px) {
     h1.youtube-header {
         font-size: 1.8rem;

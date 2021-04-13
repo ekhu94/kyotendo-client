@@ -12,7 +12,7 @@ const YoutubeDetail = ({ video }) => {
                 />
             </div>
             <div className="ui segment">
-                <h4 className="ui header">
+                <h4 style={{letterSpacing: '0.1rem'}} className="ui header">
                     {video.snippet.title}
                 </h4>
                 <p>
