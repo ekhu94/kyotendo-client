@@ -8,7 +8,7 @@ const headerColors = ['var(--red-secondary)', 'var(--lime)', 'var(--blue-seconda
 
 const GamesListCard = ({ game, idx }) => {
 
-    const getThreeTags = () => {
+    const getThreeGenres = () => {
         if (game.genres && game.genres.length) {
             return game.genres.map(genre => {
                 return (
@@ -56,9 +56,9 @@ const GamesListCard = ({ game, idx }) => {
             </Card.Text>
             <ListGroup className="list-group-flush mt-0">
                 <ListGroupItem>
-                    {getThreeTags()}
+                    {getThreeGenres()}
                 </ListGroupItem>
-                <ListGroupItem>Metacritic Rating: {game.metacritic}</ListGroupItem>
+                <ListGroupItem>Metacritic Score: {game.metacritic}</ListGroupItem>
                 <ListGroupItem className="mb-0">{game.stores && game.stores.length ? 'Available at these stores:' : 'No stores provided at this time'}</ListGroupItem>
             </ListGroup>
             <Card.Body className="pt-1">

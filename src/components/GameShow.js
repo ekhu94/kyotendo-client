@@ -7,6 +7,7 @@ import { Image } from 'semantic-ui-react';
 import './GameShow.css'; 
 import backgroundImg from '../assets/smash-bros-background.jpg';
 import BackButton from './BackButton';
+import GameVideo from './GameVideo';
 import PageLoader from './PageLoader';
 
 const GameShow = ({ gameShow, getGameShow, resetGameShow, gameSlug }) => {
@@ -40,6 +41,38 @@ const GameShow = ({ gameShow, getGameShow, resetGameShow, gameSlug }) => {
         }
     };
 
+    const renderPlatforms = () => {
+        if (gameShow.platforms && gameShow.platforms.length) {
+            const platforms = gameShow.platforms.filter(p => !p.platform.name.includes('PlayStation') && !p.platform.name.includes('Xbox')).map(p => p.platform.name);
+            return platforms.join(', ');
+        }
+    };
+
+    const renderGenres = () => {
+        if (gameShow.genres) {
+            const genres = gameShow.genres.map(g => g.name);
+            return genres.join(', ');
+        }
+    };
+
+    const renderTags = () => {
+        if (gameShow.tags) {
+            const tags = gameShow.tags.filter(t => t.language === "eng").slice(0, 3).map(t => t.name);
+            return tags.join(', ');
+        }
+    }
+
+    const formatDate = release => {
+        if (release) {
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            const date = release.split('-');
+            const year = date[0];
+            const month = monthNames[parseInt(date[1]) - 1];
+            const day = date[2];
+            return `${month} ${day}, ${year}`;
+        }
+    };
+
     return (
         <div>
             {loaded ?
@@ -60,25 +93,72 @@ const GameShow = ({ gameShow, getGameShow, resetGameShow, gameSlug }) => {
                             <Row className="justify-content-center my-5">
                                 {renderImages()}
                             </Row>
-                            {gameShow.ratings.length ?
-                                <Table striped bordered hover>
-                                    <thead>
-                                        <tr className="text-center">
-                                            <th>Count</th>
-                                            <th>Meh</th>
-                                            <th>Recommended</th>
-                                            <th>Exceptional</th>
-                                        </tr>
-                                    </thead>
+                            {gameShow ?
+                            <div className="my-5">
+                                <h3 className="text-center mb-4">Game Information</h3>
+                                <Table striped hover>
                                     <tbody>
-                                        <tr className="text-center">
-                                            <td>{gameShow.reviews_count}</td>
-                                            <td>{gameShow.ratings[2].percent}%</td>
-                                            <td>{gameShow.ratings[0].percent}%</td>
-                                            <td>{gameShow.ratings[1].percent}%</td>
+                                        <tr style={{fontWeight: 'bold', letterSpacing: '0.1rem'}}>
+                                            <td colSpan="2" className="pl-2 pl-sm-3 pl-md-4 pl-lg-5">Release Date</td>
+                                            <td className="text-center" colSpan="2">{formatDate(gameShow.released)}</td>
+                                        </tr>
+                                        <tr style={{fontWeight: 'bold', letterSpacing: '0.1rem'}}>
+                                            <td colSpan="2" className="pl-2 pl-sm-3 pl-md-4 pl-lg-5">Platform</td>
+                                            <td className="text-center" colSpan="2">{renderPlatforms()}</td>
+                                        </tr>
+                                        <tr style={{fontWeight: 'bold', letterSpacing: '0.1rem'}}>
+                                            <td colSpan="2" className="pl-2 pl-sm-3 pl-md-4 pl-lg-5">Metacritic Score</td>
+                                            <td className="text-center" colSpan="2">{gameShow.metacritic}</td>
+                                        </tr>
+                                        <tr style={{fontWeight: 'bold', letterSpacing: '0.1rem'}}>
+                                            <td colSpan="2" className="pl-2 pl-sm-3 pl-md-4 pl-lg-5">Genres</td>
+                                            <td className="text-center" colSpan="2">{renderGenres()}</td>
+                                        </tr>
+                                        {gameShow.esrb_rating ?
+                                            <tr style={{fontWeight: 'bold', letterSpacing: '0.1rem'}}>
+                                                <td colSpan="2" className="pl-2 pl-sm-3 pl-md-4 pl-lg-5">ESRB Rating</td>
+                                                <td className="text-center" colSpan="2">{gameShow.esrb_rating.name}</td>
+                                            </tr>
+                                        : null }
+                                        <tr style={{fontWeight: 'bold', letterSpacing: '0.1rem'}}>
+                                            <td colSpan="2" className="pl-2 pl-sm-3 pl-md-4 pl-lg-5">Tags</td>
+                                            <td className="text-center" colSpan="2">{renderTags()}</td>
                                         </tr>
                                     </tbody>
                                 </Table>
+                            </div>
+                            : null }
+                            {gameShow.clip ?
+                                <Row className="justify-content-center mb-5">
+                                    <div className="col-10">
+                                        <GameVideo video={gameShow.clip.clips.full} />
+                                    </div>
+                                </Row>
+                            : null }
+                            {gameShow.ratings.length ?
+                                <div>
+                                    <h3 className="text-center mb-2">Player Ratings</h3>
+                                    <Table striped bordered hover>
+                                        <thead>
+                                            <tr className="text-center">
+                                                <th>Count</th>
+                                                <th>Meh</th>
+                                                <th>Recommended</th>
+                                                <th>Exceptional</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr className="text-center">
+                                                <td>{gameShow.reviews_count}</td>
+                                                {gameShow.ratings.length >= 3 ?
+                                                    <td>{gameShow.ratings[2].percent}%</td>
+                                                : <td>0%</td> }
+                                                <td>{gameShow.ratings[0].percent}%</td>
+                                                <td>{gameShow.ratings[1].percent}%</td>
+                                            </tr>
+                                        </tbody>
+                                    </Table>
+                                </div>
                             : null }
                         </Card>
                     </Row>
