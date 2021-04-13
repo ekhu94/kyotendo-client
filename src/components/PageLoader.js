@@ -18,7 +18,7 @@ const PageLoader = () => {
     return (
         <div>
             <Dimmer active style={{marginTop: '65px',height: '100vh', minHeight: '100vh'}}>
-                <Loader size='huge'>{delayed ? "Please be patient....Sometimes this takes a while" : "Loading...Please wait"}</Loader>
+                <Loader size='huge'>{delayed ? "Please be patient....Sometimes this takes a while..." : "Loading...Please wait..."}</Loader>
             </Dimmer>
 
             <Image src='/images/wireframe/short-paragraph.png' />

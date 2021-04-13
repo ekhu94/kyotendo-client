@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import action from '../actions';
 
-import { Container, Row, Button } from 'react-bootstrap';
+import { Container, Row, Button, Card } from 'react-bootstrap';
 import { api } from '../services/api';
 import backgroundImg from '../assets/smash-bros-hd.jpg';
 import './GamesList.css';
 import GamesListCard from './GamesListCard';
+import GamesSortButtons from './GamesSortButtons';
 import PageLoader from './PageLoader';
 import ScrollTop from './ScrollTop';
 
 const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) => {
     const [loaded, setLoaded] = useState(false);
-    const [sortBy, setSortBy] = useState('name');
+    const [sortBy, setSortBy] = useState('new');
 
     useEffect(() => {
         setGamePage();
@@ -34,8 +35,8 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
         window.addEventListener('scroll', handleScroll);
 
         return () => {
-            resetGamesList();
-            resetGamePage();
+            // resetGamesList();
+            // resetGamePage();
             // setGamesList([])
             window.removeEventListener('scroll', handleScroll);
         }
@@ -55,16 +56,21 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
 
     const renderGameCards = () => {
         if (games.length) {
-            const filterGames = games.filter((g, i) => games.indexOf(g) === i);
             switch (sortBy) {
                 case 'name':
-                    return filterGames.sort((a, b) => a.slug > b.slug ? 1 : -1).slice(0, gamePage).map((game, i) => {
+                    return games.sort((a, b) => a.slug > b.slug ? 1 : -1).slice(0, gamePage).map((game, i) => {
                         return (
                             <GamesListCard key={game.id} game={game} idx={i} />
                         );
                     });
-                case 'date':
-                    return filterGames.sort((a, b) => parseInt(b.released.split('-').join('')) - parseInt(a.released.split('-').join(''))).slice(0, gamePage).map((game, i) => {
+                case 'new':
+                    return games.sort((a, b) => parseInt(b.released.split('-').join('')) - parseInt(a.released.split('-').join(''))).slice(0, gamePage).map((game, i) => {
+                        return (
+                            <GamesListCard key={game.id} game={game} idx={i} />
+                        );
+                    });
+                case 'rating':
+                    return games.sort((a, b) => b.metacritic - a.metacritic).slice(0, gamePage).map((game, i) => {
                         return (
                             <GamesListCard key={game.id} game={game} idx={i} />
                         );
@@ -75,6 +81,10 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
         }
     };
 
+    const onSortClick = sort => {
+        setSortBy(sort);
+    }
+
     return (
         <div
             id="games-container"
@@ -84,9 +94,13 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
                 <Container className="pb-5" style={{paddingTop: '100px'}}>
                     {/* <ScrollTop /> */}
                     <Row className="justify-content-center">
-                        <div className="col-10">
-                            <h1 className="mb-5 p-2 text-center games-list-header">Nintendo Games List</h1>
-                        </div>
+                    <Card className="p-0 games-header-card col-10 mb-3">
+                        <h1 className="mb-3 p-4 text-center games-list-header">Nintendo Games List</h1>
+                        <h3 className="text-center mb-3">sorting by <span style={{color: 'var(--blue-primary)'}}>{sortBy}</span></h3>
+                        <Row className="justify-content-center">
+                            <GamesSortButtons onSortClick={onSortClick} />
+                        </Row>
+                    </Card>
                     </Row>
                     <Row className="justify-content-center">
                         {renderGameCards()}

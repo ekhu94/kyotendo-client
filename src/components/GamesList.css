@@ -10,15 +10,20 @@ div#games-container {
     opacity: 0.9;
 }
 
+div.card.games-header-card {
+    border-radius: 20px;
+    box-shadow: 1px 2px 22px 4px var(--dark);
+}
+
 h1.games-list-header {
     font-size: 3rem !important;
     color: #fff;
-    box-shadow: 1px 2px 22px 4px var(--dark);
     background-color: var(--red-secondary);
     text-shadow: 5px 4px 6px rgba(0,0,0,0.67);
     letter-spacing: 0.2em;
     line-height: 1.5 !important;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     /* padding-left: 5px;
     padding-right: 5px; */
 }
