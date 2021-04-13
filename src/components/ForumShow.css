@@ -41,6 +41,6 @@ button.btn.btn-info:hover {
         font-size: 1.5rem;
     }
     h3#users-title.no-post-header {
-    font-size: 1.2rem !important;
-}
+        font-size: 1.2rem !important;
+    }
 }

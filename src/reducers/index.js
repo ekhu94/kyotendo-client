@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 //* EXTERNAL API
 import gamesReducer from './gamesReducer';
+import gameShowReducer from './gameShowReducer';
 
 //* RAILS API
 import forumsReducer from './forumsReducer';
@@ -17,6 +18,7 @@ import postReducer from './postReducer';
 export default combineReducers({
     auth: authReducer,
     games: gamesReducer,
+    gameShow: gameShowReducer,
     gamePage: gamePageReducer,
     forums: forumsReducer,
     forumShow: forumShowReducer,

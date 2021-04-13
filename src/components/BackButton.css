@@ -1,7 +1,7 @@
 button.ui.red.mini.back-btn {
     font-family: 'Chakra Petch', sans-serif;
     color: #fff;
-    background-color: var(--red-primary);
+    background-color: var(--blue-secondary);
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     border-top-right-radius: 20px;

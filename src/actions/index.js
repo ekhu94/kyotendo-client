@@ -1,5 +1,6 @@
 //* EXTERNAL API
 import { getGames } from './getGames';
+import { getGameShow } from './getGameShow';
 //* RAILS API
 import { getForums } from './getForums';
 import { resetForums } from './resetForums';
@@ -12,6 +13,7 @@ import { getUsers } from './getUsers';
 import { setAuth } from './setAuth';
 import { setGamePage } from './setGamePage';
 import { resetGamesList } from './resetGamesList';
+import { resetGameShow } from './resetGameShow';
 import { resetGamePage } from './resetGamePage';
 import { setPostIdx } from './setPostIdx';
 import { resetPostIdx } from './resetPostIdx';
@@ -19,9 +21,11 @@ import { resetPostIdx } from './resetPostIdx';
 const action = {
     games: {
         getGames,
+        getGameShow,
         setGamePage,
         resetGamePage,
-        resetGamesList
+        resetGamesList,
+        resetGameShow
     },
     forums: {
         getForums,

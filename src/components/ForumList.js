@@ -34,7 +34,7 @@ const ForumList = ({ auth, forums, getForums, resetForums, getForumShow }) => {
         return () => {
             window.removeEventListener('resize', handleResize);
             // resetForums();
-            setLoaded(false);
+            // setLoaded(false);
         }
 
     }, []);

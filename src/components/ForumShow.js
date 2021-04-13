@@ -7,9 +7,10 @@ import { Container, Row, Card, Button } from 'react-bootstrap';
 import './ForumShow.css';
 import backgroundImg from '../assets/forum-background.jpg';
 import noPostImg from '../assets/sad-pikachu.jpg';
-import ScrollTop from './ScrollTop';
+import BackButton from './BackButton';
 import PageLoader from './PageLoader';
 import PostObject from './PostObject';
+import ScrollTop from './ScrollTop';
 import TopPosters from './TopPosters';
 import TopPostersTop from './TopPostersTop';
 
@@ -38,7 +39,7 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
         return () => {
             window.removeEventListener('scroll', handleScroll);
             resetPostIdx();
-            setLoaded(false);
+            // setLoaded(false);
             // resetForums();
             // resetForumShow();
         }
@@ -105,6 +106,9 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
                             >
                                 {forum.name}
                             </h1>
+                            <div className="mt-5 ml-4">
+                                <BackButton label="back to all forums" />
+                            </div>
                             {forum.posts && forum.posts.length !== 0 ?
                                 <ul className="ul-unstyled">
                                     {renderPosts()}

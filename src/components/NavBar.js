@@ -41,16 +41,18 @@ const NavBar = ({ onLogout, auth, showAlert, renderAlert }) => {
     const navSub = useRef();
 
     const handleScroll = () => {
-        if (window.scrollY > 20) {
-        nav.current.classList.remove('top', 'py-3')
-        nav.current.classList.add('scrolled', 'py-1');
-        navSub.current.classList.remove('sub-nav')
-        navSub.current.classList.add('scrolled-sub')
-        } else {
-        nav.current.classList.remove('scrolled', 'py-1');
-        nav.current.classList.add('top', 'py-3');
-        navSub.current.classList.remove('scrolled-sub')
-        navSub.current.classList.add('sub-nav')
+        if (nav && nav.current) {
+            if (window.scrollY > 20) {
+                nav.current.classList.remove('top', 'py-3')
+                nav.current.classList.add('scrolled', 'py-1');
+                navSub.current.classList.remove('sub-nav')
+                navSub.current.classList.add('scrolled-sub')
+            } else {
+                nav.current.classList.remove('scrolled', 'py-1');
+                nav.current.classList.add('top', 'py-3');
+                navSub.current.classList.remove('scrolled-sub')
+                navSub.current.classList.add('sub-nav')
+            }
         }
     };
 
