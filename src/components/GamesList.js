@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import action from '../actions';
 
 import { Container, Row, Button, Card } from 'react-bootstrap';
+import { Input } from 'semantic-ui-react';
 import { api } from '../services/api';
 import backgroundImg from '../assets/smash-bros-hd.jpg';
 import './GamesList.css';
@@ -14,6 +15,8 @@ import ScrollTop from './ScrollTop';
 const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) => {
     const [loaded, setLoaded] = useState(false);
     const [sortBy, setSortBy] = useState('new');
+    const [displayGames, setDisplayGames] = useState([]);
+    const [term, setTerm] = useState('');
 
     useEffect(() => {
 
@@ -46,34 +49,45 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
     }, []);
 
     useEffect(() => {
-        console.log(games)
         if (games.length && gamePage > 0) {
+            setDisplayGames(games);
             setLoaded(true);
         }
     }, [games]);
 
-    // useEffect(() => {
+    useEffect(() => {
+        const search = setTimeout(() => {
+            if (term === '') {
+                setDisplayGames(games);
+            } else {
+                const query = games.filter(g => g.name.toLowerCase().includes(term.toLowerCase()));
+                setDisplayGames(query);
+            }
+        }, 500);
 
+        return () => {
+            clearInterval(search);
+        }
         
-    // }, [gamePage]);
+    }, [term]);
 
     const renderGameCards = () => {
-        if (games.length) {
+        if (displayGames.length) {
             switch (sortBy) {
                 case 'title':
-                    return games.sort((a, b) => a.slug > b.slug ? 1 : -1).slice(0, gamePage).map((game, i) => {
+                    return displayGames.sort((a, b) => a.slug > b.slug ? 1 : -1).slice(0, gamePage).map((game, i) => {
                         return (
                             <GamesListCard key={game.id} game={game} idx={i} />
                         );
                     });
                 case 'new':
-                    return games.sort((a, b) => parseInt(b.released.split('-').join('')) - parseInt(a.released.split('-').join(''))).slice(0, gamePage).map((game, i) => {
+                    return displayGames.sort((a, b) => parseInt(b.released.split('-').join('')) - parseInt(a.released.split('-').join(''))).slice(0, gamePage).map((game, i) => {
                         return (
                             <GamesListCard key={game.id} game={game} idx={i} />
                         );
                     });
                 case 'rating':
-                    return games.sort((a, b) => b.metacritic - a.metacritic).slice(0, gamePage).map((game, i) => {
+                    return displayGames.sort((a, b) => b.metacritic - a.metacritic).slice(0, gamePage).map((game, i) => {
                         return (
                             <GamesListCard key={game.id} game={game} idx={i} />
                         );
@@ -99,6 +113,9 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
                     <Row className="justify-content-center">
                     <Card className="p-0 games-header-card col-10 mb-3">
                         <h1 className="mb-3 p-4 text-center games-list-header">Nintendo Games List</h1>
+                        <Row className="justify-content-center">
+                        <Input className="col-11" placeholder="Game Search" type="text" value={term} onChange={e => setTerm(e.target.value)} />
+                        </Row>                
                         <h3 className="text-center mb-3">sort by <span style={{color: 'var(--blue-primary)'}}>{sortBy}</span></h3>
                         <Row className="justify-content-center">
                             <GamesSortButtons onSortClick={onSortClick} />
