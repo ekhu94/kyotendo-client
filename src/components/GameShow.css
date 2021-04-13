@@ -36,6 +36,16 @@ h1.game-show-header {
     opacity: 0.95;
 }
 
+button.btn.btn-primary.youtube-link-btn {
+    background-color: var(--blue-tertiary);
+    border-radius: 20px;
+    transition: all 0.5s;
+}
+
+button.btn.btn-primary.youtube-link-btn:hover {
+    background-color: var(--blue-secondary);
+}
+
 @media (max-width: 1080px) {
     h1.game-show-header {
         font-size: 1.8rem;

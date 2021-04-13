@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import action from '../actions';
-
-import { Jumbotron, Container, Card, Row, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Jumbotron, Container, Card, Row, Table, Button } from 'react-bootstrap';
 import { Image } from 'semantic-ui-react';
 import './GameShow.css'; 
 import backgroundImg from '../assets/smash-bros-background.jpg';
@@ -168,6 +168,13 @@ const GameShow = ({ gameShow, getGameShow, resetGameShow, gameSlug }) => {
                                     </Table>
                                 </div>
                             : null }
+                            <Row className="justify-content-center my-5">
+                                <Link className="col-8 col-md-6" to={`/games/${gameShow.slug}/videos`}>
+                                    <Button className="p-3 youtube-link-btn" variant="primary" size="lg" block>
+                                        Videos for {gameShow.name}
+                                    </Button>
+                                </Link>
+                            </Row>
                         </Card>
                     </Row>
                 </Container>

@@ -3,6 +3,7 @@ import axios from 'axios';
 const BACKEND_URL = 'http://localhost:3000/api/v1';
 const RAWG_URL = 'https://api.rawg.io/api';
 const RAWG_KEY = 'd5d3cad50e40425c9b9396d6908858b3';
+const YOUTUBE_KEY = 'AIzaSyChpw7dHcvd8QHTRPK_0tov0jNfYYxb0fM';
 
 const token = () =>  localStorage.getItem('token');
 
@@ -62,9 +63,20 @@ const rawg = axios.create({
     key: RAWG_KEY
 });
 
+const youtube = axios.create({
+    baseURL: 'https://www.googleapis.com/youtube/v3',
+    params: {
+        part: 'snippet',
+        maxResults: 5,
+        key: YOUTUBE_KEY,
+        type: 'video'
+    }
+});
+
 export const api = {
     rawg,
     rails,
+    youtube,
     auth: {
         signup,
         login,
