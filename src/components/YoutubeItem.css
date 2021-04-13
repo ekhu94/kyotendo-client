@@ -1,0 +1,23 @@
+div.item.video-item.youtube-item {
+    display: flex !important;
+    transition: all 0.4s;
+    /* align-items: center !important; */
+    cursor: pointer;
+}
+
+div.item.video-item.youtube-item:hover {
+    filter: grayscale(40%) !important;
+}
+
+div.header {
+    transition: all 0.4s;
+    line-height: 1.2;
+}
+
+div.header:hover {
+    color: var(--royal-purple) !important;
+}
+
+.video-item.item img {
+    max-width: 180px;
+}

@@ -9,3 +9,41 @@ div#video-container {
     min-height: 100vh !important;
     opacity: 0.9;
 }
+
+h1.youtube-header {
+    font-size: 2rem;
+    color: #fff;
+    background-color: var(--blue-tertiary);
+    border-top: none;
+    text-shadow: 5px 4px 6px rgba(0,0,0,0.67);
+    letter-spacing: 0.3em;
+    line-height: 1.5;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    opacity: 0.95;
+}
+
+@media (max-width: 1080px) {
+    h1.youtube-header {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 769px) {
+    h1.youtube-header {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 481px) {
+    h1.video-header {
+        font-size: 1.4rem;
+        line-height: 2rem;
+    }
+}
+
+@media (max-width: 396px) {
+    h1.video-header {
+        font-size: 1.3rem;
+    }
+}
