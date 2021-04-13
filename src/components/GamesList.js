@@ -60,7 +60,7 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
             if (term === '') {
                 setDisplayGames(games);
             } else {
-                const query = games.filter(g => g.name.toLowerCase().includes(term.toLowerCase()));
+                const query = games.filter(g => g.slug.split('-').join(' ').toLowerCase().includes(term.toLowerCase()));
                 setDisplayGames(query);
             }
         }, 500);
@@ -114,7 +114,7 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
                     <Card className="p-0 games-header-card col-10 mb-3">
                         <h1 className="mb-3 p-4 text-center games-list-header">Nintendo Games List</h1>
                         <Row className="justify-content-center my-3">
-                            <Input className="col-11" placeholder="Game Search" type="text" value={term} onChange={e => setTerm(e.target.value)} />
+                            <Input className="col-10 col-md-11" placeholder="Game Search..." size="large" type="text" value={term} onChange={e => setTerm(e.target.value)} />
                         </Row>                
                         <h3 className="text-center mb-3">sort by <span style={{color: 'var(--blue-primary)'}}>{sortBy}</span></h3>
                         <Row className="justify-content-center">

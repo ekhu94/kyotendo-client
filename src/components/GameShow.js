@@ -142,6 +142,7 @@ const GameShow = ({ gameShow, getGameShow, resetGameShow, gameSlug }) => {
                                         <thead>
                                             <tr className="text-center">
                                                 <th>Count</th>
+                                                <th>Skip</th>
                                                 <th>Meh</th>
                                                 <th>Recommended</th>
                                                 <th>Exceptional</th>
@@ -150,11 +151,18 @@ const GameShow = ({ gameShow, getGameShow, resetGameShow, gameSlug }) => {
                                         <tbody>
                                             <tr className="text-center">
                                                 <td>{gameShow.reviews_count}</td>
+                                                {gameShow.ratings.length >= 4 ?
+                                                    <td>{gameShow.ratings[3].percent}%</td>
+                                                : <td>0%</td> }
                                                 {gameShow.ratings.length >= 3 ?
                                                     <td>{gameShow.ratings[2].percent}%</td>
                                                 : <td>0%</td> }
-                                                <td>{gameShow.ratings[0].percent}%</td>
-                                                <td>{gameShow.ratings[1].percent}%</td>
+                                                {gameShow.ratings.length >= 1 ?
+                                                    <td>{gameShow.ratings[0].percent}%</td>
+                                                : <td>0%</td> }
+                                                {gameShow.ratings.length >= 2 ?
+                                                    <td>{gameShow.ratings[1].percent}%</td>
+                                                : <td>0%</td> }
                                             </tr>
                                         </tbody>
                                     </Table>
