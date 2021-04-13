@@ -43,7 +43,47 @@ export const getGames = () => {
                 page_size: 40
             }
         });
-        const results = [...res1.data.results, ...res2.data.results, ...res3.data.results, ...res4.data.results, ...res5.data.results];
+        const res6 = await api.rawg.get('/games', {
+            params: {
+                platforms: 7,
+                ordering: '-metacritic',
+                page: 6,
+                page_size: 40
+            }
+        });
+        const res7 = await api.rawg.get('/games', {
+            params: {
+                platforms: 7,
+                ordering: '-metacritic',
+                page: 7,
+                page_size: 40
+            }
+        });
+        const res8 = await api.rawg.get('/games', {
+            params: {
+                platforms: 7,
+                ordering: '-metacritic',
+                page: 8,
+                page_size: 40
+            }
+        });
+        const res9 = await api.rawg.get('/games', {
+            params: {
+                platforms: 7,
+                ordering: '-metacritic',
+                page: 9,
+                page_size: 40
+            }
+        });
+        const res10 = await api.rawg.get('/games', {
+            params: {
+                platforms: 7,
+                ordering: '-metacritic',
+                page: 10,
+                page_size: 40
+            }
+        });
+        const results = [...res1.data.results, ...res2.data.results, ...res3.data.results, ...res4.data.results, ...res5.data.results, ...res6.data.results, ...res7.data.results, ...res8.data.results, ...res9.data.results, ...res10.data.results];
         dispatch({ type: GET_GAMES, payload: results });
     };
 };
