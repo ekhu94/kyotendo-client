@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Container, Row, Card, Button } from 'react-bootstrap';
 
 import './YoutubeVideoPlayer.css';
-import backgroundImg from '../assets/Animal-crossing-4.jpg';
+import backgroundImg from '../assets/smash-bros-background.jpg';
 import BackButton from './BackButton';
 import YoutubeDetail from './YoutubeDetail';
 import YoutubeSearch from './YoutubeSearch';
@@ -50,9 +50,11 @@ const YoutubeVideoPlayer = ({ gameSlug }) => {
                                 <YoutubeDetail
                                     video={selectedVideo}
                                 />
-                                <Button className="p-3 my-4 mt-4 mb-lg-0 youtube-save-btn" variant="outline-success" size="lg" block>
-                                    Save To Collection
-                                </Button>
+                                <Row className="justify-content-center">
+                                    <Button className="col-6 p-3 my-4 mb-lg-1 youtube-save-btn" variant="outline-success" size="md" block>
+                                        Save To Collection
+                                    </Button>
+                                </Row>
                             </div>
                             <div className="col-11 col-lg-4">
                                 <YoutubeVideoList

@@ -26,6 +26,7 @@ h1.youtube-header {
 button.btn.btn-outline-success.youtube-save-btn {
     border-color: var(--luigi-green);
     transition: all 0.4s;
+    border-radius: 20px;
     /* background-color: var(--luigi-green); */
 }
 

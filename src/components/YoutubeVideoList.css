@@ -2,3 +2,9 @@ div.ui.divided.list.video-list {
     overflow-y: scroll;
     height: 600px;
 }
+
+@media (max-width: 991px) {
+    div.ui.divided.list.video-list {
+        height: 370px;
+    }
+}

@@ -20,7 +20,7 @@ const YoutubeSearch = ({ gameSlug, onSearchSubmit }) => {
                     <Form.Control
                         type="text"
                         size="lg"
-                        placeholder={gameSlug ? `Videos for ${gameSlug}...` : 'video search...'}
+                        placeholder="Video search..."
                         value={term}
                         onChange={e => setTerm(e.target.value)}
                     />
