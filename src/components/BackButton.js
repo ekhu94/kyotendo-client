@@ -1,9 +1,10 @@
 import React, { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Row } from 'react-bootstrap';
 import { Button } from 'semantic-ui-react';
 import './BackButton.css';
 
-const BackButton = ({ label }) => {
+const BackButton = ({ label, url=null }) => {
     const history = useHistory();
     return (
         <Row className="justify-content-start">
@@ -14,7 +15,14 @@ const BackButton = ({ label }) => {
                 content={label}
                 icon='backward'
                 labelPosition='left'
-                onClick={() => history.goBack()}
+                onClick={() => {
+                    if (url) {
+                        history.push(`${url}`)
+                    } else {
+                        history.goBack();
+                    }                  
+                }
+            }
             />
         </Row>
     );

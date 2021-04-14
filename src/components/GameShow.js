@@ -81,7 +81,7 @@ const GameShow = ({ gameShow, getGameShow, resetGameShow, gameSlug }) => {
                 id="game-show-container"
                 style={{backgroundImage: `url(${backgroundImg})`}}
             >
-                <BackButton label="back to all games" />
+                <BackButton label="back to all games" url='/games' />
                 <Jumbotron className="game-show-jumbo mb-0" fluid style={{backgroundImage: `url(${gameShow.background_image})`}}>
                     <Container>
                     </Container>
