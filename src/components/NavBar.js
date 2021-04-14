@@ -109,7 +109,7 @@ const NavBar = ({ onLogout, auth, showAlert, renderAlert }) => {
                                     title={ userIconDropdown() }
                                     alignRight
                                 >
-                                    <LinkContainer to="/profile">
+                                    <LinkContainer to={`/users/${auth.user.username}`}>
                                         <NavDropdown.Item>profile</NavDropdown.Item>
                                     </LinkContainer>
                                         <NavDropdown.Item
