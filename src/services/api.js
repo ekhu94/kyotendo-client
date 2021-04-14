@@ -54,6 +54,14 @@ const createComment = async comment => {
     return await rails.post('/comments', comment);
 }
 
+const saveGame = async game => {
+    return await rails.post('/games', game);
+}
+
+const saveVideo = async video => {
+    return await rails.post('/videos', video);
+}
+
 const rails = axios.create({
     baseURL: BACKEND_URL
 });
@@ -90,5 +98,11 @@ export const api = {
     },
     comment: {
         createComment
+    },
+    game: {
+        saveGame
+    },
+    video: {
+        saveVideo
     }
 };

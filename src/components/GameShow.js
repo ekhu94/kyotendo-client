@@ -135,7 +135,7 @@ const GameShow = ({ gameShow, getGameShow, resetGameShow, gameSlug }) => {
                                     </div>
                                 </Row>
                             : null }
-                            {gameShow.ratings.length ?
+                            {gameShow.ratings && gameShow.ratings.length ?
                                 <div>
                                     <h3 className="text-center mb-2">Player Ratings</h3>
                                     <Table striped bordered hover>

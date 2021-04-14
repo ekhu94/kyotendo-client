@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import action from '../actions';
-import { Container, Row, Card, Button } from 'react-bootstrap';
+import { api } from '../services/api';
+import { Container, Row, Card, Button, Alert } from 'react-bootstrap';
 
 import './YoutubeVideoPlayer.css';
 import backgroundImg from '../assets/smash-bros-background.jpg';
@@ -14,9 +15,10 @@ import YoutubeVideoList from './YoutubeVideoList';
 //! custom hook
 import useVideos from '../hooks/useVideos';
 
-const YoutubeVideoPlayer = ({ gameSlug, gameShow, getGameShow, resetGameShow }) => {
+const YoutubeVideoPlayer = ({ auth, gameSlug, gameShow, getGameShow, resetGameShow }) => {
     const [selectedVideo, setSelectedVideo] = useState(null);
     const [quotaDone, setQuotaDone] = useState(false);
+    const [saveAlert, setSaveAlert] = useState(false);
     const {videos, search} = useVideos(`${gameSlug} video game playthrough`);
 
     useEffect(() => {
@@ -35,6 +37,18 @@ const YoutubeVideoPlayer = ({ gameSlug, gameShow, getGameShow, resetGameShow }) 
     useEffect(() => {
         setSelectedVideo(videos[0]);
     }, [videos]);
+
+    useEffect(() => {
+        console.log(selectedVideo);
+    }, [selectedVideo]);
+
+    useEffect(() => {
+        if (saveAlert) {
+            setTimeout(() => {
+                setSaveAlert(false);
+            }, 3000);
+        }
+    }, [saveAlert])
 
     const renderContent = () => {
         //! display loader, youtube content, or no-more-quota page to user
@@ -57,14 +71,29 @@ const YoutubeVideoPlayer = ({ gameSlug, gameShow, getGameShow, resetGameShow }) 
                                 <div className="col-11 col-lg-7">
                                     <YoutubeDetail
                                         video={selectedVideo}
+                                        className="mb-4"
                                     />
+                                    {auth.user && auth.user.id ?
+                                        <Row className="justify-content-center">
+                                            <Button
+                                                className="col-6 p-3 mt-3 mb-lg-1 youtube-save-btn" variant="outline-success"
+                                                size="md"
+                                                block
+                                                onClick={onSaveClick}
+                                            >
+                                                Save To Collection
+                                            </Button>
+                                        </Row>
+                                    : null }
                                     <Row className="justify-content-center">
-                                        <Button className="col-6 p-3 my-4 mb-lg-1 youtube-save-btn" variant="outline-success" size="md" block>
-                                            Save To Collection
-                                        </Button>
+                                        {saveAlert ?
+                                            <Alert className="col-11 mt-3" variant="info">
+                                                Video successfully saved!
+                                            </Alert>
+                                        : null }
                                     </Row>
                                 </div>
-                                <div className="col-11 col-lg-4">
+                                <div className="col-11 col-lg-4 mt-3 mt-lg-0">
                                     <YoutubeVideoList
                                         videos={videos}
                                         onVideoSelect={setSelectedVideo}
@@ -78,6 +107,41 @@ const YoutubeVideoPlayer = ({ gameSlug, gameShow, getGameShow, resetGameShow }) 
         }
     }
 
+    const onSaveClick = () => {
+        if (auth.user && gameShow && selectedVideo) {
+            const saveNewGameAndVideo = async () => {
+                const backendGames = await api.rails.get(`/games`);
+                if (backendGames.data) {
+                    const findGame = backendGames.data.find(g => g.name === gameShow.name);
+                    let gameId;
+                    if (!findGame) {
+                        const newGame = {
+                            name: gameShow.name,
+                            rating: gameShow.metacritic,
+                            img_url: gameShow.background_image,
+                            release_date: gameShow.released
+                        };
+                        const res1 = await api.game.saveGame(newGame);
+                        gameId = res1.data.id;
+                    } else {
+                        gameId = findGame.id;
+                    }
+                    const newVideo = {
+                        title: selectedVideo.snippet.title,
+                        description: selectedVideo.snippet.description,
+                        video_url: `https://www.youtube.com/embed/${selectedVideo.id.videoId}`,
+                        thumbnail: selectedVideo.snippet.thumbnails.high.url,
+                        user_id: auth.user.id,
+                        game_id: gameId
+                    };
+                    const res2 = await api.video.saveVideo(newVideo);
+                    setSaveAlert(true);
+                }
+            }
+            saveNewGameAndVideo();
+        }
+    };
+
     return (
         <div
             className="py-5"
@@ -90,7 +154,7 @@ const YoutubeVideoPlayer = ({ gameSlug, gameShow, getGameShow, resetGameShow }) 
 };
 
 const mapStateToProps = state => {
-    return { gameShow: state.gameShow }
+    return { auth: state.auth, gameShow: state.gameShow }
 };
 
 const { getGameShow, resetGameShow } = action.games;
