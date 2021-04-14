@@ -17,7 +17,6 @@ import useVideos from '../hooks/useVideos';
 
 const YoutubeVideoPlayer = ({ auth, gameSlug, gameShow, getGameShow, resetGameShow }) => {
     const [selectedVideo, setSelectedVideo] = useState(null);
-    const [disableSave, setDisableSave] = useState(false);
     const [quotaDone, setQuotaDone] = useState(false);
     const [saveAlert, setSaveAlert] = useState(false);
     const {videos, search} = useVideos(`${gameSlug} video game playthrough`);
@@ -60,7 +59,6 @@ const YoutubeVideoPlayer = ({ auth, gameSlug, gameShow, getGameShow, resetGameSh
                 }
             }
         }
-        console.log(selectedVideo)
         checkBackendVideos();
     }, [selectedVideo]);
 
