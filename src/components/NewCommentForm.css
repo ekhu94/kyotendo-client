@@ -1,0 +1,10 @@
+button.comment-btn {
+    border-radius: 20px;
+    border: none;
+    background-color: var(--blue-tertiary);
+    transition: all 0.3s;
+}
+
+button.comment-btn:hover {
+    background-color: var(--blue-secondary);
+}

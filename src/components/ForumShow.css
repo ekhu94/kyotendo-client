@@ -10,7 +10,7 @@ div#forum-container {
 }
 
 h3#users-title {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
 }
 
 h3#users-title.no-post-header {
@@ -38,7 +38,7 @@ button.btn.btn-info:hover {
 
 @media (max-width: 1200px) {
     h3#users-title {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     h3#users-title.no-post-header {
         font-size: 1.2rem !important;

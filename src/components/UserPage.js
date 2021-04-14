@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Container, Row, Card } from 'react-bootstrap';
+import './UserPage.css';
 
+import BackButton from './BackButton';
+import backgroundImg from '../assets/mario-maker.jpg';
 import bowser from '../assets/icons/avatars/bowser.jpg';
 import daisy from '../assets/icons/avatars/daisy.jpg';
 import donkeyKong from '../assets/icons/avatars/donkey-kong.jpg';
@@ -24,21 +28,36 @@ const nintendoCharacters = [
     bowser, daisy, donkeyKong, isabella, koopa, link, luigi, mario, princessPeach, rosalina, shyguy, tanukiMario, toad, villagerM, villagerF, waluigi, wario, yoshi
 ];
 
-const UserPage = ({ username }) => {
+const UserPage = ({ auth, username }) => {
 
-    const renderImgs = () => {
+    useEffect(() => {
+        console.log(auth.user)
+    }, [auth])
+
+    const renderAvatar = () => {
         return nintendoCharacters.map(n => {
             return <img src={n} className="col-3 mx-1" style={{borderRadius: '50%'}} />
         });
     }
 
     return (
-        <Container>
-            <Row className="justify-content-center">
-                {renderImgs()}
-            </Row>
-        </Container>
+        <div className="profile-container pt-5" style={{backgroundImage: `url(${backgroundImg})`, paddingBottom: '90px'}}>
+            <Container>
+                <BackButton label="back to home" url='/' />
+                <Row className="justify-content-center">
+                    <Card className="col-10 col-md-8 p-0 mb-5" style={{borderRadius: '20px'}}>
+                        <Row className="justify-content-center">
+                            <h1>{}</h1>
+                        </Row>
+                    </Card>
+                </Row>
+            </Container>
+        </div>
     )
 };
 
-export default UserPage;
+const mapStateToProps = state => {
+    return { auth: state.auth }
+};
+
+export default connect(mapStateToProps)(UserPage);

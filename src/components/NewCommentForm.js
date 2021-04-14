@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 //* REACT FORM
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,25 +8,28 @@ import * as yup from 'yup';
 
 import { Row, Form, Button } from 'react-bootstrap';
 import { api } from '../services/api';
+import './NewCommentForm.css';
 
 const schema = yup.object().shape({
     content: yup.string().required(),
 });
 
-const NewCommentForm = ({ user, post, onCommentCreate }) => {
+const NewCommentForm = ({ auth, user, post, onCommentCreate }) => {
     const { register, formState: { errors }, handleSubmit } = useForm({
         resolver: yupResolver(schema),
     });
 
     const onFormSubmit = (data, e) => {
         e.target.reset();
-        const newComment = {
-            content: data.content,
-            post_id: post.id,
-            user_id: user.id
-        }
-        api.comment.createComment(newComment)
-            .then(onCommentCreate);
+        if (auth.user.id) {
+            const newComment = {
+                content: data.content,
+                post_id: post.id,
+                user_id: auth.user.id
+            }
+            api.comment.createComment(newComment)
+                .then(onCommentCreate);
+            } 
     };
 
     return (
@@ -46,7 +50,7 @@ const NewCommentForm = ({ user, post, onCommentCreate }) => {
                     />
                 </div>
                 <Row className="justify-content-end">
-                    <Button className="mr-3 py-1 px-2" variant="primary" type="submit">
+                    <Button className="mr-3 py-1 px-2 comment-btn" variant="primary" type="submit">
                         Comment
                     </Button>
                 </Row>
@@ -55,4 +59,8 @@ const NewCommentForm = ({ user, post, onCommentCreate }) => {
     );
 };
 
-export default NewCommentForm;
+const mapStateToProps = state => {
+    return { auth: state.auth };
+};
+
+export default connect(mapStateToProps)(NewCommentForm);
