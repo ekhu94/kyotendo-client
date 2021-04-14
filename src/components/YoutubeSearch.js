@@ -20,12 +20,12 @@ const YoutubeSearch = ({ gameSlug, onSearchSubmit }) => {
                     <Form.Control
                         type="text"
                         size="lg"
-                        placeholder="Video search..."
+                        placeholder="Search for videos..."
                         value={term}
                         onChange={e => setTerm(e.target.value)}
                     />
                     <Form.Text className="text-muted mt-1">
-                        Not seeing the results you want? Try a different search!
+                        Note: search results are limited. Be sure to save videos to your collection!
                     </Form.Text>
                 </Form.Group>
             </Form>
