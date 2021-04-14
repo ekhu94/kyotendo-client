@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import action from '../actions';
 import { api } from '../services/api';
@@ -17,9 +17,12 @@ import useVideos from '../hooks/useVideos';
 
 const YoutubeVideoPlayer = ({ auth, gameSlug, gameShow, getGameShow, resetGameShow }) => {
     const [selectedVideo, setSelectedVideo] = useState(null);
+    const [disableSave, setDisableSave] = useState(false);
     const [quotaDone, setQuotaDone] = useState(false);
     const [saveAlert, setSaveAlert] = useState(false);
     const {videos, search} = useVideos(`${gameSlug} video game playthrough`);
+
+    const saveBtn = useRef();
 
     useEffect(() => {
         getGameShow(gameSlug);
@@ -39,7 +42,26 @@ const YoutubeVideoPlayer = ({ auth, gameSlug, gameShow, getGameShow, resetGameSh
     }, [videos]);
 
     useEffect(() => {
-        console.log(selectedVideo);
+        const checkBackendVideos = async () => {
+            const backendVideos = await api.rails.get('/videos');
+            if (backendVideos.data && selectedVideo) {
+                const findVideo = backendVideos.data.find(v => v.title === selectedVideo.snippet.title);
+                console.log(findVideo)
+                if (findVideo && findVideo.user_id === auth.user.id) {
+                    saveBtn.current.setAttribute('disabled', true);
+                    saveBtn.current.classList.add('disabled-btn');
+                    saveBtn.current.classList.remove('youtube-save-btn');
+                    saveBtn.current.innerText = 'Already Saved'
+                } else {
+                    saveBtn.current.removeAttribute('disabled');
+                    saveBtn.current.classList.remove('disabled-btn');
+                    saveBtn.current.classList.add('youtube-save-btn');
+                    saveBtn.current.innerText = 'Save To Collection'
+                }
+            }
+        }
+        console.log(selectedVideo)
+        checkBackendVideos();
     }, [selectedVideo]);
 
     useEffect(() => {
@@ -76,6 +98,7 @@ const YoutubeVideoPlayer = ({ auth, gameSlug, gameShow, getGameShow, resetGameSh
                                     {auth.user && auth.user.id ?
                                         <Row className="justify-content-center">
                                             <Button
+                                                ref={saveBtn}
                                                 className="col-6 p-3 mt-3 mb-lg-1 youtube-save-btn" variant="outline-success"
                                                 size="md"
                                                 block

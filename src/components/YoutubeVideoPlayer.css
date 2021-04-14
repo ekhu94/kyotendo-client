@@ -30,8 +30,17 @@ button.btn.btn-outline-success.youtube-save-btn {
     /* background-color: var(--luigi-green); */
 }
 
+button.btn.btn-outline-success.disabled-btn {
+    border-color: var(--light);
+    color: var(--light);
+    transition: all 0.4s;
+    border-radius: 20px;
+    /* background-color: var(--luigi-green); */
+}
+
 button.btn.btn-outline-success.youtube-save-btn:hover {
     background-color: var(--luigi-green);
+    color: #fff;
 }
 
 @media (max-width: 1080px) {

@@ -18,6 +18,7 @@ import NewPostForm from './NewPostForm';
 import PostShow from './PostShow';
 import ScrollTop from './ScrollTop';
 import Signup from './Signup';
+import UserPage from './UserPage';
 import YoutubeVideoPlayer from './YoutubeVideoPlayer';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import './App.css';
@@ -138,7 +139,7 @@ const App = ({ auth, setAuth }) => {
                     <ScrollTop />
                     <NavBar onLogout={onLogout} showAlert={showAlert} renderAlert={renderAlert} />
                     <Route exact path="/" render={() => <HomePage /> } />
-                    
+                    <Route exact path='/users/:username' render={routerProps => <UserPage username={routerProps.match.params.username} />} />
                     <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                     <Route exact path="/new/:slug/post" render={routerProps => <NewPostForm forumSlug={routerProps.match.params.slug} onNewPost={onNewPost} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                     <Route exact path="/games" render={() => <GamesList />} />
