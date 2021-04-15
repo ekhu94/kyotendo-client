@@ -3,15 +3,20 @@ import { connect } from 'react-redux';
 import action from '../actions';
 import { api } from '../services/api';
 import './HomePage.css';
+import { Row } from 'react-bootstrap';
 import GamesListCard from './GamesListCard';
 import HomeCarousel from './HomeCarousel';
+import PageLoader from './PageLoader';
+import PostObject from './PostObject';
 
 
-const HomePage = ({ games, getHomeGames }) => {
+const HomePage = ({ posts, getHomePosts, games, getHomeGames }) => {
     const [gamesSample, setGamesSample] = useState([]);
+    const [postsSample, setPostsSample] = useState([]);
 
     useEffect(() => {
         getHomeGames();
+        getHomePosts();
     }, []);
 
     useEffect(() => {
@@ -28,12 +33,28 @@ const HomePage = ({ games, getHomeGames }) => {
                 for (let idx of idxs) {
                     list.push(games.find((g, i) => i === idx));
                 }
-                console.log(list)
                 setGamesSample(list);
             }
         }
         getIndexes();
     }, [games]);
+
+    useEffect(() => {
+        if (posts && posts.length) {
+            const idxs = [];
+            for (let i = 0; i < 10; i++) {
+                let idx = Math.floor(Math.random() * posts.length);
+                if (!idxs.includes(idx)) {
+                    idxs.push(idx);
+                }
+            }
+            const list = [];
+            for (let idx of idxs) {
+                list.push(posts.find((g, i) => i === idx));
+            }
+            setPostsSample(list);
+        }
+    }, [posts]);
 
     const renderGameCards = () => {
         if (gamesSample && gamesSample.length) {
@@ -43,23 +64,52 @@ const HomePage = ({ games, getHomeGames }) => {
         }
     };
 
+    const renderPosts = () => {
+        console.log(postsSample)
+        if (postsSample && postsSample.length) {
+            return postsSample.map(post => {
+                return (
+                    <Row className="justify-content-start ml-2" key={post.id}>
+                        <PostObject post={post} pathname={`/forums/${post.forum.slug}`} />
+                    </Row>
+                );
+            });
+        }
+    }
+
     return (
-        <div>
-            <HomeCarousel />
-            <h3 className="text-center my-3" style={{letterSpacing: '0.3rem'}}>Featured Games</h3>
-            <div className="home-card-row">
-                {renderGameCards()}
-            </div>
+        <div className="pb-5">
+            {gamesSample && gamesSample.length && postsSample && postsSample.length ?
+            <>
+                <HomeCarousel />
+                <div id="home-title">
+                    <h1 className="text-center my-0 pt-3 px-2 home-header d-block d-md-none">
+                        Kyotendo
+                    </h1>
+                    <h3 className="text-center my-0 pt-1 pb-4 px-2 home-header d-block d-md-none">
+                        Join the largest community of Nintendo fans on the web!
+                    </h3>
+                </div>
+                <h2 className="text-center mt-5 mb-2" style={{letterSpacing: '0.3rem'}}>Featured Games</h2>
+                <div className="home-card-row">
+                    {renderGameCards()}
+                </div>
+                <h2 className="text-center mt-5 mb-0" style={{letterSpacing: '0.3rem'}}>Featured Posts</h2>
+                {renderPosts()}
+            </>
+            : <PageLoader /> }
         </div>
     );
 };
 
 const mapStateToProps = state => {
     return {
-        games: state.games
+        games: state.games,
+        posts: state.posts
     };
 };
 
 const { getHomeGames } = action.games;
+const { getHomePosts } = action.posts;
 
-export default connect(mapStateToProps, { getHomeGames })(HomePage);
+export default connect(mapStateToProps, { getHomeGames, getHomePosts })(HomePage);

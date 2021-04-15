@@ -10,7 +10,7 @@ import './PostObject.css';
 import UpvoteButtons from './UpvoteButtons';
 // import { createPortal } from 'react-dom';
 
-const PostObject = ({ post }) => {
+const PostObject = ({ post, pathname }) => {
     const [isOpen, setIsOpen] = useState(true);
     const [user, setUser] = useState({});
 
@@ -87,7 +87,7 @@ const PostObject = ({ post }) => {
                                     <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
                                     <div className="col-10 post-title">
                                         {renderUserLink()}
-                                        <Link to={`${window.location.pathname}/${post.id}`}>
+                                        <Link to={`${pathname}/${post.id}`}>
                                         <h4
                                             onClick={() => setIsOpen(!isOpen)}
                                             aria-controls="fade-disc"
@@ -128,7 +128,7 @@ const PostObject = ({ post }) => {
                                 <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
                                 <div className="col-10 post-title">
                                     {renderUserLink()}
-                                    <Link to={`${window.location.pathname}/${post.id}`}>
+                                    <Link to={`${pathname}/${post.id}`}>
                                     <h4
                                         className="d-inline mr-0 ml-3 ml-md-0"
                                     >
@@ -167,7 +167,7 @@ const PostObject = ({ post }) => {
                                 <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
                                 <div className="col-10 post-title">
                                     {renderUserLink()}
-                                    <Link to={`${window.location.pathname}/${post.id}`}>
+                                    <Link to={`${pathname}/${post.id}`}>
                                     <h4
                                         className="d-inline mr-0 ml-3 ml-md-0"
                                     >

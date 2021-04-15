@@ -16,7 +16,7 @@ const schema = yup.object().shape({
     content: yup.string().required(),
 });
 
-const CommentObject = ({ auth, comment, avatar, slug, onCommentCreate }) => {
+const CommentObject = ({ auth, comment, avatar, slug, onCommentCreate, onDeleteClick }) => {
     const [editOpen, setEditOpen] = useState(false);
 
     const { register, control, formState: { errors }, handleSubmit } = useForm({
@@ -68,14 +68,23 @@ const CommentObject = ({ auth, comment, avatar, slug, onCommentCreate }) => {
                             <>
                             <Button
                                 variant="link"
-                                className="ml-2 align-items-center"
+                                className="ml-2 pr-0 align-items-center"
                                 aria-controls="edit-form"
                                 aria-expanded={editOpen}
                                 onClick={() => setEditOpen(!editOpen)}
                             >
                                 edit 
-                                <img style={{width: '18px'}} src="https://img.icons8.com/nolan/64/edit--v1.png"/>
+                                <img style={{width: '18px'}} src="https://img.icons8.com/nolan/64/edit--v1.png" alt="edit-btn"/>
                             </Button>
+                            <Button
+                                variant="link"
+                                className="pl-0 align-items-center"
+                                onClick={onDeleteClick}
+                            >
+                                delete 
+                                <img style={{width: '18px'}} src="https://img.icons8.com/cotton/64/000000/delete-sign--v2.png" alt="edit-btn"/>
+                            </Button>
+                            {/* <img className="ml-3" style={{width: '18px'}} src="https://img.icons8.com/cotton/64/000000/delete-sign--v2.png" alt="delete-btn" /> */}
                             <Row className={`justify-content-center ${editOpen ? 'd-block' : 'd-none'}`}>
                                 <Fade in={editOpen}>
                                     <Form id="edit-form" onSubmit={handleSubmit(onEditFormSubmit)} className="col-9 my-4">

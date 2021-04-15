@@ -7,6 +7,7 @@ import { getForums } from './getForums';
 import { resetForums } from './resetForums';
 import { getForumShow } from './getForumShow';
 import { resetForumShow } from './resetForumShow';
+import { getHomePosts } from './getHomePosts';
 import { getPostShow } from './getPostShow';
 import { resetPostShow } from './resetPostShow';
 import { getUsers } from './getUsers';
@@ -36,6 +37,7 @@ const action = {
         resetForumShow
     },
     posts: {
+        getHomePosts,
         setPostIdx,
         resetPostIdx,
         getPostShow,

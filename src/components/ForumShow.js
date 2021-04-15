@@ -65,7 +65,7 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
             return collection.map(post => {
                 return (
                     <Row className="justify-content-start" key={post.id}>
-                        <PostObject post={post} />
+                        <PostObject post={post} pathname={`/forums/${forumSlug}`} />
                     </Row>
                 );
             });

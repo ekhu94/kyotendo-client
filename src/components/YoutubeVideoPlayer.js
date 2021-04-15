@@ -82,7 +82,7 @@ const YoutubeVideoPlayer = ({ auth, gameSlug, gameShow, getGameShow, resetGameSh
                 <Container>
                     <BackButton label="back to game page" url={`/games/${gameSlug}`} />
                     <Row className="justify-content-center mt-2">
-                        <Card style={{borderRadius: '20px'}} className="col-10 col-md-12 p-0">
+                        <Card style={{borderRadius: '20px'}} className="col-11 col-md-12 p-0">
                             <h1 className="youtube-header text-center py-4">{gameShow.name} Videos</h1>
                             <YoutubeSearch
                                 gameSlug={gameSlug.split('-').join(' ')}

@@ -9,3 +9,21 @@
 .home-card-row .card.game-card {
     min-width: 250px !important;
 }
+
+div#home-title {
+    background-color: var(--blue-tertiary);
+    opacity: 0.9;
+}
+
+.home-header {
+    color: #fff;
+    text-shadow: 5px 4px 6px rgba(0,0,0,0.67);
+    letter-spacing: 0.3em;
+    line-height: 1.5;
+    opacity: 1 !important;
+}
+
+h3.home-header {
+    font-size: 1rem;
+    line-height: 1.8;
+}

@@ -7,6 +7,7 @@ import gameShowReducer from './gameShowReducer';
 //* RAILS API
 import forumsReducer from './forumsReducer';
 import forumShowReducer from './forumShowReducer';
+import postsReducer from './postsReducer';
 import usersReducer from './usersReducer';
 
 //* LOCAL
@@ -23,6 +24,7 @@ export default combineReducers({
     forums: forumsReducer,
     forumShow: forumShowReducer,
     users: usersReducer,
+    posts: postsReducer,
     postIdx: postIdxReducer,
     post: postReducer
 });

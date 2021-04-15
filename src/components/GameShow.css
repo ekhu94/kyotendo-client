@@ -38,6 +38,7 @@ h1.game-show-header {
 
 button.btn.btn-primary.youtube-link-btn {
     background-color: var(--blue-tertiary);
+    border: none;
     border-radius: 20px;
     transition: all 0.5s;
 }

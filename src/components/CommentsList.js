@@ -8,7 +8,7 @@ import { List, Image } from 'semantic-ui-react';
 import avatars from '../assets/icons/avatars/avatarIcons';
 import CommentObject from './CommentObject';
 
-const CommentsList = ({ auth, comments, onCommentCreate }) => {
+const CommentsList = ({ auth, comments, onCommentCreate, onDeleteClick }) => {
 
     useEffect(() => {
     }, [auth])
@@ -31,7 +31,7 @@ const CommentsList = ({ auth, comments, onCommentCreate }) => {
                 const avatar = avatars.find(a => avatars.indexOf(a) === idx);
                 const slug = comment.user.username.split(' ').join('');
                 return (
-                    <CommentObject key={comment.id} comment={comment} avatar={avatar} slug={slug} onCommentCreate={onCommentCreate} />
+                    <CommentObject key={comment.id} comment={comment} avatar={avatar} slug={slug} onCommentCreate={onCommentCreate} onDeleteClick={onDeleteClick} />
                 );
             });
         }

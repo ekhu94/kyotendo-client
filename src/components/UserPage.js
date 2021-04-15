@@ -6,9 +6,11 @@ import './UserPage.css';
 
 import BackButton from './BackButton';
 import DeleteModal from './DeleteModal';
+import PostObject from './PostObject';
 import ProfileGameCard from './ProfileGameCard';
 import ProfileVideoRow from './ProfileVideoRow';
 import PageLoader from './PageLoader';
+
 import backgroundImg from '../assets/mario-maker.jpg';
 import bowser from '../assets/icons/avatars/bowser.jpg';
 import daisy from '../assets/icons/avatars/daisy.jpg';
@@ -91,17 +93,21 @@ const UserPage = ({ userId }) => {
         }
     };
 
+    const renderUserPosts = () => {
+        if (currentUser && currentUser.posts) {
+            return currentUser.posts.map(post => {
+                return (
+                    <Row className="justify-content-start ml-2" key={post.id}>
+                        <PostObject post={post} pathname={`/forums/${post.forum.slug}`} />
+                    </Row>
+                );
+            });
+        }
+    }
+
     const onVideoDelete = video => {
         setDeleteVideo(video);
         setShowModal(true);
-        
-        // const getUser = async () => {
-        //     if (userId) {
-        //         const user = await api.rails.get(`/users/${userId}`);
-        //         setCurrentUser(user.data);
-        //     }
-        // }
-        // getUser();
     };
 
     const onDeleteConfirm = async video => {
@@ -135,7 +141,7 @@ const UserPage = ({ userId }) => {
                 <Container>
                     <BackButton label="back to home" url='/' />
                     <Row className="justify-content-center">
-                        <Card className="col-10 col-md-11 p-0 mb-5" style={{borderRadius: '20px'}}>
+                        <Card className="col-10 col-md-11 p-0 pb-4 mb-5" style={{borderRadius: '20px'}}>
                             <h1 className="profile-header text-center py-4">{currentUser.username}</h1>
                             <Row className="justify-content-center align-items-center my-5">
                                 {renderAvatar()}
@@ -166,6 +172,12 @@ const UserPage = ({ userId }) => {
                                             {renderVideosCollection()}
                                         </tbody>
                                     </Table>
+                                </>
+                            : null }
+                            {currentUser.posts && currentUser.posts.length ?
+                                <>
+                                    <h3 style={{letterSpacing: '0.2rem'}} className="text-center mt-4 mb-2">Post Collection</h3>
+                                    {renderUserPosts()}
                                 </>
                             : null }
                         </Card>
