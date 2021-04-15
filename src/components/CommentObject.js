@@ -112,13 +112,15 @@ const CommentObject = ({ auth, comment, avatar, slug, onCommentCreate }) => {
                         : null }
                         </div>
                     </Row>
-                    <Row className="align-items-center">
-                        <div className="col-10 ml-5" style={{lineHeight: '1.6'}}>
-                            <List.Description>
-                                {comment.content}
-                            </List.Description>
-                        </div>
-                    </Row>
+                    {!editOpen ?
+                        <Row className="align-items-center">
+                            <div className="col-10 ml-5" style={{lineHeight: '1.6'}}>
+                                <List.Description>
+                                    {comment.content}
+                                </List.Description>
+                            </div>
+                        </Row>
+                    : null }
                 </List.Content>
             </List.Item>
         </Row>
