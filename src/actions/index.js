@@ -1,5 +1,6 @@
 //* EXTERNAL API
 import { getGames } from './getGames';
+import { getHomeGames } from './getHomeGames';
 import { getGameShow } from './getGameShow';
 //* RAILS API
 import { getForums } from './getForums';
@@ -21,6 +22,7 @@ import { resetPostIdx } from './resetPostIdx';
 const action = {
     games: {
         getGames,
+        getHomeGames,
         getGameShow,
         setGamePage,
         resetGamePage,

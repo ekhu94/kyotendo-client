@@ -18,8 +18,7 @@ const HomeCarousel = () => {
                 alt="First slide"
                 />
                 <Carousel.Caption>
-                <h2 className="carousel-header d-none d-md-block pb-2">WATCH. PLAY. SHARE.</h2>
-                {/* <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
+                    <h2 className="carousel-header d-none d-md-block pb-2">WATCH. PLAY. SHARE.</h2>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -28,9 +27,11 @@ const HomeCarousel = () => {
                 src={carousel2}
                 alt="Second slide"
                 />
-            <Carousel.Caption>
-                <h3 className="carousel-header d-none d-md-block">FIND YOUR GREATEST ADVENTURES</h3>
-                <p className="carousel-subheader d-none d-md-block">Connect with Nintendo fans across the world!</p>
+                <Carousel.Caption>
+                    <h3 className="carousel-header d-none d-md-block">FIND YOUR GREATEST ADVENTURES</h3>
+                    <p className="carousel-subheader d-none d-md-block">
+                        Connect with Nintendo fans across the world!
+                    </p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>

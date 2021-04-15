@@ -18,3 +18,4 @@ export const GET_USERS = 'GET_USERS';
 
 //* RAWG API
 export const GET_GAMES = 'GET_GAMES';
+export const GET_HOME_GAMES = 'GET_GAMES';
