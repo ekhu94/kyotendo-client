@@ -58,8 +58,16 @@ const saveGame = async game => {
     return await rails.post('/games', game);
 }
 
+const deleteGame = async id => {
+    return await rails.delete(`/games/${id}`);
+}
+
 const saveVideo = async video => {
     return await rails.post('/videos', video);
+}
+
+const deleteVideo = async id => {
+    return await rails.delete(`/videos/${id}`);
 }
 
 const rails = axios.create({
@@ -100,9 +108,11 @@ export const api = {
         createComment
     },
     game: {
-        saveGame
+        saveGame,
+        deleteGame
     },
     video: {
-        saveVideo
+        saveVideo,
+        deleteVideo
     }
 };

@@ -46,7 +46,6 @@ const UserPage = ({ userId }) => {
     }, []);
 
     useEffect(() => {
-        console.log(currentUser)
     }, [currentUser]);
 
     const renderAvatar = () => {
@@ -113,6 +112,7 @@ const UserPage = ({ userId }) => {
                                     <tr>
                                         <th className="pl-1 pl-md-5">Title</th>                                       
                                         <th className="pl-1 pl-md-5">Game</th>
+                                        <th className="text-center pr-1 pr-md-5">Remove</th>
                                     </tr>
                                 </thead>
                                 <tbody>
