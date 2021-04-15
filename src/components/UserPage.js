@@ -108,11 +108,11 @@ const UserPage = ({ userId }) => {
                                 {renderGamesCollection()}
                             </Row>
                             <h3 style={{letterSpacing: '0.2rem'}} className="text-center mt-5 mb-3">Video Collection</h3>
-                            <Table size="lg" striped hover className="px-4">
+                            <Table size="lg" striped hover className="px-4 mb-5">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>                                       
-                                        <th>Game</th>
+                                        <th className="pl-1 pl-md-5">Title</th>                                       
+                                        <th className="pl-1 pl-md-5">Game</th>
                                     </tr>
                                 </thead>
                                 <tbody>

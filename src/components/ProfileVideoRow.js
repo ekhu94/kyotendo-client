@@ -14,9 +14,9 @@ const ProfileVideoRow = ({ video }) => {
                 aria-expanded={isOpen}
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <td>{video.title}</td>
-                <Link to={`/games/${video.game.slug}`}>
-                    <td onClick={e => e.stopPropagation()}>{video.game.name}</td>
+                <td className="py-4 pl-md-5 pl-1" style={{lineHeight: '1.8'}}>{video.title}</td>
+                <Link to={`/games/${video.game.slug}`} className="video-game-link" >
+                    <td className="py-4 pl-md-5 pl-1" style={{lineHeight: '1.8'}} onClick={e => e.stopPropagation()}>{video.game.name}</td>
                 </Link>
             </tr>
             <tr>

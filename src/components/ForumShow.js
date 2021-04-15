@@ -79,7 +79,7 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
         >
             {loaded ?
                 <Container fluid>
-                    <ScrollTop />
+                    {/* <ScrollTop /> */}
                     <TopPostersTop forum={forum} />
                     <Row className="justify-content-center" style={{marginTop: '10px'}}>
                         <Card
