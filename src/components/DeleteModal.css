@@ -1,0 +1,22 @@
+div.delete-header {
+    color: #fff;
+    font-size: 1.5rem !important;
+    background-color: var(--red-primary);
+    text-shadow: 5px 4px 6px rgba(0,0,0,0.67);
+    letter-spacing: 0.3em;
+    line-height: 1.5;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+@media (max-width: 480px) {
+    div.delete-header {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 3760px) {
+    div.delete-header {
+        font-size: 1.1rem;
+    }
+}

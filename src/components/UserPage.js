@@ -35,7 +35,8 @@ const nintendoCharacters = [
 
 const UserPage = ({ userId }) => {
     const [currentUser, setCurrentUser] = useState({});
-    const [showModal, setShowModal] = useState(true);
+    const [deleteVideo, setDeleteVideo] = useState({});
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const getUser = async () => {
@@ -90,14 +91,24 @@ const UserPage = ({ userId }) => {
         }
     };
 
-    const onVideoDelete = () => {
-        const getUser = async () => {
-            if (userId) {
-                const user = await api.rails.get(`/users/${userId}`);
-                setCurrentUser(user.data);
-            }
-        }
-        getUser();
+    const onVideoDelete = video => {
+        setDeleteVideo(video);
+        setShowModal(true);
+        // const getUser = async () => {
+        //     if (userId) {
+        //         const user = await api.rails.get(`/users/${userId}`);
+        //         setCurrentUser(user.data);
+        //     }
+        // }
+        // getUser();
+    };
+
+    const onDeleteConfirm = () => {
+
+    };
+
+    const onBackClick = () => {
+        setShowModal(false);
     };
 
     return (
@@ -143,7 +154,7 @@ const UserPage = ({ userId }) => {
                     </Row>
                 </Container>
             : <PageLoader /> }
-            <DeleteModal showModal={showModal} setShowModal={setShowModal} />
+            <DeleteModal showModal={showModal} setShowModal={setShowModal} video={deleteVideo} onDeleteConfirm={onDeleteConfirm} onBackClick={onBackClick} />
         </div>
     )
 };

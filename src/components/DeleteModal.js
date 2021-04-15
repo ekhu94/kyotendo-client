@@ -3,15 +3,15 @@ import { Container, Row, Modal, Button } from 'react-bootstrap';
 import deleteIcon from '../assets/icons/delete-modal-icon.jpg';
 import './DeleteModal.css';
 
-const DeleteModal = ({ showModal, setShowModal }) => {
+const DeleteModal = ({ showModal, setShowModal, video, onDeleteConfirm, onBackClick }) => {
 
     const handleClose = () => setShowModal(false)
 
     return (
         <>
             <Modal show={showModal} onHide={handleClose} backdrop='static'>
-                <Modal.Header className="justify-content-center">
-                    <Modal.Title className="text-center modal-header py-2">Remove Video?</Modal.Title>
+                <Modal.Header className="justify-content-center delete-header">
+                    <Modal.Title className="text-center py-2">Remove Video?</Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{margin: '20px'}}>
                     <Container>
@@ -30,7 +30,7 @@ const DeleteModal = ({ showModal, setShowModal }) => {
                             This may also remove the game from your profile as well.
                         </Row>
                         <Row className="justify-content-center">
-                            <Button variant="primary">
+                            <Button variant="primary" onClick={onBackClick}>
                                 Go Back
                             </Button>
                             <Button variant="danger">
