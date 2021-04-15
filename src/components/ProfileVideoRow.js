@@ -4,21 +4,21 @@ import { Fade, ResponsiveEmbed } from 'react-bootstrap';
 import { api } from '../services/api';
 import './ProfileVideoRow.css';
 
-const ProfileVideoRow = ({ video, onVideoDelete }) => {
+const ProfileVideoRow = ({ video, onVideoDelete, showModal, setShowModal }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [openModal, setOpenModal] = useState(false);
     const [deleted, setDeleted] = useState(false);
 
     const onDeleteClick = async e => {
         e.stopPropagation();
-        const gameId = video.game.id;
-        await api.video.deleteVideo(video.id);
-        const check = await api.rails.get(`/games/${gameId}`);
-        if (!check.data.videos || check.data.videos.length === 0) {
-            await api.game.deleteGame(gameId);
-        }
-        setDeleted(true);
-        onVideoDelete();
+        setShowModal(true);
+        // const gameId = video.game.id;
+        // await api.video.deleteVideo(video.id);
+        // const check = await api.rails.get(`/games/${gameId}`);
+        // if (!check.data.videos || check.data.videos.length === 0) {
+        //     await api.game.deleteGame(gameId);
+        // }
+        // setDeleted(true);
+        // onVideoDelete();
     };
 
     return (
@@ -61,6 +61,7 @@ const ProfileVideoRow = ({ video, onVideoDelete }) => {
                 </tr>
             </>
             : null }
+            <DeleteModal showModal={showModal} setShowModal={setShowModal} />
         </>
     );
 };

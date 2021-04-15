@@ -5,6 +5,7 @@ import { Container, Row, Card, Table, Button } from 'react-bootstrap';
 import './UserPage.css';
 
 import BackButton from './BackButton';
+import DeleteModal from './DeleteModal';
 import ProfileGameCard from './ProfileGameCard';
 import ProfileVideoRow from './ProfileVideoRow';
 import PageLoader from './PageLoader';
@@ -34,6 +35,7 @@ const nintendoCharacters = [
 
 const UserPage = ({ userId }) => {
     const [currentUser, setCurrentUser] = useState({});
+    const [showModal, setShowModal] = useState(true);
 
     useEffect(() => {
         const getUser = async () => {
@@ -141,6 +143,7 @@ const UserPage = ({ userId }) => {
                     </Row>
                 </Container>
             : <PageLoader /> }
+            <DeleteModal showModal={showModal} setShowModal={setShowModal} />
         </div>
     )
 };
