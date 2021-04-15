@@ -94,6 +94,7 @@ const UserPage = ({ userId }) => {
     const onVideoDelete = video => {
         setDeleteVideo(video);
         setShowModal(true);
+        
         // const getUser = async () => {
         //     if (userId) {
         //         const user = await api.rails.get(`/users/${userId}`);
@@ -103,8 +104,25 @@ const UserPage = ({ userId }) => {
         // getUser();
     };
 
-    const onDeleteConfirm = () => {
-
+    const onDeleteConfirm = async video => {
+        console.log('in delete confirm!')
+        console.log(video)
+        const gameId = video.game.id;
+        await api.video.deleteVideo(video.id);
+        const check = await api.rails.get(`/games/${gameId}`);
+        if (!check.data.videos || check.data.videos.length === 0) {
+            await api.game.deleteGame(gameId);
+        }
+        setTimeout(() => {
+            setShowModal(false);
+        }, 1000);
+        const getUser = async () => {
+            if (userId) {
+                const user = await api.rails.get(`/users/${userId}`);
+                setCurrentUser(user.data);
+            }
+        }
+        getUser();
     };
 
     const onBackClick = () => {

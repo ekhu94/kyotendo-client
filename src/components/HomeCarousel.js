@@ -70,8 +70,8 @@ const HomeCarousel = () => {
                 />
 
                 <Carousel.Caption>
-                <h2 className="carousel-header">Fifth slide label</h2>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                <h3 className="carousel-header d-none d-md-block">"At Nintendo, we do not run from risk. We run to it."</h3>
+                <p className="carousel-subheader d-none d-md-block">岩田聡 (Satoru Iwata)</p>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>

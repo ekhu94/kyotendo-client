@@ -46,7 +46,7 @@ const HomePage = ({ games, getHomeGames }) => {
     return (
         <div>
             <HomeCarousel />
-            <h2 className="text-center my-3" style={{letterSpacing: '0.3rem'}}>Featured Games</h2>
+            <h3 className="text-center my-3" style={{letterSpacing: '0.3rem'}}>Featured Games</h3>
             <div className="home-card-row">
                 {renderGameCards()}
             </div>

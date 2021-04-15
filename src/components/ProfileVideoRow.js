@@ -10,14 +10,6 @@ const ProfileVideoRow = ({ video, onVideoDelete, showModal, setShowModal }) => {
     const onDeleteClick = async e => {
         e.stopPropagation();
         onVideoDelete(video)
-        // const gameId = video.game.id;
-        // await api.video.deleteVideo(video.id);
-        // const check = await api.rails.get(`/games/${gameId}`);
-        // if (!check.data.videos || check.data.videos.length === 0) {
-        //     await api.game.deleteGame(gameId);
-        // }
-        // setDeleted(true);
-        // onVideoDelete();
     };
 
     return (

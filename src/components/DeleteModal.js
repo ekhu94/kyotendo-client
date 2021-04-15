@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Modal, Button } from 'react-bootstrap';
 import deleteIcon from '../assets/icons/delete-modal-icon.jpg';
 import './DeleteModal.css';
 
 const DeleteModal = ({ showModal, setShowModal, video, onDeleteConfirm, onBackClick }) => {
+    const [deleteConfirm, setDeleteConfirm] = useState(false);
 
-    const handleClose = () => setShowModal(false)
+    useEffect(() => {
+
+
+        return () => {
+            setDeleteConfirm(false);
+        }
+    }, [])
+
+    const handleClose = () => setShowModal(false);
+
+    const onDeleteClick = () => {
+        setDeleteConfirm(true);
+        onDeleteConfirm(video);
+        setTimeout(() => {
+            setDeleteConfirm(false);
+        }, 1500)
+    };
 
     return (
         <>
@@ -29,11 +46,16 @@ const DeleteModal = ({ showModal, setShowModal, video, onDeleteConfirm, onBackCl
                         <Row className="justify-content-center mb-3 text-center" style={{fontSize: '1.1rem'}}>
                             This may also remove the game from your profile as well.
                         </Row>
-                        <Row className="justify-content-center">
-                            <Button variant="primary" onClick={onBackClick}>
+                        {deleteConfirm ?
+                            <Row className="justify-content-center mb-3 text-center text-danger" style={{fontSize: '0.9rem'}}>
+                                Video removed from your profile!
+                            </Row>
+                        : null }
+                        <Row className="justify-content-center mt-3">
+                            <Button className="mr-4 back-btn px-3" variant="primary" onClick={onBackClick}>
                                 Go Back
                             </Button>
-                            <Button variant="danger">
+                            <Button onClick={onDeleteClick} className="ml-4 delete-confirm-btn px-3" variant="danger">
                                 Confirm Delete
                             </Button>
                         </Row>

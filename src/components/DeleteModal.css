@@ -9,6 +9,28 @@ div.delete-header {
     border-top-right-radius: 12px;
 }
 
+button.btn.back-btn {
+    border-radius: 20px;
+    border: none;
+    background-color: var(--blue-secondary);
+    transition: all 0.3s;
+}
+
+button.btn.delete-confirm-btn {
+    border-radius: 20px;
+    border: none;
+    background-color: var(--red-primary);
+    transition: all 0.3s;
+}
+
+button.btn.back-btn:hover {
+    background-color: var(--blue-tertiary);
+}
+
+button.btn.delete-confirm-btn:hover {
+    background-color: var(--red-secondary);
+}
+
 @media (max-width: 480px) {
     div.delete-header {
         font-size: 1.3rem;
