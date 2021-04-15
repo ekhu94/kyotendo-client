@@ -1,12 +1,24 @@
-import React from 'react';
-import MainJumbotron from './MainJumbotron';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import action from '../actions';
+import HomeCarousel from './HomeCarousel';
 
-const HomePage = () => {
+
+const HomePage = ({ games, getGames }) => {
     return (
         <div>
-            <MainJumbotron />
+            <HomeCarousel />
+            
         </div>
     );
 };
 
-export default HomePage;
+const mapStateToProps = state => {
+    return {
+        games: state.games
+    };
+};
+
+const { getGames } = action.games;
+
+export default connect(mapStateToProps, { getGames })(HomePage);
