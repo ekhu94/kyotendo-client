@@ -199,7 +199,7 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                                     {/* comment form */}
                                     <NewCommentForm user={post.user} post={post} onCommentCreate={onCommentCreate} />
                                     {/* comment list */}
-                                    <CommentsList comments={post.comments} />
+                                    <CommentsList comments={post.comments} onCommentCreate={onCommentCreate} />
                                 </Card>
                             </Row>
                         </Container>

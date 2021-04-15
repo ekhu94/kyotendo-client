@@ -54,6 +54,10 @@ const createComment = async comment => {
     return await rails.post('/comments', comment);
 }
 
+const editComment = async (id, comment) => {
+    return await rails.patch(`/comments/${id}`, comment);
+}
+
 const saveGame = async game => {
     return await rails.post('/games', game);
 }
@@ -105,7 +109,8 @@ export const api = {
         createPost
     },
     comment: {
-        createComment
+        createComment,
+        editComment
     },
     game: {
         saveGame,

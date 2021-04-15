@@ -48,7 +48,7 @@ const TopPosters = ({ forum }) => {
                 return (
                     <Media as="li" className="user-li mt-3">
                         <Media.Body>
-                            <Link to={`/users/${u.split(' ').join('')}`}>
+                            <Link to={`/users/${users[i].id}`}>
                                 <div>
                                     {generateAvatarJsx(idxs[i])}
                                     <span className="top-user-span" style={{
