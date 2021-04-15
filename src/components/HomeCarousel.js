@@ -42,8 +42,10 @@ const HomeCarousel = () => {
                 />
 
                 <Carousel.Caption>
-                <h2 className="carousel-header">Third slide label</h2>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    <h3 className="carousel-header d-none d-md-block">DISCOVER THE GREATEST HITS</h3>
+                    <p className="carousel-subheader d-none d-md-block">
+                        Stay up to date with new releases and trending titles!
+                    </p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -54,8 +56,10 @@ const HomeCarousel = () => {
                 />
 
                 <Carousel.Caption>
-                <h2 className="carousel-header">Fourth slide label</h2>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    <h1 className="carousel-header d-none d-md-block">CALLING ALL PLAYERS</h1>
+                    <h2 className="carousel-header d-none d-md-block">
+                        Casual or Competitive, all are welcome!
+                    </h2>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>

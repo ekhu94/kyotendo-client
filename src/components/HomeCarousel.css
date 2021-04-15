@@ -3,10 +3,20 @@ div.carousel {
     opacity: 0.95;
 }
 
+h1.carousel-header {
+    font-size: 2rem;
+    /* font-size: 2.5rem; */
+}
+
+h2.carousel-header {
+    font-size: 1.8rem;
+    /* font-size: 2.5rem; */
+}
+
 .carousel-header {
     text-shadow: 5px 4px 6px rgba(0,0,0,0.67);
     line-height: 1.6;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.3rem;
     font-weight: 500;
     font-size: 1.6rem;
     /* font-size: 2.5rem; */
