@@ -13,6 +13,10 @@ div.modal-header {
     border-top-right-radius: 12px;
 }
 
+div.error-modal-header {
+    background-color: var(--red-primary);
+}
+
 @media (max-width: 480px) {
     div.modal-header {
         font-size: 1.3rem;

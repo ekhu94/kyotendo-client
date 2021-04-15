@@ -1,5 +1,5 @@
 div.carousel {
-    margin-top: 80px;
+    margin-top: 0 !important;
     opacity: 0.95;
 }
 

@@ -8,6 +8,7 @@ import { ErrorMessage } from '@hookform/error-message';
 import * as yup from 'yup';
 
 import { Container, Row, Card, Form, Button, ButtonGroup } from 'react-bootstrap';
+import { Label } from 'semantic-ui-react';
 import { api } from '../services/api';
 import './NewPostForm.css';
 import backgroundImg from '../assets/mariokart-2.jpg';
@@ -63,13 +64,13 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
                                     type="text"
                                     className="form-control"
                                     name="title"
-                                    placeholder="Post title"
+                                    placeholder="Post title..."
                                     {...register("title")}
                                 />
                                 <ErrorMessage
                                     errors={errors}
                                     name="title"
-                                    render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
+                                    render={({ message }) => <Label basic color="red" pointing className="mt-2 text-danger">{message}</Label>}
                                 />
                             </div>
                         </Row>
@@ -77,7 +78,7 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
                             <div className="col-10 col-md-8 my-3">
                                 <textarea
                                     className="form-control"
-                                    placeholder="Content"
+                                    placeholder="Content..."
                                     name="content"
                                     rows="10"
                                     {...register("content")}
@@ -85,7 +86,7 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
                                 <ErrorMessage
                                     errors={errors}
                                     name="content"
-                                    render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
+                                    render={({ message }) => <Label basic color="red" pointing className="mt-2 text-danger">{message}</Label>}
                                 />
                             </div>
                         </Row>
@@ -114,13 +115,13 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
                                     type="text"
                                     className="form-control"
                                     name="title"
-                                    placeholder="Post title"
+                                    placeholder="Post title..."
                                     {...register("title")}
                                 />
                                 <ErrorMessage
                                     errors={errors}
                                     name="title"
-                                    render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
+                                    render={({ message }) => <Label basic color="red" pointing className="mt-2 text-danger">{message}</Label>}
                                 />
                             </div>
                         </Row>
@@ -129,14 +130,14 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Image URL"
+                                    placeholder="Image URL..."
                                     name="content"
                                     {...register("content")}
                                 />
                                 <ErrorMessage
                                     errors={errors}
                                     name="content"
-                                    render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
+                                    render={({ message }) => <Label basic color="red" pointing className="mt-2 text-danger">{message}</Label>}
                                 />
                             </div>
                         </Row>
@@ -165,13 +166,13 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
                                     type="text"
                                     className="form-control"
                                     name="title"
-                                    placeholder="Post title"
+                                    placeholder="Post title..."
                                     {...register("title")}
                                 />
                                 <ErrorMessage
                                     errors={errors}
                                     name="title"
-                                    render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
+                                    render={({ message }) => <Label basic color="red" pointing className="mt-2 text-danger">{message}</Label>}
                                 />
                             </div>
                         </Row>
@@ -180,14 +181,14 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Video URL"
+                                    placeholder="Video URL..."
                                     name="content"
                                     {...register("content")}
                                 />
                                 <ErrorMessage
                                     errors={errors}
                                     name="content"
-                                    render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
+                                    render={({ message }) => <Label basic color="red" pointing className="mt-2 text-danger">{message}</Label>}
                                 />
                             </div>
                         </Row>

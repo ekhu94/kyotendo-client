@@ -10,7 +10,7 @@ import './PostObject.css';
 import UpvoteButtons from './UpvoteButtons';
 // import { createPortal } from 'react-dom';
 
-const PostObject = ({ post, pathname }) => {
+const PostObject = ({ auth, post, pathname }) => {
     const [isOpen, setIsOpen] = useState(true);
     const [user, setUser] = useState({});
 
@@ -84,7 +84,9 @@ const PostObject = ({ post, pathname }) => {
                         <Media.Body>
                             <Container>
                                 <Row className="align-items-center mb-4">
-                                    <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
+                                    {auth.user && auth.user.id ?
+                                        <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
+                                    : null }
                                     <div className="col-10 post-title">
                                         {renderUserLink()}
                                         <Link to={`${pathname}/${post.id}`}>
@@ -125,7 +127,9 @@ const PostObject = ({ post, pathname }) => {
                         <Media.Body>
                             <Container>
                             <Row className="align-items-center mb-4">
-                                <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
+                                {auth.user && auth.user.id ?
+                                    <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
+                                : null }
                                 <div className="col-10 post-title">
                                     {renderUserLink()}
                                     <Link to={`${pathname}/${post.id}`}>
@@ -164,7 +168,9 @@ const PostObject = ({ post, pathname }) => {
                         <Media.Body>
                             <Container>
                             <Row className="align-items-center mb-4">
-                                <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
+                                {auth.user && auth.user.id ?
+                                    <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
+                                : null }
                                 <div className="col-10 post-title">
                                     {renderUserLink()}
                                     <Link to={`${pathname}/${post.id}`}>
@@ -251,6 +257,7 @@ const PostObject = ({ post, pathname }) => {
 
 const mapStateToProps = state => {
     return {
+        auth: state.auth,
         users: state.users
     };
 };

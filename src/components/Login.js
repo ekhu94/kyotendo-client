@@ -8,18 +8,25 @@ import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 import { api } from '../services/api';
 import { Container, Card, Form, Row, Button } from 'react-bootstrap';
+import { Label } from 'semantic-ui-react';
 import backgroundImg from '../assets/smash-bros-background.jpg';
 import './Login.css';
+import AlertModal from './AlertModal';
 
 const schema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().min(6).max(16).required()
 });
 
-const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
+const Login = ({ onLogin, routerProps, showModal, setShowModal }) => {
     const { register, formState: { errors }, handleSubmit } = useForm({
         resolver: yupResolver(schema),
     });
+
+    const loginSuccessMsgs = {
+        header: "Login successful!",
+        body: "Welcome back to Kyotendo!"
+    }
 
     const onFormSubmit = data => {
         const newUser = {
@@ -32,7 +39,6 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
 
     return (
         <>
-            {/* {showAlert && renderAlert()} */}
             <div className="auth-page-container" style={{backgroundImage: `url(${backgroundImg})`}}>
                 <Container>
                     <Row className="justify-content-center">
@@ -51,7 +57,7 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
                                 <ErrorMessage
                                     errors={errors}
                                     name="email"
-                                    render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
+                                    render={({ message }) => <Label basic color="red" pointing className="mt-2 text-danger">{message}</Label>}
                                 />
                             </div>
                         </Row>
@@ -67,7 +73,7 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
                                 <ErrorMessage
                                     errors={errors}
                                     name="password"
-                                    render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
+                                    render={({ message }) => <Label basic color="red" pointing className="mt-2 text-danger">{message}</Label>}
                                 />
                             </div>
                         </Row>
@@ -85,12 +91,13 @@ const Login = ({ onLogin, routerProps, showAlert, renderAlert }) => {
                         </Row>
                         <Row className="justify-content-center">
                             <Link to="/signup" exact>
-                                <div style={{color: 'var(--blue-secondary)'}} className="text-center">New User?</div>                              
+                                <div style={{color: 'var(--red-secondary)'}} className="text-center">New User?</div>                              
                             </Link>
                         </Row>
                     </Form>
                     </Card>
                     </Row>
+                    <AlertModal messages={loginSuccessMsgs} showModal={showModal} setShowModal={setShowModal}/>
                 </Container>
             </div>
         </>

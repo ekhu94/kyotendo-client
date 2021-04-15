@@ -94,7 +94,8 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
                                 className="py-4 px-4 text-center"
                                 style={{
                                     color: '#fff',
-                                    backgroundColor: 'var(--dark)',
+                                    backgroundColor: 'var(--blue-tertiary)',
+                                    border: 'none',
                                     textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
                                     letterSpacing: "0.3em",
                                     lineHeight: '1.5',
@@ -144,7 +145,8 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
                                     className={`text-center mb-4 m-0 p-4 ${forum.posts && forum.posts.length !== 0 ? '' : 'no-post-header'}`}
                                     style={{
                                         color: '#fff',
-                                        backgroundColor: 'var(--dark)',
+                                        backgroundColor: 'var(--red-secondary)',
+                                        border: 'none',
                                         textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
                                         letterSpacing: "0.3em",
                                         lineHeight: '1.5',

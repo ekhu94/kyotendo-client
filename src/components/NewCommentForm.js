@@ -7,6 +7,7 @@ import { ErrorMessage } from '@hookform/error-message';
 import * as yup from 'yup';
 
 import { Row, Form, Button } from 'react-bootstrap';
+import { Label } from 'semantic-ui-react';
 import { api } from '../services/api';
 import './NewCommentForm.css';
 
@@ -46,11 +47,11 @@ const NewCommentForm = ({ auth, user, post, onCommentCreate }) => {
                     <ErrorMessage
                         errors={errors}
                         name="content"
-                        render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
+                        render={({ message }) => <Label basic color="red" pointing className="mt-2 text-danger">{message}</Label>}
                     />
                 </div>
                 <Row className="justify-content-end">
-                    <Button className="mr-3 py-1 px-2 comment-btn" variant="primary" type="submit">
+                    <Button className="mr-3 py-2 px-3 comment-btn" variant="primary" type="submit">
                         Comment
                     </Button>
                 </Row>

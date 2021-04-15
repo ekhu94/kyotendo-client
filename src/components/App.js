@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import { api } from '../services/api';
 import action from '../actions';
 import AlertMessage from './AlertMessage';
+import AlertModal from './AlertModal';
 import Auth from './Auth';
+import ErrorModal from './ErrorModal';
 import ForumList from './ForumList';
 import ForumShow from './ForumShow';
 import GamesList from './GamesList';
@@ -26,6 +28,9 @@ import { render } from '@testing-library/react';
 
 const App = ({ auth, setAuth }) => {
     const [showModal, setShowModal] = useState(false);
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
+    const [showLoginErrorModal, setShowLoginErrorModal] = useState(false);
+    const [showSignupErrorModal, setShowSignupErrorModal] = useState(false);
     const [showAlert, setShowAlert] = useState(false)
     const [alertObj, setAlertObj] = useState({variant:'', message:''})
 
@@ -57,21 +62,18 @@ const App = ({ auth, setAuth }) => {
                 id: data.user.id,
                 username: data.user.username
             });
-            setAlertObj({
-                variant: 'success',
-                message: `Welcome back, ${data.user.username}!`
-            })
-            setShowAlert(true)
+            setShowModal(true);
             setTimeout(() => {
+                setShowModal(false)
                 routerProps.history.push('/');
-            }, 1000);
+            }, 2000);
         } else {
-            setAlertObj({
-                variant: 'danger',
-                message: data.message
-            })
-            setShowAlert(true)
+            setShowLoginErrorModal(true);
         }
+    };
+
+    const onLoginFailClick = () => {
+        setShowLoginErrorModal(false);
     };
 
     const onSignup = ( data, routerProps ) => {
@@ -81,38 +83,47 @@ const App = ({ auth, setAuth }) => {
                 id: data.id,
                 username: data.username
             });
-            setAlertObj({
-                variant: 'success',
-                message: 'Registration complete. Welcome to Kyotendo!'
-            })
-            setShowAlert(true)
+            setShowModal(true);
             setTimeout(() => {
+                setShowModal(false);
                 routerProps.history.push('/');
-            }, 1000);
+            }, 2000);
         } else {
-            setAlertObj({
-                variant: 'danger',
-                message: data.error
-            })
-            setShowAlert(true)
+            setShowSignupErrorModal(true);
         }
     };
+
+    const onSignupFailClick = () => {
+        setShowSignupErrorModal(false);
+    };
+
+    const logoutSuccessMsgs = {
+        header: "Logout successful!",
+        body: `Log out successful. See you again soon!`
+    }
+
+    const loginFailureMsgs = {
+        header: "Login failed!",
+        body: `Something's wrong with your email or password. Please try again.`
+    }
+
+    const signupFailureMsgs = {
+        header: "Sign up failed!",
+        body: `Something's wrong with your registration!. Please try again.`
+    }
 
     const renderAlert = () =>{
         return <AlertMessage variant={alertObj.variant} message={alertObj.message} />
     }
 
     const onLogout = () => {
-        setAlertObj({
-            variant: 'success',
-            message: `Log out successful. See you again soon, ${auth.user.username}!`
-        })
-        setShowAlert(true)
+        setShowLogoutModal(true)
         localStorage.removeItem('token');
         setAuth({});
-        // setTimeout(() => {
-        //     setShowModal(false);
-        // }, 1000);
+        setTimeout(() => {
+            setShowLogoutModal(false);
+            // routerProps.history.push('/');
+        }, 2000);
     };
 
     const onNewPost = (forumSlug, routerProps) => {
@@ -161,8 +172,13 @@ const App = ({ auth, setAuth }) => {
                     }
                     />
                     <Route path="/auth" render={() => <Auth />} />
-                    <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
-                    <Route path="/login" render={routerProps => <Login onLogin={onLogin} routerProps={routerProps} showAlert={showAlert} renderAlert={renderAlert} />} />
+                    <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
+                    <Route path="/login" render={routerProps => <Login onLogin={onLogin} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
+                    <AlertModal messages={logoutSuccessMsgs} showModal={showLogoutModal} setShowModal={setShowLogoutModal}/>
+                    //! login failure modal
+                    <ErrorModal messages={loginFailureMsgs} showModal={showLoginErrorModal} setShowModal={setShowLoginErrorModal} onBackClick={onLoginFailClick} />
+                    //! signup failure modal
+                    <ErrorModal messages={signupFailureMsgs} showModal={showSignupErrorModal} setShowModal={setShowSignupErrorModal} onBackClick={onSignupFailClick} />
                 </div>
             </Router>
         </div>

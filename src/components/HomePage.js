@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import action from '../actions';
 import { api } from '../services/api';
 import './HomePage.css';
-import { Row } from 'react-bootstrap';
+import { Row, Button } from 'react-bootstrap';
 import GamesListCard from './GamesListCard';
 import HomeCarousel from './HomeCarousel';
 import PageLoader from './PageLoader';
 import PostObject from './PostObject';
+import { Link } from 'react-router-dom';
 
 
 const HomePage = ({ posts, getHomePosts, games, getHomeGames }) => {
@@ -90,12 +91,17 @@ const HomePage = ({ posts, getHomePosts, games, getHomeGames }) => {
                         Join the largest community of Nintendo fans on the web!
                     </h3>
                 </div>
-                <h2 className="text-center mt-5 mb-2" style={{letterSpacing: '0.3rem'}}>Featured Games</h2>
+                <h2 className="text-start ml-4 mt-5 mb-4" style={{letterSpacing: '0.3rem'}}>Featured Games</h2>
                 <div className="home-card-row">
                     {renderGameCards()}
                 </div>
-                <h2 className="text-center mt-5 mb-0" style={{letterSpacing: '0.3rem'}}>Featured Posts</h2>
+                <h2 className="text-start ml-4 mt-5 mb-1" style={{letterSpacing: '0.3rem'}}>Featured Posts</h2>
                 {renderPosts()}
+                <Link to="/forums">
+                    <Button className="ml-2" variant="link" size="lg">
+                        See more posts
+                    </Button>
+                </Link>
             </>
             : <PageLoader /> }
         </div>

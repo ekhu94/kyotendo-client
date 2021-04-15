@@ -1,24 +1,24 @@
 import React from 'react';
-import { Container, Row, Modal } from 'react-bootstrap';
-import toadIcon from '../assets/icons/toad-modal-icon.jpg';
+import { Container, Row, Modal, Button } from 'react-bootstrap';
+import errorIcon from '../assets/icons/auth-fail-icon.jpg';
 
 import './AlertModal.css';
 
-const AlertModal = ({showModal, setShowModal, messages}) => {
+const ErrorModal = ({showModal, setShowModal, messages, onBackClick}) => {
 
     const handleClose = () => setShowModal(false)
 
     return (
         <>
             <Modal show={showModal} onHide={handleClose} backdrop='static'>
-                <Modal.Header className="justify-content-center modal-header">
+                <Modal.Header className="justify-content-center error-modal-header">
                     <Modal.Title className="text-center py-2">{messages.header}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{margin: '20px'}}>
                     <Container>
                         <Row className="justify-content-center">
-                             <img src={toadIcon} style={{
-                                    width: '200px',
+                             <img src={errorIcon} style={{
+                                    width: 'auto',
                                     height: '200px',
                                     marginBottom: '18px'
                                 }}
@@ -28,7 +28,9 @@ const AlertModal = ({showModal, setShowModal, messages}) => {
                             {messages.body}
                         </Row>
                         <Row className="justify-content-center">
-                            <p style={{color: 'var(--blue-secondary)'}}>Redirecting...</p>
+                            <Button className="mr-4 back-btn py-2 px-5" variant="primary" onClick={onBackClick}>
+                                Got It
+                            </Button>
                         </Row>
                     </Container>
                 </Modal.Body>
@@ -37,4 +39,4 @@ const AlertModal = ({showModal, setShowModal, messages}) => {
     );
 };
 
-export default AlertModal;
+export default ErrorModal;

@@ -1,7 +1,7 @@
 h1.text-center.login-header {
     font-size: 2.4rem;
     color: #fff;
-    background-color: var(--dark);
+    background-color: var(--red-secondary);
     text-shadow: 5px 4px 6px rgba(0,0,0,0.67);
     letter-spacing: 0.3em;
     line-height: 1.5;
@@ -12,11 +12,12 @@ h1.text-center.login-header {
 button.auth-btn {
     border: none;
     letter-spacing: 0.1rem;
-    background-color: var(--red-primary);
+    background-color: var(--blue-secondary);
+    transition: all 0.3s;
 }
 
 button.auth-btn:hover {
-    background-color: var(--red-secondary);
+    background-color: var(--blue-primary);
 }
 
 @media (max-width: 769px) {

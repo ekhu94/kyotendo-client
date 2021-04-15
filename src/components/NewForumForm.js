@@ -6,6 +6,7 @@ import { ErrorMessage } from '@hookform/error-message';
 import * as yup from 'yup';
 
 import { Container, Row, Card, Form, Button } from 'react-bootstrap';
+import { Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 import { api } from '../services/api';
@@ -53,13 +54,13 @@ const NewForumForm = ({ onNewForum, routerProps, showModal, setShowModal }) => {
                                     type="text"
                                     className="form-control"
                                     name="name"
-                                    placeholder="Forum name"
+                                    placeholder="Forum name..."
                                     {...register("name")}
                                 />
                                 <ErrorMessage
                                     errors={errors}
                                     name="name"
-                                    render={({ message }) => <p className="mt-2 text-danger">{message}</p>}
+                                    render={({ message }) => <Label basic color="red" pointing className="mt-2 text-danger">{message}</Label>}
                                 />
                             </div>
                         </Row>

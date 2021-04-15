@@ -80,7 +80,8 @@ const TopPostersTop = ({ auth, forum }) => {
                         className={`text-center mb-3 m-0 p-3 ${forum.posts && forum.posts.length !== 0 ? '' : 'no-post-header'}`}
                         style={{
                             color: '#fff',
-                            backgroundColor: 'var(--dark)',
+                            border: 'none',
+                            backgroundColor: 'var(--red-secondary)',
                             textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
                             letterSpacing: "0.3em",
                             lineHeight: '1.2',

@@ -5,7 +5,7 @@ import action from '../actions';
 import { Container, Row, Card, ListGroup, Button } from 'react-bootstrap';
 
 import PageLoader from './PageLoader';
-import backgroundImg from '../assets/Splatoon-wallpaper-2.jpg';
+import backgroundImg from '../assets/forum-background.jpg';
 import './ForumList.css';
 
 const ForumList = ({ auth, forums, getForums, resetForums, getForumShow }) => {
@@ -40,13 +40,20 @@ const ForumList = ({ auth, forums, getForums, resetForums, getForumShow }) => {
     }, []);
 
     const renderForums = () => {
+        const colors = [
+            '#f1f1f1',
+            '#fff'
+
+        ];
         return forums.map((forum, i) => {
             const styles = {
                 fontSize: '1.3rem',
                 letterSpacing: '0.1rem',
                 textDecoration: 'none',
                 //? joycon red
-                color: 'var(--dark)'
+                opacity: '0.85',
+                color: 'var(--dark)',
+                backgroundColor: `${i % 2 === 0 ? colors[0] : colors[1]}`
             };
             if (i === forums.length - 1) {
                 styles.border = 'none';
@@ -65,7 +72,7 @@ const ForumList = ({ auth, forums, getForums, resetForums, getForumShow }) => {
                     to={`/forums/${forum.slug}`}
                     onClick={() => getForumShow(forum.id)}
                 >
-                <ListGroup.Item style={styles}>
+                <ListGroup.Item className="pl-4" style={styles}>
                     {forum.name}
                 </ListGroup.Item>
                 </Link>
@@ -83,14 +90,14 @@ const ForumList = ({ auth, forums, getForums, resetForums, getForumShow }) => {
                 <Row className="justify-content-center">
                     <Card className="col-10 px-0" style={{
                         //? joycon grey
-                        borderColor: '#989898',
+                        border: 'none',
                         borderRadius: '20px',
                     }}>
                         <h1
                             className="text-center py-4 mb-0"
                             style={{
                                 color: '#fff',
-                                backgroundColor: 'var(--dark)',
+                                backgroundColor: 'var(--red-secondary)',
                                 textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
                                 letterSpacing: "0.3em",
                                 fontSize: '1.6rem',
@@ -102,7 +109,7 @@ const ForumList = ({ auth, forums, getForums, resetForums, getForumShow }) => {
                         >
                             Kyotendo Communities
                         </h1>
-                        <ListGroup className="p-4">
+                        <ListGroup>
                             {renderForums()}
                         </ListGroup>
                         {auth.user.id ?

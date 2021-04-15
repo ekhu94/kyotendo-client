@@ -31,7 +31,7 @@ button.btn.btn-info {
     transition: all 0.6s;
 }
 button.btn.btn-info:hover {
-    background-color: var(--red-primary);
+    background-color: var(--blue-secondary);
     /* background-color: #0a9cc0; */
     /* transform: scale(1.03, 1.03); */
 }

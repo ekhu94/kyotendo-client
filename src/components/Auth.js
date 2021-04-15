@@ -25,7 +25,7 @@ const Auth = () => {
                                 </Row>
                             </Container>
                         </Card.Body>
-                        <Card.Footer style={{borderBottomLeftRadius: '20px', borderBottomRightRadius: '20px', backgroundColor: 'var(--dark)', color: '#fff', letterSpacing: '0.1rem'}} >Signing up is free and easy!</Card.Footer>
+                        <Card.Footer style={{borderBottomLeftRadius: '20px', borderBottomRightRadius: '20px', backgroundColor: 'var(--blue-secondary)', color: '#fff', letterSpacing: '0.1rem'}} >Signing up is free and easy!</Card.Footer>
                     </Card>
                 </Row>
             </Container>
