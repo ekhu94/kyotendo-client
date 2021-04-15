@@ -66,7 +66,6 @@ const HomePage = ({ posts, getHomePosts, games, getHomeGames }) => {
     };
 
     const renderPosts = () => {
-        console.log(postsSample)
         if (postsSample && postsSample.length) {
             return postsSample.map(post => {
                 return (

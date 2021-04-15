@@ -108,6 +108,7 @@ const NavBar = ({ onLogout, auth, showAlert, renderAlert }) => {
                                 <NavDropdown
                                     title={ userIconDropdown() }
                                     alignRight
+                                    collapseOnSelect
                                 >
                                     <LinkContainer to={`/users/${auth.user.id}`}>
                                         <NavDropdown.Item>profile</NavDropdown.Item>

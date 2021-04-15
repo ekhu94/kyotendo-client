@@ -123,7 +123,7 @@ const App = ({ auth, setAuth }) => {
         setTimeout(() => {
             setShowLogoutModal(false);
             // routerProps.history.push('/');
-        }, 2000);
+        }, 1500);
     };
 
     const onNewPost = (forumSlug, routerProps) => {
@@ -175,9 +175,9 @@ const App = ({ auth, setAuth }) => {
                     <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                     <Route path="/login" render={routerProps => <Login onLogin={onLogin} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                     <AlertModal messages={logoutSuccessMsgs} showModal={showLogoutModal} setShowModal={setShowLogoutModal}/>
-                    //! login failure modal
+                    {/* login failure modal */}
                     <ErrorModal messages={loginFailureMsgs} showModal={showLoginErrorModal} setShowModal={setShowLoginErrorModal} onBackClick={onLoginFailClick} />
-                    //! signup failure modal
+                    {/* signup failure modal */}
                     <ErrorModal messages={signupFailureMsgs} showModal={showSignupErrorModal} setShowModal={setShowSignupErrorModal} onBackClick={onSignupFailClick} />
                 </div>
             </Router>
