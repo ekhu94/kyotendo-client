@@ -42,20 +42,21 @@ const YoutubeVideoPlayer = ({ auth, gameSlug, gameShow, getGameShow, resetGameSh
 
     useEffect(() => {
         const checkBackendVideos = async () => {
-            const backendVideos = await api.rails.get('/videos');
-            if (backendVideos.data && selectedVideo) {
-                const findVideo = backendVideos.data.find(v => v.title === selectedVideo.snippet.title);
-                console.log(findVideo)
-                if (findVideo && findVideo.user_id === auth.user.id) {
-                    saveBtn.current.setAttribute('disabled', true);
-                    saveBtn.current.classList.add('disabled-btn');
-                    saveBtn.current.classList.remove('youtube-save-btn');
-                    saveBtn.current.innerText = 'Already Saved'
-                } else {
-                    saveBtn.current.removeAttribute('disabled');
-                    saveBtn.current.classList.remove('disabled-btn');
-                    saveBtn.current.classList.add('youtube-save-btn');
-                    saveBtn.current.innerText = 'Save To Collection'
+            if (saveBtn && saveBtn.current) {
+                const backendVideos = await api.rails.get('/videos');
+                if (backendVideos.data && selectedVideo) {
+                    const findVideo = backendVideos.data.find(v => v.title === selectedVideo.snippet.title);
+                    if (findVideo && findVideo.user_id === auth.user.id) {
+                        saveBtn.current.setAttribute('disabled', true);
+                        saveBtn.current.classList.add('disabled-btn');
+                        saveBtn.current.classList.remove('youtube-save-btn');
+                        saveBtn.current.innerText = 'Already Saved'
+                    } else {
+                        saveBtn.current.removeAttribute('disabled');
+                        saveBtn.current.classList.remove('disabled-btn');
+                        saveBtn.current.classList.add('youtube-save-btn');
+                        saveBtn.current.innerText = 'Save To Collection'
+                    }
                 }
             }
         }
@@ -138,6 +139,7 @@ const YoutubeVideoPlayer = ({ auth, gameSlug, gameShow, getGameShow, resetGameSh
                     if (!findGame) {
                         const newGame = {
                             name: gameShow.name,
+                            slug: gameShow.slug,
                             rating: gameShow.metacritic,
                             img_url: gameShow.background_image,
                             release_date: gameShow.released

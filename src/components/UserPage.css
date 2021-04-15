@@ -8,3 +8,33 @@ div.profile-container {
     min-height: 100vh !important;
     opacity: 0.9;
 }
+
+h1.profile-header {
+    font-size: 1.6rem;
+    color: #fff;
+    background-color: var(--red-secondary);
+    text-shadow: 5px 4px 6px rgba(0,0,0,0.67);
+    letter-spacing: 0.3em;
+    line-height: 1.5;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+@media (max-width: 769px) {
+    h1.profile-header {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 481px) {
+    h1.profile-header {
+        font-size: 1.2rem;
+        line-height: 1.6rem;
+    }
+}
+
+@media (max-width: 396px) {
+    h1.profile-header {
+        font-size: 1.3rem;
+    }
+}

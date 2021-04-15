@@ -162,7 +162,7 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                     <div className="user-icon">
                         <span>by </span>
                         <Link
-                            to={`/users/${slug}`}
+                            to={`/users/${post.user.id}`}
                             style={{color: 'var(--blue-secondary)'}}
                         >
                             {slug}

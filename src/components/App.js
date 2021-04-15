@@ -139,7 +139,7 @@ const App = ({ auth, setAuth }) => {
                     <ScrollTop />
                     <NavBar onLogout={onLogout} showAlert={showAlert} renderAlert={renderAlert} />
                     <Route exact path="/" render={() => <HomePage /> } />
-                    <Route exact path='/users/:username' render={routerProps => <UserPage username={routerProps.match.params.username} />} />
+                    <Route exact path='/users/:id' render={routerProps => <UserPage userId={routerProps.match.params.id} />} />
                     <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                     <Route exact path="/new/:slug/post" render={routerProps => <NewPostForm forumSlug={routerProps.match.params.slug} onNewPost={onNewPost} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                     <Route exact path="/games" render={() => <GamesList />} />

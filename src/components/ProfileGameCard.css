@@ -1,0 +1,10 @@
+img.profile-card-img {
+    flex-shrink: 0;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    height: auto;
+    min-height: 200px;
+    max-height: 400px;
+    /* min-width: 100%;
+    min-height: 200px; */
+}

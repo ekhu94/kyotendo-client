@@ -36,7 +36,6 @@ const TopPosters = ({ forum }) => {
                     idxs.push(idx);
                 }
             }
-            console.log(idxs)
             //* get the users with the most posts
             const {users} = forum;
             const counter = {};

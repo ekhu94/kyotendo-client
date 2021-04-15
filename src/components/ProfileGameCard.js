@@ -2,11 +2,11 @@ import React from 'react';
 import { Badge, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import './GamesListCard.css';
+import './ProfileGameCard.css';
 
 const headerColors = ['var(--red-secondary)', 'var(--lime)', 'var(--blue-secondary)', 'var(--pink)']
 
-const GamesListCard = ({ game, idx, imgUrl }) => {
+const ProfileGameCard = ({ game, idx, imgUrl }) => {
 
     const getThreeGenres = () => {
         if (game.genres && game.genres.length) {
@@ -35,7 +35,7 @@ const GamesListCard = ({ game, idx, imgUrl }) => {
 
     const formatDate = release => {
         if (release) {
-            const date = release.split('-');
+            const date = release.split('T')[0].split('-');
             const year = date[0];
             const month = date[1];
             const day = date[2];
@@ -44,28 +44,28 @@ const GamesListCard = ({ game, idx, imgUrl }) => {
     };
 
     return (
-        <Card className="m-2 my-4 my-md-2 game-card text-center" style={{ backgroundColor: `${game.dominant_color}` }}>
+        <Card className="p-0 mx-3 my-4 my-md-2 game-card text-center" style={{ backgroundColor: `${game.dominant_color}` }}>
             <Link to={`/games/${game.slug}`} exact>
-            <Card.Img className="card-img" variant="top" src={imgUrl} />
+            <Card.Img className="profile-card-img" variant="top" src={imgUrl} />
             <Card.Body className="p-0" style={{height: 'auto'}}>
-                <Card.Title className="game-card-title py-4" style={{backgroundColor: `${headerColors[idx % 4]}`}}>{game.name}</Card.Title>
+                <Card.Title className="game-card-title py-4 mb-0" style={{backgroundColor: `${headerColors[idx % 4]}`}}>{game.name}</Card.Title>
             </Card.Body>
             </Link>
-            <Card.Text className="mb-0">
-                {formatDate(game.released)}
-            </Card.Text>
-            <ListGroup className="list-group-flush mt-0">
+            <Card.Body>
+                <Card.Text className="mt-2 mb-0">
+                    {formatDate(game.release_date)}
+                </Card.Text>
+                <ListGroup className="list-group-flush mt-0">
                 <ListGroupItem>
                     {getThreeGenres()}
                 </ListGroupItem>
-                <ListGroupItem>Metacritic Score: {game.metacritic}</ListGroupItem>
-                <ListGroupItem className="mb-0">{game.stores && game.stores.length ? 'Available at these stores:' : 'No stores provided at this time'}</ListGroupItem>
+                <ListGroupItem>Metacritic Score: {game.rating}</ListGroupItem>
+                {/* <ListGroupItem className="mb-0">{game.videos.length} videos</ListGroupItem> */}
             </ListGroup>
-            <Card.Body className="pt-1">
-                {getThreeStores()}
             </Card.Body>
+            
         </Card>
     );
 };
 
-export default GamesListCard;
+export default ProfileGameCard;

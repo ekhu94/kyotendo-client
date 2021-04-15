@@ -77,19 +77,19 @@ const GamesList = ({ games, getGames, gamePage, setGamePage, resetGamePage }) =>
                 case 'title':
                     return displayGames.sort((a, b) => a.slug > b.slug ? 1 : -1).slice(0, gamePage).map((game, i) => {
                         return (
-                            <GamesListCard key={game.id} game={game} idx={i} />
+                            <GamesListCard key={game.id} game={game} idx={i} imgUrl={game.background_image} />
                         );
                     });
                 case 'new':
                     return displayGames.sort((a, b) => parseInt(b.released.split('-').join('')) - parseInt(a.released.split('-').join(''))).slice(0, gamePage).map((game, i) => {
                         return (
-                            <GamesListCard key={game.id} game={game} idx={i} />
+                            <GamesListCard key={game.id} game={game} idx={i} imgUrl={game.background_image} />
                         );
                     });
                 case 'rating':
                     return displayGames.sort((a, b) => b.metacritic - a.metacritic).slice(0, gamePage).map((game, i) => {
                         return (
-                            <GamesListCard key={game.id} game={game} idx={i} />
+                            <GamesListCard key={game.id} game={game} idx={i} imgUrl={game.background_image} />
                         );
                     });
                 default:

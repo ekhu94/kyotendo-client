@@ -218,7 +218,7 @@ const PostObject = ({ post }) => {
                     <div className="user-icon ml-3 ml-md-0">
                         <span>by </span>
                         <Link
-                            to={`/users/${slug}`}
+                            to={`/users/${user.id}`}
                             style={{color: 'var(--blue-secondary)'}}
                         >
                             {slug}
