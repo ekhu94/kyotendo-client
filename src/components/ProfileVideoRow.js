@@ -4,8 +4,9 @@ import { Fade, ResponsiveEmbed } from 'react-bootstrap';
 import { api } from '../services/api';
 import './ProfileVideoRow.css';
 
-const ProfileVideoRow = ({ video }) => {
+const ProfileVideoRow = ({ video, onVideoDelete }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
     const [deleted, setDeleted] = useState(false);
 
     const onDeleteClick = async e => {
@@ -17,6 +18,7 @@ const ProfileVideoRow = ({ video }) => {
             await api.game.deleteGame(gameId);
         }
         setDeleted(true);
+        onVideoDelete();
     };
 
     return (

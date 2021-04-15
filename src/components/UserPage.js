@@ -82,10 +82,20 @@ const UserPage = ({ userId }) => {
         if (currentUser && currentUser.videos) {
             return currentUser.videos.sort((a, b) => a.game.title - b.game.title).map(video => {
                 return (
-                    <ProfileVideoRow key={video.id} video={video} />
+                    <ProfileVideoRow key={video.id} video={video} onVideoDelete={onVideoDelete} />
                 );
             });
         }
+    };
+
+    const onVideoDelete = () => {
+        const getUser = async () => {
+            if (userId) {
+                const user = await api.rails.get(`/users/${userId}`);
+                setCurrentUser(user.data);
+            }
+        }
+        getUser();
     };
 
     return (
@@ -101,24 +111,32 @@ const UserPage = ({ userId }) => {
                             </Row>
                             <h4 className="text-center mt-2">Joined on: {formatDate(currentUser.created_at)}</h4>
                             <h4 className="text-center mt-1">Number of posts: {currentUser.posts.length}</h4>
-                            <h4 className="text-center mt-1">Number of comments: {currentUser.comments.length}</h4>
-                            <h3 style={{letterSpacing: '0.2rem'}} className="text-center mt-5 mb-3">Game Collection</h3>
-                            <Row className="justify-content-center">
-                                {renderGamesCollection()}
-                            </Row>
-                            <h3 style={{letterSpacing: '0.2rem'}} className="text-center mt-5 mb-3">Video Collection</h3>
-                            <Table size="lg" striped hover className="px-4 mb-5">
-                                <thead>
-                                    <tr>
-                                        <th className="pl-1 pl-md-5">Title</th>                                       
-                                        <th className="pl-1 pl-md-5">Game</th>
-                                        <th className="text-center pr-1 pr-md-5">Remove</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {renderVideosCollection()}
-                                </tbody>
-                            </Table>
+                            <h4 className="text-center mt-1 mb-5">Number of comments: {currentUser.comments.length}</h4>
+                            {currentUser.games && currentUser.games.length ?
+                                <>
+                                    <h3 style={{letterSpacing: '0.2rem'}} className="text-center mb-3">Game Collection</h3>
+                                    <Row className="justify-content-center">
+                                        {renderGamesCollection()}
+                                    </Row>
+                                </>
+                            : null }
+                            {currentUser.videos && currentUser.videos.length ?
+                                <>
+                                    <h3 style={{letterSpacing: '0.2rem'}} className="text-center mt-5 mb-3">Video Collection</h3>
+                                    <Table size="lg" striped hover className="px-4 mb-5">
+                                        <thead>
+                                            <tr>
+                                                <th className="pl-1 pl-md-5">Title</th>                                       
+                                                <th className="pl-1 pl-md-5">Game</th>
+                                                <th className="text-center pr-1 pr-md-5">Remove</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {renderVideosCollection()}
+                                        </tbody>
+                                    </Table>
+                                </>
+                            : null }
                         </Card>
                     </Row>
                 </Container>
