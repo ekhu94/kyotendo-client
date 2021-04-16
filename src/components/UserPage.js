@@ -111,8 +111,6 @@ const UserPage = ({ userId }) => {
     };
 
     const onDeleteConfirm = async video => {
-        console.log('in delete confirm!')
-        console.log(video)
         const gameId = video.game.id;
         await api.video.deleteVideo(video.id);
         const check = await api.rails.get(`/games/${gameId}`);

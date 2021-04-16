@@ -39,10 +39,14 @@ const App = ({ auth, setAuth }) => {
         if (token) {
             api.auth.getCurrentUser()
             //? Need to change this
-            .then(data => setAuth({
-                id: data.user.id,
-                username: data.user.username
-            })
+            .then(data => {
+                if (data) {
+                    setAuth({
+                        id: data.user.id,
+                        username: data.user.username
+                    })
+                }
+            }
         )};
     }, []);
 

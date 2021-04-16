@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import action from '../actions';
 import { Link } from 'react-router-dom';
 import { Container, Row, Card, Button } from 'react-bootstrap';
+import { Input } from 'semantic-ui-react';
 
 import './ForumShow.css';
 import backgroundImg from '../assets/forum-background.jpg';
@@ -10,12 +11,31 @@ import noPostImg from '../assets/sad-pikachu.jpg';
 import BackButton from './BackButton';
 import PageLoader from './PageLoader';
 import PostObject from './PostObject';
-import ScrollTop from './ScrollTop';
 import TopPosters from './TopPosters';
 import TopPostersTop from './TopPostersTop';
 
 const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, getForumShow, resetForumShow, postIdx, setPostIdx, resetPostIdx }) => {
     const [loaded, setLoaded] = useState(false);
+    const [displayPosts, setDisplayPosts] = useState([]);
+    const [term, setTerm] = useState('');
+
+    useEffect(() => {
+        const search = setTimeout(() => {
+            if (forum && forum.posts) {
+                if (term === '') {
+                setDisplayPosts(forum.posts);
+                } else {
+                    const query = forum.posts.filter(p => p.title.toLowerCase().includes(term.toLowerCase()));
+                    setDisplayPosts(query);
+                }
+            }
+        }, 500);
+
+        return () => {
+            clearInterval(search);
+        }
+        
+    }, [term]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -39,9 +59,7 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
         return () => {
             window.removeEventListener('scroll', handleScroll);
             resetPostIdx();
-            // setLoaded(false);
-            // resetForums();
-            // resetForumShow();
+            setDisplayPosts([])
         }
     }, [])
 
@@ -49,19 +67,38 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
         const fetchNewForum = async () => {
             if (forums && forums.length) {
                 const selected = forums.find(f => f.slug === forumSlug);
-                await getForumShow(selected.id)
-                if (forum) {
-                    setLoaded(true)
-                }
+                await getForumShow(selected.id);
             }
         }
         fetchNewForum();
     }, [forums]);
 
+    useEffect(() => {
+        if (forum && forum.posts) {
+            setDisplayPosts(forum.posts);
+            if (displayPosts) {
+                setTimeout(() => {
+                    setLoaded(true);
+                }, 1000);
+            }
+        }
+    }, [forum])
+
+    useEffect(() => {
+        console.log(displayPosts)
+    }, [displayPosts]);
+
     const renderPosts = () => {
-        if (forum.posts) {
+        if (displayPosts.length === 0) {
+            return (
+                <Row className="justify-content-start my-4">
+                    <p style={{fontSize: '1.2rem'}}>No posts matching that search were found...</p>
+                </Row>
+            )
+        }
+        if (displayPosts && displayPosts.length) {
             //? get a chunk of 20 posts
-            const collection = forum.posts.sort((a, b) => b.upvotes - a.upvotes).slice(0, postIdx);
+            const collection = displayPosts.sort((a, b) => b.upvotes - a.upvotes).slice(0, postIdx);
             return collection.map(post => {
                 return (
                     <Row className="justify-content-start" key={post.id}>
@@ -107,12 +144,15 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
                             >
                                 {forum.name}
                             </h1>
-                            <div className="mt-5 ml-4">
+                            <div className="mt-4 mb-3 ml-4">
                                 <BackButton label="back to all forums" />
                             </div>
+                            <Row className="justify-content-center mb-3">
+                                <Input className="col-11" placeholder="Search for posts..." size="large" type="text" value={term} onChange={e => setTerm(e.target.value)} />
+                            </Row> 
                             {forum.posts && forum.posts.length !== 0 ?
                                 <ul className="ul-unstyled">
-                                    {renderPosts()}
+                                    {renderPosts(forum.posts)}
                                 </ul>
                             :
                                 <>
