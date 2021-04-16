@@ -2,7 +2,7 @@ div.delete-header {
     color: #fff;
     font-size: 1.5rem !important;
     background-color: var(--red-secondary);
-    text-shadow: 5px 4px 6px rgba(0,0,0,0.67);
+    text-shadow: 4px 3px 5px rgba(0,0,0,0.67);
     letter-spacing: 0.3em;
     line-height: 1.5;
     border-top-left-radius: 12px;
@@ -13,7 +13,7 @@ div.no-delete-header {
     color: #fff;
     font-size: 1.5rem !important;
     background-color: var(--royal-purple);
-    text-shadow: 5px 4px 6px rgba(0,0,0,0.67);
+    text-shadow: 4px 3px 5px rgba(0,0,0,0.67);
     letter-spacing: 0.3em;
     line-height: 1.5;
     border-top-left-radius: 12px;
