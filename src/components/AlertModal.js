@@ -17,7 +17,7 @@ const AlertModal = ({showModal, setShowModal, messages}) => {
                 <Modal.Body style={{margin: '20px'}}>
                     <Container>
                         <Row className="justify-content-center">
-                             <img src={toadIcon} style={{
+                             <img alt="happy-toad" src={toadIcon} style={{
                                     width: '200px',
                                     height: '200px',
                                     marginBottom: '18px'

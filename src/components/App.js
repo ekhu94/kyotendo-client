@@ -22,9 +22,7 @@ import ScrollTop from './ScrollTop';
 import Signup from './Signup';
 import UserPage from './UserPage';
 import YoutubeVideoPlayer from './YoutubeVideoPlayer';
-import { propTypes } from 'react-bootstrap/esm/Image';
 import './App.css';
-import { render } from '@testing-library/react';
 
 const App = ({ auth, setAuth }) => {
     const [showModal, setShowModal] = useState(false);

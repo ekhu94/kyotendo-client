@@ -17,7 +17,7 @@ const ErrorModal = ({showModal, setShowModal, messages, onBackClick}) => {
                 <Modal.Body style={{margin: '20px'}}>
                     <Container>
                         <Row className="justify-content-center">
-                             <img src={errorIcon} style={{
+                             <img alt="error-toad" src={errorIcon} style={{
                                     width: 'auto',
                                     height: '200px',
                                     marginBottom: '18px'

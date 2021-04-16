@@ -60,7 +60,7 @@ const CommentObject = ({ auth, comment, avatar, slug, onCommentCreate, onDeleteC
                             alt={avatar.props.alt}
                             style={{width: '20px', height: '20px'}}
                         />
-                        <Link to={`/users/${slug}`}>
+                        <Link to={`/users/${comment.user.id}`}>
                             <List.Header as='a'>{comment.user.username}</List.Header>
                         </Link>
                         <span style={{fontSize: '0.8rem'}} className="text-muted ml-2">{formatCreateDate(comment.created_at)}</span>

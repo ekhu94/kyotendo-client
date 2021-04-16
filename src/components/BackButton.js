@@ -1,5 +1,4 @@
 import React, { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { Row } from 'react-bootstrap';
 import { Button } from 'semantic-ui-react';
 import './BackButton.css';

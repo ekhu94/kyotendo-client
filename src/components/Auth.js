@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Card, Button } from 'react-bootstrap';
 
 import './Auth.css';
 import backgroundImg from '../assets/smash-bros-background.jpg';

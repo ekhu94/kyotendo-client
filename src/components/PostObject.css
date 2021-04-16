@@ -112,9 +112,9 @@ p.comment-link {
     div.post-title h4 {
         font-size: 1rem;
     }
-    p {
+    /* p {
         font-size: 0.9rem;
-    }
+    } */
 }
 
 @media (max-width: 920px) {
@@ -145,9 +145,9 @@ p.comment-link {
     div.user-icon {
         font-size: 0.9rem;
     }
-    p {
+    /* p {
         font-size: 0.8rem;
-    }
+    } */
 }
 
 @media (max-width: 481px) {
@@ -157,9 +157,9 @@ p.comment-link {
     img.post-img {
         max-width: 300px;
     }
-    p {
+    /* p {
         font-size: 0.6rem;
-    }
+    } */
 }
 
 @media (max-width: 396px) {
