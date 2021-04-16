@@ -1,4 +1,4 @@
-button.ui.red.mini.back-btn {
+button.ui.blue.mini.back-btn {
     font-family: 'Chakra Petch', sans-serif;
     color: #fff;
     background-color: var(--blue-secondary);
@@ -10,7 +10,7 @@ button.ui.red.mini.back-btn {
     transition: all 0.6s;
 }
 
-button.ui.red.mini.back-btn:hover {
+button.ui.blue.mini.back-btn:hover {
     transform: scale(0.97, 0.97);
     /* background-color: var(--red-secondary); */
 }

@@ -139,6 +139,10 @@ const App = ({ auth, setAuth }) => {
         }, 2000);
     };
 
+    const onDeletePost = (forumSlug, routerProps) => {
+        routerProps.history.push(`/forums/${forumSlug}`);
+    }
+
     const onNewForum = (data, routerProps) => {
         setShowModal(true);
         setTimeout(() => {
@@ -172,7 +176,7 @@ const App = ({ auth, setAuth }) => {
                         <Route
                             exact path="/forums/:slug/:postId"
                             render={routerProps => {
-                                return <PostShow postId={routerProps.match.params.postId} />
+                                return <PostShow postId={routerProps.match.params.postId} routerProps={routerProps} onDeletePost={onDeletePost} />
                             }
                         }
                         />

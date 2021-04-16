@@ -10,7 +10,7 @@ const BackButton = ({ label, url=null }) => {
             <Button
                 className="ml-5 mb-4 back-btn"
                 size="mini"
-                color="red"
+                color="blue"
                 content={label}
                 icon='backward'
                 labelPosition='left'

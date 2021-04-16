@@ -12,6 +12,8 @@ import avatars from '../assets/icons/avatars/avatarIcons';
 import backgroundImg from '../assets/forum-background.jpg';
 import BackButton from './BackButton';
 import CommentsList from './CommentsList';
+import DeleteModal from './DeleteModal';
+import DeletePostButton from './DeletePostButton'
 import NewCommentForm from './NewCommentForm';
 import NoDeleteModal from './NoDeleteModal';
 import PageLoader from './PageLoader';
@@ -19,14 +21,14 @@ import ScrollTop from './ScrollTop';
 import UpvoteButtons from './UpvoteButtons';
 
 
-const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
+const PostShow = ({ auth, postId, post, getPostShow, resetPostShow, onDeletePost, routerProps }) => {
     const [loaded, setLoaded] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     // const [isOpen, setIsOpen] = useState(false)
     // const [user, setUser] = useState({});
 
     useEffect(() => {
-        
         getPostShow(postId)
 
         return () => {
@@ -189,8 +191,31 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
         setShowModal(true);
     }
 
+    const onPostDeleteClick = () => {
+        setShowDeleteModal(true);
+    }
+
     const onBackClick = () => {
         setShowModal(false);
+    }
+
+    const onDeleteBackClick = () => {
+        setShowDeleteModal(false);
+    }
+
+    const onDeleteConfirm = async post => {
+        const forumSlug = post.forum.slug;
+        await api.post.deletePost(post);
+        setTimeout(() => {
+            onDeletePost(forumSlug, routerProps);
+        }, 1200);
+    }
+
+    const postDeleteProps = {
+        head: 'Delete Post?',
+        bodyOne: 'Are you sure you want to remove this post and all its comments?',
+        bodyTwo: 'This action cannot be undone!',
+        deleteConfirm: 'Post removed from Kyotendo.'
     }
 
     return (
@@ -203,10 +228,14 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                             <Row className="justify-content-center">
                                 <Card id="post-show-card" className="p-0 pb-5 col-10 col-md-8" style={{ borderRadius: '20px' }}>
                                     <h1 id="post-show-header" className="px-2 py-4 mb-4 text-center" style={{letterSpacing: '0.5rem'}}>{post.forum.name}</h1>
-                                    <BackButton label="back to all posts" url={`/forums/${post.forum.slug}`} />
+                                        <BackButton label="back to all posts" url={`/forums/${post.forum.slug}`} />
                                     {/* post content */}
                                     {renderPostContent()}
-                                    {/* comment form */}
+                                    {auth.user && auth.user.id === post.user.id ?
+                                        <Row className="justify-content-center">
+                                            <DeletePostButton onPostDeleteClick={onPostDeleteClick} />
+                                        </Row>
+                                    : null }
                                     <NewCommentForm user={post.user} post={post} onCommentCreate={onCommentCreate} />
                                     {/* comment list */}
                                     <CommentsList comments={post.comments} onCommentCreate={onCommentCreate}onDeleteClick={onDeleteClick} />
@@ -216,6 +245,7 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                     </>
                 : <PageLoader /> }
             </div>
+            <DeleteModal showModal={showDeleteModal} setShowModal={setShowDeleteModal} item={post} onDeleteConfirm={onDeleteConfirm} onBackClick={onDeleteBackClick} data={postDeleteProps} />
             <NoDeleteModal showModal={showModal} setShowModal={setShowModal} onBackClick={onBackClick} />
         </>
     );
@@ -223,7 +253,8 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
 
 const mapStateToProps = state => {
     return {
-        post: state.post
+        post: state.post,
+        auth: state.auth
     }
 };
 

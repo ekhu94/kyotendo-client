@@ -133,6 +133,13 @@ const UserPage = ({ userId }) => {
         setShowModal(false);
     };
 
+    const deleteVideoProps = {
+        head: 'Remove Video?',
+        bodyOne: 'Are you sure you want to delete this video from your collection?',
+        bodyTwo: 'This may also remove the game from your profile as well.',
+        deleteConfirm: 'Video removed from your profile!'
+    }
+
     return (
         <div className="profile-container pt-5" style={{backgroundImage: `url(${backgroundImg})`}}>
             {currentUser && currentUser.id ?
@@ -182,7 +189,7 @@ const UserPage = ({ userId }) => {
                     </Row>
                 </Container>
             : <PageLoader /> }
-            <DeleteModal showModal={showModal} setShowModal={setShowModal} video={deleteVideo} onDeleteConfirm={onDeleteConfirm} onBackClick={onBackClick} />
+            <DeleteModal showModal={showModal} setShowModal={setShowModal} item={deleteVideo} onDeleteConfirm={onDeleteConfirm} onBackClick={onBackClick} data={deleteVideoProps} />
         </div>
     )
 };

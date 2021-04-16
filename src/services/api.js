@@ -50,6 +50,10 @@ const createPost = async post => {
     return await rails.post('/posts', post);
 }
 
+const deletePost = async post => {
+    return await rails.delete(`/posts/${post.id}`);
+}
+
 const createComment = async comment => {
     return await rails.post('/comments', comment);
 }
@@ -106,7 +110,8 @@ export const api = {
         postForum
     },
     post: {
-        createPost
+        createPost,
+        deletePost
     },
     comment: {
         createComment,

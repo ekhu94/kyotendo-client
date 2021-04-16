@@ -3,7 +3,7 @@ import { Container, Row, Modal, Button } from 'react-bootstrap';
 import deleteIcon from '../assets/icons/delete-modal-icon.jpg';
 import './DeleteModal.css';
 
-const DeleteModal = ({ showModal, setShowModal, video, onDeleteConfirm, onBackClick }) => {
+const DeleteModal = ({ showModal, setShowModal, item, onDeleteConfirm, onBackClick, data }) => {
     const [deleteConfirm, setDeleteConfirm] = useState(false);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const DeleteModal = ({ showModal, setShowModal, video, onDeleteConfirm, onBackCl
 
     const onDeleteClick = () => {
         setDeleteConfirm(true);
-        onDeleteConfirm(video);
+        onDeleteConfirm(item);
         setTimeout(() => {
             setDeleteConfirm(false);
         }, 1500)
@@ -28,7 +28,7 @@ const DeleteModal = ({ showModal, setShowModal, video, onDeleteConfirm, onBackCl
         <>
             <Modal show={showModal} onHide={handleClose} backdrop='static'>
                 <Modal.Header className="justify-content-center delete-header">
-                    <Modal.Title className="text-center py-2">Remove Video?</Modal.Title>
+                    <Modal.Title className="text-center py-2">{data.head}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{margin: '20px'}}>
                     <Container>
@@ -41,14 +41,14 @@ const DeleteModal = ({ showModal, setShowModal, video, onDeleteConfirm, onBackCl
                              />
                         </Row>
                         <Row className="justify-content-center mb-3 text-center" style={{fontSize: '1.1rem'}}>
-                            Are you sure you want to delete this video from your collection?
+                            {data.bodyOne}
                         </Row>
                         <Row className="justify-content-center mb-3 text-center" style={{fontSize: '1.1rem'}}>
-                            This may also remove the game from your profile as well.
+                            {data.bodyTwo}
                         </Row>
                         {deleteConfirm ?
                             <Row className="justify-content-center mb-3 text-center text-danger" style={{fontSize: '0.9rem'}}>
-                                Video removed from your profile!
+                                {data.deleteConfirm}
                             </Row>
                         : null }
                         <Row className="justify-content-center mt-3">

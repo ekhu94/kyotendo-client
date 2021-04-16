@@ -1,0 +1,13 @@
+button.ui.red.mini.delete-btn {
+    font-family: 'Chakra Petch', sans-serif;
+    color: #fff;
+    background-color: var(--red-secondary);
+    border-radius: 20px;
+    letter-spacing: 0.1rem;
+    transition: all 0.6s;
+}
+
+button.ui.red.mini.delete-btn:hover {
+    transform: scale(0.97, 0.97);
+    /* background-color: var(--red-secondary); */
+}
