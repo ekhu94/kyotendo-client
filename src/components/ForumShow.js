@@ -76,7 +76,6 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
     }, [forums]);
 
     useEffect(() => {
-        console.log(forum)
         if (forum && forum.posts) {
             setDisplayPosts(forum.posts);
             if (displayPosts) {
@@ -88,7 +87,7 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
     }, [forum])
 
     useEffect(() => {
-        if (forum.posts && forum.posts.length !== displayPosts.length) {
+        if (term === "" && forum.posts && forum.posts.length !== displayPosts.length) {
             setDisplayPosts(forum.posts);
         }
     }, [displayPosts]);
