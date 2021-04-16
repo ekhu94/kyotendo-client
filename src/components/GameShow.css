@@ -70,6 +70,9 @@ button.btn.btn-primary.youtube-link-btn:hover {
         font-size: 1.4rem;
         line-height: 2rem;
     }
+    /* #rating-table {
+        max-width: fit-content;
+    } */
 }
 
 @media (max-width: 396px) {

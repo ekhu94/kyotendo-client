@@ -88,7 +88,7 @@ const GameShow = ({ gameShow, getGameShow, resetGameShow, gameSlug }) => {
                 </Jumbotron>
                 <Container>
                     <Row className="justify-content-center mt-5">
-                        <Card className="col-10 col-md-12 p-0 mb-5" style={{borderRadius: '20px'}}>
+                        <Card className="col-11 col-md-12 p-0 mb-5" style={{borderRadius: '20px'}}>
                             <h1 className="py-4 px-2 mb-0 game-show-header text-center">{gameShow.name}</h1>
                             <Row className="justify-content-center my-5">
                                 {renderImages()}
@@ -99,29 +99,29 @@ const GameShow = ({ gameShow, getGameShow, resetGameShow, gameSlug }) => {
                                 <Table striped hover>
                                     <tbody>
                                         <tr style={{fontWeight: 'bold', letterSpacing: '0.1rem'}}>
-                                            <td colSpan="2" className="pl-2 pl-sm-3 pl-md-4 pl-lg-5">Release Date</td>
+                                            <td colSpan="2" className="pl-3 pl-md-4 pl-lg-5">Release Date</td>
                                             <td className="text-center" colSpan="2">{formatDate(gameShow.released)}</td>
                                         </tr>
                                         <tr style={{fontWeight: 'bold', letterSpacing: '0.1rem'}}>
-                                            <td colSpan="2" className="pl-2 pl-sm-3 pl-md-4 pl-lg-5">Platform</td>
+                                            <td colSpan="2" className="pl-3 pl-md-4 pl-lg-5">Platform</td>
                                             <td className="text-center" colSpan="2">{renderPlatforms()}</td>
                                         </tr>
                                         <tr style={{fontWeight: 'bold', letterSpacing: '0.1rem'}}>
-                                            <td colSpan="2" className="pl-2 pl-sm-3 pl-md-4 pl-lg-5">Metacritic Score</td>
+                                            <td colSpan="2" className="pl-3 pl-md-4 pl-lg-5">Metacritic Score</td>
                                             <td className="text-center" colSpan="2">{gameShow.metacritic}</td>
                                         </tr>
                                         <tr style={{fontWeight: 'bold', letterSpacing: '0.1rem'}}>
-                                            <td colSpan="2" className="pl-2 pl-sm-3 pl-md-4 pl-lg-5">Genres</td>
+                                            <td colSpan="2" className="pl-3 pl-md-4 pl-lg-5">Genres</td>
                                             <td className="text-center" colSpan="2">{renderGenres()}</td>
                                         </tr>
                                         {gameShow.esrb_rating ?
                                             <tr style={{fontWeight: 'bold', letterSpacing: '0.1rem'}}>
-                                                <td colSpan="2" className="pl-2 pl-sm-3 pl-md-4 pl-lg-5">ESRB Rating</td>
+                                                <td colSpan="2" className="pl-3 pl-md-4 pl-lg-5">ESRB Rating</td>
                                                 <td className="text-center" colSpan="2">{gameShow.esrb_rating.name}</td>
                                             </tr>
                                         : null }
                                         <tr style={{fontWeight: 'bold', letterSpacing: '0.1rem'}}>
-                                            <td colSpan="2" className="pl-2 pl-sm-3 pl-md-4 pl-lg-5">Tags</td>
+                                            <td colSpan="2" className="pl-3 pl-md-4 pl-lg-5">Tags</td>
                                             <td className="text-center" colSpan="2">{renderTags()}</td>
                                         </tr>
                                     </tbody>
@@ -138,11 +138,11 @@ const GameShow = ({ gameShow, getGameShow, resetGameShow, gameSlug }) => {
                             {gameShow.ratings && gameShow.ratings.length ?
                                 <div>
                                     <h3 className="text-center mb-2">Player Ratings</h3>
-                                    <Table striped bordered hover>
+                                    <Table striped bordered hover id="rating-table">
                                         <thead>
                                             <tr className="text-center">
-                                                <th>Count</th>
-                                                <th>Skip</th>
+                                                <th className="d-none d-md-table-cell">Count</th>
+                                                <th className="d-none d-sm-table-cell">Skip</th>
                                                 <th>Meh</th>
                                                 <th>Recommended</th>
                                                 <th>Exceptional</th>
@@ -150,10 +150,10 @@ const GameShow = ({ gameShow, getGameShow, resetGameShow, gameSlug }) => {
                                         </thead>
                                         <tbody>
                                             <tr className="text-center">
-                                                <td>{gameShow.reviews_count}</td>
+                                                <td className="d-none d-md-table-cell">{gameShow.reviews_count}</td>
                                                 {gameShow.ratings.length >= 4 ?
-                                                    <td>{gameShow.ratings[3].percent}%</td>
-                                                : <td>0%</td> }
+                                                    <td className="d-none d-sm-table-cell">{gameShow.ratings[3].percent}%</td>
+                                                : <td className="d-none d-sm-table-cell">0%</td> }
                                                 {gameShow.ratings.length >= 3 ?
                                                     <td>{gameShow.ratings[2].percent}%</td>
                                                 : <td>0%</td> }
