@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { api } from '../services/api';
@@ -149,37 +149,38 @@ const App = ({ auth, setAuth }) => {
 
     return (
         <div>
-            <Router>
+            <Router>           
                 <div className="container-fluid p-0 main-container">
-                    {showAlert && renderAlert()}
-                    <ScrollTop />
+                    <ScrollTop />   
                     <NavBar onLogout={onLogout} showAlert={showAlert} renderAlert={renderAlert} />
-                    <Route exact path="/" render={() => <HomePage /> } />
-                    <Route exact path='/users/:id' render={routerProps => <UserPage userId={routerProps.match.params.id} />} />
-                    <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
-                    <Route exact path="/new/:slug/post" render={routerProps => <NewPostForm forumSlug={routerProps.match.params.slug} onNewPost={onNewPost} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
-                    <Route exact path="/games" render={() => <GamesList />} />
-                    <Route exact path="/games/:slug" render={routerProps => <GameShow gameSlug={routerProps.match.params.slug} />} />
-                    <Route exact path="/games/:slug/videos" render={routerProps => <YoutubeVideoPlayer gameSlug={routerProps.match.params.slug} />} />
-                    <Route exact path="/forums" render={() => <ForumList />} />
-                    <Route
-                        exact path="/forums/:slug"
-                        render={routerProps => {
-                            return <ForumShow forumSlug={routerProps.match.params.slug} />                      
+                    <Switch>
+                        <Route exact path="/" render={() => <HomePage /> } />
+                        <Route exact path='/users/:id' render={routerProps => <UserPage userId={routerProps.match.params.id} />} />
+                        <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
+                        <Route exact path="/new/:slug/post" render={routerProps => <NewPostForm forumSlug={routerProps.match.params.slug} onNewPost={onNewPost} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
+                        <Route exact path="/games" render={() => <GamesList />} />
+                        <Route exact path="/games/:slug" render={routerProps => <GameShow gameSlug={routerProps.match.params.slug} />} />
+                        <Route exact path="/games/:slug/videos" render={routerProps => <YoutubeVideoPlayer gameSlug={routerProps.match.params.slug} />} />
+                        <Route exact path="/forums" render={() => <ForumList />} />
+                        <Route
+                            exact path="/forums/:slug"
+                            render={routerProps => {
+                                return <ForumShow forumSlug={routerProps.match.params.slug} />                      
+                            }
+                        } 
+                        />
+                        <Route
+                            exact path="/forums/:slug/:postId"
+                            render={routerProps => {
+                                return <PostShow postId={routerProps.match.params.postId} />
+                            }
                         }
-                    } 
-                    />
-                    <Route
-                        exact path="/forums/:slug/:postId"
-                        render={routerProps => {
-                            return <PostShow postId={routerProps.match.params.postId} />
-                        }
-                    }
-                    />
-                    <Route path="/auth" render={() => <Auth />} />
-                    <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
-                    <Route path="/login" render={routerProps => <Login onLogin={onLogin} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
-                    <Route render={() => <NoPage />} />
+                        />
+                        <Route path="/auth" render={() => <Auth />} />
+                        <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
+                        <Route path="/login" render={routerProps => <Login onLogin={onLogin} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
+                        <Route component={NoPage} />
+                    </Switch>
                     <AlertModal messages={logoutSuccessMsgs} showModal={showLogoutModal} setShowModal={setShowLogoutModal}/>
                     {/* login failure modal */}
                     <ErrorModal messages={loginFailureMsgs} showModal={showLoginErrorModal} setShowModal={setShowLoginErrorModal} onBackClick={onLoginFailClick} />
