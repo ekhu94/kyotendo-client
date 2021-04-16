@@ -19,7 +19,7 @@ const NoDeleteModal = ({ showModal, setShowModal, onBackClick }) => {
                 <Modal.Body style={{margin: '20px'}}>
                     <Container>
                         <Row className="justify-content-center">
-                             <img src={noDeleteIcon} style={{
+                             <img alt="troll-waluigi" src={noDeleteIcon} style={{
                                     width: '200px',
                                     height: '200px',
                                     marginBottom: '18px'

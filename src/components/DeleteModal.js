@@ -33,7 +33,7 @@ const DeleteModal = ({ showModal, setShowModal, video, onDeleteConfirm, onBackCl
                 <Modal.Body style={{margin: '20px'}}>
                     <Container>
                         <Row className="justify-content-center">
-                             <img src={deleteIcon} style={{
+                             <img alt="delete-koopa" src={deleteIcon} style={{
                                     width: '200px',
                                     height: '200px',
                                     marginBottom: '18px'
