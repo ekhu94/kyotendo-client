@@ -11,7 +11,7 @@ import ProfileGameCard from './ProfileGameCard';
 import ProfileVideoRow from './ProfileVideoRow';
 import PageLoader from './PageLoader';
 
-import backgroundImg from '../assets/mario-maker.jpg';
+import backgroundImg from '../assets/smash-bros-background.jpg';
 import bowser from '../assets/icons/avatars/bowser.jpg';
 import daisy from '../assets/icons/avatars/daisy.jpg';
 import donkeyKong from '../assets/icons/avatars/donkey-kong.jpg';

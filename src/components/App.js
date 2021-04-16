@@ -17,6 +17,7 @@ import Login from './Login';
 import NavBar from './NavBar';
 import NewForumForm from './NewForumForm';
 import NewPostForm from './NewPostForm';
+import NoPage from './NoPage';
 import PostShow from './PostShow';
 import ScrollTop from './ScrollTop';
 import Signup from './Signup';
@@ -178,6 +179,7 @@ const App = ({ auth, setAuth }) => {
                     <Route path="/auth" render={() => <Auth />} />
                     <Route path="/signup" render={routerProps => <Signup onSignup={onSignup} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                     <Route path="/login" render={routerProps => <Login onLogin={onLogin} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
+                    <Route render={() => <NoPage />} />
                     <AlertModal messages={logoutSuccessMsgs} showModal={showLogoutModal} setShowModal={setShowLogoutModal}/>
                     {/* login failure modal */}
                     <ErrorModal messages={loginFailureMsgs} showModal={showLoginErrorModal} setShowModal={setShowLoginErrorModal} onBackClick={onLoginFailClick} />
