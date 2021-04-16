@@ -13,6 +13,7 @@ import { api } from '../services/api';
 import './NewForumForm.css';
 import backgroundImg from '../assets/Splatoon-wallpaper-2.jpg';
 import AlertModal from './AlertModal';
+import BackButton from './BackButton';
 
 const schema = yup.object().shape({
     name: yup.string().required(),
@@ -47,6 +48,9 @@ const NewForumForm = ({ onNewForum, routerProps, showModal, setShowModal }) => {
                     <Row className="justify-content-center">
                     <Card id="new-forum-card" className="p-0 pb-4 col-10 col-md-8 col-lg-7" style={{ borderRadius: '20px' }}>
                     <h1 id="new-forum-header" className="mb-4 py-4 px-1 text-center" style={{letterSpacing: '0.5rem'}}>Start a New Community!</h1>
+                    <div className="ml-2">
+                        <BackButton label="back to all forums" />
+                    </div>
                     <Form onSubmit={handleSubmit(onFormSubmit)}>
                         <Row className="justify-content-center">
                             <div className="col-8 col-md-7 my-4">

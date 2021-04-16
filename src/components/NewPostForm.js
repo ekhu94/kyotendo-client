@@ -13,6 +13,7 @@ import { api } from '../services/api';
 import './NewPostForm.css';
 import backgroundImg from '../assets/mariokart-2.jpg';
 import AlertModal from './AlertModal';
+import BackButton from './BackButton';
 
 const schema = yup.object().shape({
     title: yup.string().required(),
@@ -263,11 +264,14 @@ const NewPostForm = ({ auth, forumSlug, forums, getForums, forum, getForumShow, 
                         <Card id="new-post-card" className="px-0 pb-5 col-10 col-md-8" style={{ borderRadius: '20px' }}>
                             <div>
                                 <h1
-                                    className="form-headers text-center py-3 mb-5"
+                                    className="form-headers text-center py-3 mb-3"
                                 >
                                     {forum.name}
                                 </h1>
-                                <h3 className="form-headers text-center my-3">Choose a post type</h3>
+                                <div className="ml-2">
+                                    <BackButton label={`back to ${forumSlug}`} url={`/forums/${forumSlug}`} />
+                                </div>
+                                <h3 className="form-headers text-center mt-1 mb-3">Choose a post type</h3>
                             </div>
                             <Row className="justify-content-center">
                                 <div className="col-12 col-md-10 text-center">

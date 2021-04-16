@@ -60,6 +60,8 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
             window.removeEventListener('scroll', handleScroll);
             resetPostIdx();
             setDisplayPosts([])
+            resetForums();
+            resetForumShow();
         }
     }, [])
 
@@ -74,6 +76,7 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
     }, [forums]);
 
     useEffect(() => {
+        console.log(forum)
         if (forum && forum.posts) {
             setDisplayPosts(forum.posts);
             if (displayPosts) {
@@ -85,7 +88,9 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
     }, [forum])
 
     useEffect(() => {
-        console.log(displayPosts)
+        if (forum.posts && forum.posts.length !== displayPosts.length) {
+            setDisplayPosts(forum.posts);
+        }
     }, [displayPosts]);
 
     const renderPosts = () => {
@@ -144,8 +149,8 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
                             >
                                 {forum.name}
                             </h1>
-                            <div className="mt-4 mb-3 ml-4">
-                                <BackButton label="back to all forums" />
+                            <div className="mt-4 mb-3 ml-2">
+                                <BackButton label="back to all forums" url="/forums" />
                             </div>
                             <Row className="justify-content-center mb-3">
                                 <Input className="col-11" placeholder="Search for posts..." size="large" type="text" value={term} onChange={e => setTerm(e.target.value)} />

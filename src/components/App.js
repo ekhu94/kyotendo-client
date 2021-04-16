@@ -134,6 +134,8 @@ const App = ({ auth, setAuth }) => {
         setShowModal(true);
         setTimeout(() => {
             setShowModal(false);
+            // window.history.pushState({}, '', `/forums/${forumSlug}`);
+            // window.location.reload();
             routerProps.history.push(`/forums/${forumSlug}`);
         }, 2000);
     };
