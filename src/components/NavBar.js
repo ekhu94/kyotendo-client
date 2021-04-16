@@ -111,10 +111,10 @@ const NavBar = ({ onLogout, auth, showAlert, renderAlert }) => {
                                     collapseOnSelect
                                 >
                                     <LinkContainer to={`/users/${auth.user.id}`}>
-                                        <NavDropdown.Item>profile</NavDropdown.Item>
+                                        <NavDropdown.Item active={false}>profile</NavDropdown.Item>
                                     </LinkContainer>
                                         <NavDropdown.Item
-                                            className=""
+                                            active={false}
                                             onClick={()=>{
                                                 onLogout()                                     
                                             }}

@@ -39,7 +39,7 @@ const CommentsList = ({ auth, comments, onCommentCreate, onDeleteClick }) => {
 
     return (
         <>
-            <h3 style={{marginLeft: '64px'}}>{renderCommentsHeader()}</h3>
+            <h3 className="pl-md-5 pl-0" style={{marginLeft: '32px'}}>{renderCommentsHeader()}</h3>
             <List divided relaxed>
                 {renderComments()}
             </List>

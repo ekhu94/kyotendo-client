@@ -244,7 +244,7 @@ const PostObject = ({ auth, post, pathname }) => {
     const renderParagraphs = content => {
         const parArr = content.replace(/&amp;#x200B;/ig, '').split(/\n+/ig)
         return parArr.map(par => {
-            return <p className="mr-4">{par}</p>
+            return <p className="mr-4 p-post">{par}</p>
         });
     };
 

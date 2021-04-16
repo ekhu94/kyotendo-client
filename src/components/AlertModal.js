@@ -10,7 +10,7 @@ const AlertModal = ({showModal, setShowModal, messages}) => {
 
     return (
         <>
-            <Modal show={showModal} onHide={handleClose} backdrop='static'>
+            <Modal centered show={showModal} onHide={handleClose} backdrop='static'>
                 <Modal.Header className="justify-content-center modal-header">
                     <Modal.Title className="text-center py-2">{messages.header}</Modal.Title>
                 </Modal.Header>

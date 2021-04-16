@@ -45,6 +45,10 @@ a.dropdown-item {
     letter-spacing: 0.2rem;
 }
 
+a.dropdown-item:focus {
+    background-color: var(--light) !important;
+}
+
 a.active.dropdown-item {
     color: #000;
     background-color: #d1d1d1;

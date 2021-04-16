@@ -155,7 +155,7 @@ const ForumShow = ({ auth, forums, getForums, resetForums, forumSlug, forum, get
                                 <Input className="col-11" placeholder="Search for posts..." size="large" type="text" value={term} onChange={e => setTerm(e.target.value)} />
                             </Row> 
                             {forum.posts && forum.posts.length !== 0 ?
-                                <ul className="ul-unstyled">
+                                <ul className="ul-unstyled pl-3 pl-md-4">
                                     {renderPosts(forum.posts)}
                                 </ul>
                             :

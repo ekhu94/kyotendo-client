@@ -6,7 +6,7 @@ import downvoteImg from '../assets/icons/bowser-downvote-icon.jpg';
 import './UpvoteButtons.css';
 import { api } from '../services/api';
 
-const UpvoteButtons = ({ auth, postId, postUpvotes }) => {
+const UpvoteButtons = ({ auth, postId, postUpvotes, showPage }) => {
     const [ownPost, setOwnPost] = useState(false);
     const [upvoteCount, setUpvoteCount] = useState(postUpvotes)
     const [upvoted, setUpvoted] = useState(false);
@@ -65,7 +65,7 @@ const UpvoteButtons = ({ auth, postId, postUpvotes }) => {
     }
 
     return (
-            <div>
+            <div className={ showPage ? 'ml-4' : '' }>
                 <img
                     src={upvoteImg}
                     alt="upvote"

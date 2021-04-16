@@ -50,11 +50,11 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                 return (
                     <>
                         <Row className="justify-content-center">
-                            <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
-                            <div className="col-10 post-title-show">
+                            <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" showPage={true} />
+                            <div className="col-10 post-title-show pl-2 pl-md-3">
                                 {renderUserLink()}
                                 <h4
-                                    className="d-inline mr-0 ml-3 ml-md-0"
+                                    className="d-inline mr-0"
                                 >
                                     {post.title}
                                     <Badge
@@ -79,11 +79,11 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                 return (
                     <>
                         <Row className="justify-content-center">
-                            <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
-                            <div className="col-10 post-title-show">
+                            <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" showPage={true} />
+                            <div className="col-10 post-title-show pl-2 pl-md-3">
                                 {renderUserLink()}
                                 <h4
-                                    className="d-inline mr-0 ml-3 ml-md-0"
+                                    className="d-inline mr-0"
                                 >
                                     {post.title}
                                     <Badge
@@ -110,11 +110,11 @@ const PostShow = ({ postId, post, getPostShow, resetPostShow }) => {
                 return (
                     <>
                         <Row className="justify-content-center">
-                                <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" />
-                                <div className="col-10 post-title-show">
+                                <UpvoteButtons postId={post.id} postUpvotes={post.upvotes} className="col-1" showPage={true} />
+                                <div className="col-10 post-title-show pl-2 pl-md-3">
                                     {renderUserLink()}
                                     <h4
-                                        className="d-inline mr-0 ml-3 ml-md-0"
+                                        className="d-inline mr-0"
                                     >
                                         {post.title}
                                         <Badge

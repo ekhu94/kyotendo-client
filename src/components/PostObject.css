@@ -23,11 +23,11 @@ div.post-title h4 {
 
 button.align-items-center.expand-btn {
     border-radius: 8px;
-    background-color: var(--blue-secondary);
+    background-color: var(--pink);
 }
 
 button.align-items-center.expand-btn:hover {
-    background-color: var(--red-secondary);
+    background-color: var(--lime);
 }
 
 div.post-title:hover > h4 {
@@ -42,7 +42,7 @@ div.post-title:hover > h4 .badge.badge-pill {
     color: var(--dark);
 }
 
-p {
+p.mr-4 {
     line-height: 1.8;
     font-weight: 300;
     font-size: 1.1rem;
@@ -157,9 +157,9 @@ p.comment-link {
     img.post-img {
         max-width: 300px;
     }
-    /* p {
-        font-size: 0.6rem;
-    } */
+    p.mr-4.p-post {
+        max-width: 280px;
+    }
 }
 
 @media (max-width: 396px) {
@@ -167,6 +167,9 @@ p.comment-link {
         width: 260px;
     }
     img.post-img {
+        max-width: 260px;
+    }
+    p.mr-4.p-post {
         max-width: 260px;
     }
 }
@@ -177,5 +180,8 @@ p.comment-link {
     }
     img.post-img {
         max-width: 220px;
+    }
+    p.mr-4.p-post {
+        max-width: 250px;
     }
 }

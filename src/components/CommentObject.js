@@ -48,7 +48,7 @@ const CommentObject = ({ auth, comment, avatar, slug, onCommentCreate, onDeleteC
 
     return (
         <Row className="justify-content-start mb-4">
-            <List.Item className="col-10 ml-5">                   
+            <List.Item className="col-10 ml-2 ml-md-5">                   
                 {/* <Image avatar src={avatar.props.src}
                     alt={avatar.props.alt} /> */}
                 <List.Content>
