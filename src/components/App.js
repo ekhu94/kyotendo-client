@@ -21,6 +21,7 @@ import NoPage from './NoPage';
 import PostShow from './PostShow';
 import ScrollTop from './ScrollTop';
 import Signup from './Signup';
+import UpdatePostForm from './UpdatePostForm';
 import UserPage from './UserPage';
 import YoutubeVideoPlayer from './YoutubeVideoPlayer';
 import './App.css';
@@ -139,6 +140,14 @@ const App = ({ auth, setAuth }) => {
         }, 2000);
     };
 
+    const onUpdatePost = (postId, forumSlug, routerProps) => {
+        setShowModal(true);
+        setTimeout(() => {
+            setShowModal(false);
+            routerProps.history.push(`/forums/${forumSlug}/${postId}`);
+        }, 2000);
+    }
+
     const onDeletePost = (forumSlug, routerProps) => {
         routerProps.history.push(`/forums/${forumSlug}`);
     }
@@ -162,6 +171,7 @@ const App = ({ auth, setAuth }) => {
                         <Route exact path='/users/:id' render={routerProps => <UserPage userId={routerProps.match.params.id} />} />
                         <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                         <Route exact path="/new/:slug/post" render={routerProps => <NewPostForm forumSlug={routerProps.match.params.slug} onNewPost={onNewPost} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
+                        <Route exact path="/edit/:slug/post" render={routerProps => <UpdatePostForm forumSlug={routerProps.match.params.slug} onUpdatePost={onUpdatePost} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                         <Route exact path="/games" render={() => <GamesList />} />
                         <Route exact path="/games/:slug" render={routerProps => <GameShow gameSlug={routerProps.match.params.slug} />} />
                         <Route exact path="/games/:slug/videos" render={routerProps => <YoutubeVideoPlayer gameSlug={routerProps.match.params.slug} />} />
