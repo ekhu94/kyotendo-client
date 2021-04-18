@@ -13,7 +13,8 @@ import backgroundImg from '../assets/forum-background.jpg';
 import BackButton from './BackButton';
 import CommentsList from './CommentsList';
 import DeleteModal from './DeleteModal';
-import DeletePostButton from './DeletePostButton'
+import DeletePostButton from './DeletePostButton';
+import EditPostButton from './EditPostButton';
 import NewCommentForm from './NewCommentForm';
 import NoDeleteModal from './NoDeleteModal';
 import PageLoader from './PageLoader';
@@ -232,9 +233,14 @@ const PostShow = ({ auth, postId, post, getPostShow, resetPostShow, onDeletePost
                                     {/* post content */}
                                     {renderPostContent()}
                                     {auth.user && auth.user.id === post.user.id ?
-                                        <Row className="justify-content-center">
+                                    <Row className="justify-content-center align-items-center mt-2">
+                                        <div className="col-12 col-sm-5 col-md-4 text-center mb-3 mb-sm-0">
+                                            <EditPostButton forumSlug={post.forum.slug} />
+                                        </div>
+                                        <div className="col-12 col-sm-5 col-md-4 text-center">
                                             <DeletePostButton onPostDeleteClick={onPostDeleteClick} />
-                                        </Row>
+                                        </div>
+                                    </Row>
                                     : null }
                                     <NewCommentForm user={post.user} post={post} onCommentCreate={onCommentCreate} />
                                     {/* comment list */}
@@ -252,6 +258,7 @@ const PostShow = ({ auth, postId, post, getPostShow, resetPostShow, onDeletePost
 };
 
 const mapStateToProps = state => {
+    console.log(state.post)
     return {
         post: state.post,
         auth: state.auth

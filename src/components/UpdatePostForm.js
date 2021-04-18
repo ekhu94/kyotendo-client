@@ -258,18 +258,18 @@ const NewPostForm = ({ post, forumSlug, onUpdatePost, routerProps, showModal, se
                                 <h1
                                     className="form-headers text-center py-3 mb-3"
                                 >
-                                    {forum.name}
+                                    {post.forum.name}
                                 </h1>
                                 <div className="ml-2">
                                     <BackButton label={`back to ${forumSlug}`} url={`/forums/${forumSlug}`} />
                                 </div>
                                 <h3 className="form-headers text-center mt-1 mb-3">Choose a post type</h3>
                             </div>
-                            <Row className="justify-content-center">
+                            {/* <Row className="justify-content-center">
                                 <div className="col-12 col-md-10 text-center">
                                     {renderTypeButtons()}
                                 </div>
-                            </Row>
+                            </Row> */}
                             <Form onSubmit={handleSubmit(onFormSubmit)}>
                                 {renderForm()}
                             </Form>

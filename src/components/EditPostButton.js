@@ -1,16 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Row } from 'react-bootstrap';
 import { Button } from 'semantic-ui-react';
 import './EditPostButton.css';
 
-const EditPostButton = ({ onPostDeleteClick }) => {
-
-    const onEditClick = () => {
-        onPostDeleteClick();
-    };
+const EditPostButton = ({ forumSlug }) => {
 
     return (
-        <Row className="justify-content-start">
+        <Link to={`/edit/${forumSlug}/post`}>
             <Button
                 className="edit-btn"
                 size="mini"
@@ -18,9 +15,8 @@ const EditPostButton = ({ onPostDeleteClick }) => {
                 content="edit post"
                 icon='edit'
                 labelPosition='right'
-                onClick={onEditClick}
             />
-        </Row>
+        </Link>
     );
 };
 
