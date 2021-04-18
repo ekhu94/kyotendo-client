@@ -1,7 +1,7 @@
 button.ui.teal.mini.edit-btn {
     font-family: 'Chakra Petch', sans-serif;
     color: #fff;
-    background-color: var(--blue-primary);
+    background-color: var(--blue-tertiary);
     border-radius: 20px;
     letter-spacing: 0.1rem;
     transition: all 0.6s;

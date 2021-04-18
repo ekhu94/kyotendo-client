@@ -14,17 +14,18 @@ import './NewPostForm.css';
 import backgroundImg from '../assets/mariokart-2.jpg';
 import AlertModal from './AlertModal';
 import BackButton from './BackButton';
+import PageLoader from './PageLoader';
 
 const schema = yup.object().shape({
     title: yup.string().required(),
     content: yup.string().required()
 });
 
-const NewPostForm = ({ post, forumSlug, onUpdatePost, routerProps, showModal, setShowModal }) => {
+const NewPostForm = ({ post, getPostShow, postId, forumSlug, onUpdatePost, routerProps, showModal, setShowModal }) => {
 
-    // useEffect(() => {
-    //     getForums();
-    // }, []);
+    useEffect(() => {
+        getPostShow(postId);
+    }, []);
 
     // useEffect(() => {
     //     if (forums && forums.length) {
@@ -243,7 +244,7 @@ const NewPostForm = ({ post, forumSlug, onUpdatePost, routerProps, showModal, se
         }
     };
 
-    const postCreateSuccessMsgs = {
+    const postUpdateSuccessMsgs = {
         header: "Post Updated!",
         body: `Congrats! Your post has been successfully updated!!`
     }
@@ -251,39 +252,40 @@ const NewPostForm = ({ post, forumSlug, onUpdatePost, routerProps, showModal, se
     return (
         <>
             <div className="new-forum-container" style={{backgroundImage: `url(${backgroundImg})`, paddingBottom: '90px'}}>
-                <Container>
-                    <Row className="justify-content-center">
-                        <Card id="new-post-card" className="px-0 pb-5 col-10 col-md-8" style={{ borderRadius: '20px' }}>
-                            <div>
-                                <h1
-                                    className="form-headers text-center py-3 mb-3"
-                                >
-                                    {post.forum.name}
-                                </h1>
-                                <div className="ml-2">
-                                    <BackButton label={`back to ${forumSlug}`} url={`/forums/${forumSlug}`} />
+                {post && post.forum ?
+                    <Container>
+                        <Row className="justify-content-center">
+                            <Card id="new-post-card" className="px-0 pb-5 col-10 col-md-8" style={{ borderRadius: '20px' }}>
+                                <div>
+                                    <h1
+                                        className="form-headers text-center py-3 mb-3"
+                                    >
+                                        {post.forum.name}
+                                    </h1>
+                                    <div className="ml-2">
+                                        <BackButton label={`back to ${forumSlug}`} url={`/forums/${forumSlug}`} />
+                                    </div>
+                                    <h3 className="form-headers text-center mt-1 mb-3">Choose a post type</h3>
                                 </div>
-                                <h3 className="form-headers text-center mt-1 mb-3">Choose a post type</h3>
-                            </div>
-                            {/* <Row className="justify-content-center">
-                                <div className="col-12 col-md-10 text-center">
-                                    {renderTypeButtons()}
-                                </div>
-                            </Row> */}
-                            <Form onSubmit={handleSubmit(onFormSubmit)}>
-                                {renderForm()}
-                            </Form>
-                        </Card>
-                    </Row>
-                    <AlertModal showModal={showModal} setShowModal={setShowModal} messages={postCreateSuccessMsgs} />
-                </Container>
+                                {/* <Row className="justify-content-center">
+                                    <div className="col-12 col-md-10 text-center">
+                                        {renderTypeButtons()}
+                                    </div>
+                                </Row> */}
+                                <Form onSubmit={handleSubmit(onFormSubmit)}>
+                                    {renderForm()}
+                                </Form>
+                            </Card>
+                        </Row>
+                        <AlertModal showModal={showModal} setShowModal={setShowModal} messages={postUpdateSuccessMsgs} />
+                    </Container>
+                : <PageLoader /> }
             </div>
         </>
     );
 };
 
 const mapStateToProps = state => {
-    console.log(state.post)
     return {
         auth: state.auth,
         post: state.post

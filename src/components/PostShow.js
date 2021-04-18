@@ -235,7 +235,7 @@ const PostShow = ({ auth, postId, post, getPostShow, resetPostShow, onDeletePost
                                     {auth.user && auth.user.id === post.user.id ?
                                     <Row className="justify-content-center align-items-center mt-2">
                                         <div className="col-12 col-sm-5 col-md-4 text-center mb-3 mb-sm-0">
-                                            <EditPostButton forumSlug={post.forum.slug} />
+                                            <EditPostButton forumSlug={post.forum.slug} postId={post.id} />
                                         </div>
                                         <div className="col-12 col-sm-5 col-md-4 text-center">
                                             <DeletePostButton onPostDeleteClick={onPostDeleteClick} />
@@ -258,7 +258,6 @@ const PostShow = ({ auth, postId, post, getPostShow, resetPostShow, onDeletePost
 };
 
 const mapStateToProps = state => {
-    console.log(state.post)
     return {
         post: state.post,
         auth: state.auth

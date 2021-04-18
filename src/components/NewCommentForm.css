@@ -1,4 +1,5 @@
 button.comment-btn {
+    font-family: 'Chakra Petch', sans-serif;
     border-radius: 20px;
     border: none;
     background-color: var(--blue-tertiary);

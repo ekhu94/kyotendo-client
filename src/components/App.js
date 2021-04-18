@@ -171,7 +171,7 @@ const App = ({ auth, setAuth }) => {
                         <Route exact path='/users/:id' render={routerProps => <UserPage userId={routerProps.match.params.id} />} />
                         <Route exact path="/new/forum" render={routerProps => <NewForumForm onNewForum={onNewForum} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                         <Route exact path="/new/:slug/post" render={routerProps => <NewPostForm forumSlug={routerProps.match.params.slug} onNewPost={onNewPost} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
-                        <Route exact path="/edit/:slug/post" render={routerProps => <UpdatePostForm forumSlug={routerProps.match.params.slug} onUpdatePost={onUpdatePost} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
+                        <Route exact path="/edit/:slug/:id" render={routerProps => <UpdatePostForm forumSlug={routerProps.match.params.slug} postId={routerProps.match.params.id} onUpdatePost={onUpdatePost} routerProps={routerProps} showModal={showModal} setShowModal={setShowModal} />} />
                         <Route exact path="/games" render={() => <GamesList />} />
                         <Route exact path="/games/:slug" render={routerProps => <GameShow gameSlug={routerProps.match.params.slug} />} />
                         <Route exact path="/games/:slug/videos" render={routerProps => <YoutubeVideoPlayer gameSlug={routerProps.match.params.slug} />} />
