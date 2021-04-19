@@ -283,8 +283,6 @@ const NewPostForm = ({
   };
 
   const onFormSubmit = (data, e) => {
-    console.log(data);
-    console.log(post.id);
     if (post.post_type === "discussion") {
       const updatedDiscPost = {
         title: data.title,
@@ -308,7 +306,7 @@ const NewPostForm = ({
         content_url: data.content,
       };
       api.post
-        .updatePost(updatedVidPost)
+        .updatePost(post.id, updatedVidPost)
         .then((res) => onUpdatePost(post.id, forumSlug, routerProps));
     } else {
       return;
