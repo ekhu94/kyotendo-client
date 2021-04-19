@@ -1,25 +1,24 @@
-import React from 'react';
-import { Row } from 'react-bootstrap';
-import { Button } from 'semantic-ui-react';
-import './DeletePostButton.css';
+import React from "react";
+import { Row } from "react-bootstrap";
+import { Button } from "semantic-ui-react";
+import "./DeletePostButton.css";
 
 const DeletePostButton = ({ onPostDeleteClick }) => {
+  const onDeleteClick = () => {
+    onPostDeleteClick();
+  };
 
-    const onDeleteClick = () => {
-        onPostDeleteClick();
-    };
-
-    return (
-        <Button
-            className="delete-btn"
-            size="mini"
-            color="red"
-            content="delete post"
-            icon='delete'
-            labelPosition='right'
-            onClick={onDeleteClick}
-        />
-    );
+  return (
+    <Button
+      className="delete-btn"
+      size="mini"
+      color="red"
+      content="delete post"
+      icon="delete"
+      labelPosition="right"
+      onClick={onDeleteClick}
+    />
+  );
 };
 
 export default DeletePostButton;
