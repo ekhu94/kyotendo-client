@@ -283,6 +283,8 @@ const NewPostForm = ({
   };
 
   const onFormSubmit = (data, e) => {
+    console.log(data);
+    console.log(post.id);
     if (post.post_type === "discussion") {
       const updatedDiscPost = {
         title: data.title,
