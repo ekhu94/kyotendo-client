@@ -1,5 +1,6 @@
 {
   "name": "kyotendo-client",
+  "proxy": "https://api.rawg.io",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
