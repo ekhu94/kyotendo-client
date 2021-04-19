@@ -346,7 +346,7 @@ const NewPostForm = ({
                     />
                   </div>
                   <h3 className="form-headers text-center mt-1 mb-3">
-                    Choose a post type
+                    Edit Post Form
                   </h3>
                 </div>
                 {/* <Row className="justify-content-center">
