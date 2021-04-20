@@ -89,6 +89,12 @@ const PostShow = ({
                     {post.post_type}
                   </Badge>
                 </h4>
+                <div
+                  className="text-muted ml-0"
+                  style={{ letterSpacing: "0.1rem", fontSize: "0.9rem" }}
+                >
+                  {formatCreateDate(post.created_at)}
+                </div>
               </div>
             </Row>
             <Row className="justify-content-center my-3">
@@ -124,6 +130,12 @@ const PostShow = ({
                     {post.post_type}
                   </Badge>
                 </h4>
+                <div
+                  className="text-muted ml-0"
+                  style={{ letterSpacing: "0.1rem", fontSize: "0.9rem" }}
+                >
+                  {formatCreateDate(post.created_at)}
+                </div>
               </div>
             </Row>
             <Row className="justify-content-center my-3">
@@ -165,6 +177,12 @@ const PostShow = ({
                     {post.post_type}
                   </Badge>
                 </h4>
+                <div
+                  className="text-muted ml-0"
+                  style={{ letterSpacing: "0.1rem", fontSize: "0.9rem" }}
+                >
+                  {formatCreateDate(post.created_at)}
+                </div>
               </div>
             </Row>
             <Row className="justify-content-center my-3">
@@ -246,6 +264,17 @@ const PostShow = ({
     setTimeout(() => {
       onDeletePost(forumSlug, routerProps);
     }, 1200);
+  };
+
+  const formatCreateDate = (createdAt) => {
+    const date = createdAt.split("T")[0];
+    // const time = createdAt.split('T')[1].split('.')[0];
+    const year = date.split("-")[0];
+    const month = date.split("-")[1];
+    const day = date.split("-")[2];
+    // const hour = time.split(':')[0];
+    // const min = time.split(':')[1];
+    return `${month}/${day}/${year}`;
   };
 
   const postDeleteProps = {

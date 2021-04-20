@@ -2703,7 +2703,7 @@
   "resolved" "https://registry.npmjs.org/axe-core/-/axe-core-4.1.2.tgz"
   "version" "4.1.2"
 
-"axios@*", "axios@^0.21.1":
+"axios@^0.21.1":
   "integrity" "sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA=="
   "resolved" "https://registry.npmjs.org/axios/-/axios-0.21.1.tgz"
   "version" "0.21.1"
@@ -10362,6 +10362,11 @@
   "version" "2.4.1"
   dependencies:
     "jquery" "x.*"
+
+"semantic-ui-icon@^2.3.3":
+  "integrity" "sha512-TuO265ICYGoNPs0rjanqDlrx8hfcpl4MMv92OUwFCbDwee4nGj8+Dv+i1RvkPPr0gO565G/0EKs8vF4wwhMMBw=="
+  "resolved" "https://registry.npmjs.org/semantic-ui-icon/-/semantic-ui-icon-2.3.3.tgz"
+  "version" "2.3.3"
 
 "semantic-ui-react@^2.0.3":
   "integrity" "sha512-a0hGN6XXw64sRSKwWqMCKSI/AGLohxNeWuErS39eswvBbUnLjBij8ZoEdiqDiz/PuWpwYIRjgmQVrut+7h3b2g=="
