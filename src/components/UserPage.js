@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { api } from "../services/api";
 import { Container, Row, Card, Table, Button } from "react-bootstrap";
@@ -52,7 +53,7 @@ const nintendoCharacters = [
   yoshi,
 ];
 
-const UserPage = ({ userId }) => {
+const UserPage = ({ userId, auth }) => {
   const [currentUser, setCurrentUser] = useState({});
   const [deleteVideo, setDeleteVideo] = useState({});
   const [showModal, setShowModal] = useState(false);
@@ -133,6 +134,7 @@ const UserPage = ({ userId }) => {
           return (
             <ProfileVideoRow
               key={video.id}
+              userId={video.user.id}
               video={video}
               onVideoDelete={onVideoDelete}
             />
@@ -242,7 +244,9 @@ const UserPage = ({ userId }) => {
                       <tr>
                         <th className="pl-1 pl-md-5">Title</th>
                         <th className="pl-1 pl-md-5">Game</th>
-                        <th className="text-center pr-1 pr-md-5">Remove</th>
+                        {auth.user && auth.user.id === currentUser.id ? (
+                          <th className="text-center pr-1 pr-md-5">Remove</th>
+                        ) : null}
                       </tr>
                     </thead>
                     <tbody>{renderVideosCollection()}</tbody>
@@ -278,4 +282,8 @@ const UserPage = ({ userId }) => {
   );
 };
 
-export default UserPage;
+const mapStateToProps = (state) => {
+  return { auth: state.auth };
+};
+
+export default connect(mapStateToProps)(UserPage);
