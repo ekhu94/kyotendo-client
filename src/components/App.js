@@ -31,8 +31,6 @@ const App = ({ auth, setAuth }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showLoginErrorModal, setShowLoginErrorModal] = useState(false);
   const [showSignupErrorModal, setShowSignupErrorModal] = useState(false);
-  //   const [showAlert, setShowAlert] = useState(false);
-  //   const [alertObj, setAlertObj] = useState({ variant: "", message: "" });
 
   useEffect(() => {
     const token = localStorage.token;
@@ -50,14 +48,6 @@ const App = ({ auth, setAuth }) => {
         });
     }
   }, []);
-
-  //   useEffect(() => {
-  //     let delay = alertObj.variant === "danger" ? 10000 : 5000;
-  //     let timer = setTimeout(() => setShowAlert(false), delay);
-  //     return () => {
-  //       clearTimeout(timer);
-  //     };
-  //   }, [alertObj]);
 
   const onLogin = (data, routerProps) => {
     //! authorization to make sure this is a user
@@ -116,12 +106,6 @@ const App = ({ auth, setAuth }) => {
     header: "Sign up failed!",
     body: `Something's wrong with your registration!. Please try again.`,
   };
-
-  //   const renderAlert = () => {
-  //     return (
-  //       <AlertMessage variant={alertObj.variant} message={alertObj.message} />
-  //     );
-  //   };
 
   const onLogout = () => {
     setShowLogoutModal(true);

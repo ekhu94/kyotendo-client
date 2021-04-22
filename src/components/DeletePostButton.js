@@ -1,5 +1,4 @@
 import React from "react";
-import { Row } from "react-bootstrap";
 import { Button } from "semantic-ui-react";
 import "./DeletePostButton.css";
 
