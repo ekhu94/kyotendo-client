@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { api } from "../services/api";
 import action from "../actions";
-import AlertMessage from "./AlertMessage";
+// import AlertMessage from "./AlertMessage";
 import AlertModal from "./AlertModal";
 import Auth from "./Auth";
 import ErrorModal from "./ErrorModal";
@@ -31,8 +31,8 @@ const App = ({ auth, setAuth }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showLoginErrorModal, setShowLoginErrorModal] = useState(false);
   const [showSignupErrorModal, setShowSignupErrorModal] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertObj, setAlertObj] = useState({ variant: "", message: "" });
+  //   const [showAlert, setShowAlert] = useState(false);
+  //   const [alertObj, setAlertObj] = useState({ variant: "", message: "" });
 
   useEffect(() => {
     const token = localStorage.token;
@@ -51,13 +51,13 @@ const App = ({ auth, setAuth }) => {
     }
   }, []);
 
-  useEffect(() => {
-    let delay = alertObj.variant === "danger" ? 10000 : 5000;
-    let timer = setTimeout(() => setShowAlert(false), delay);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [alertObj]);
+  //   useEffect(() => {
+  //     let delay = alertObj.variant === "danger" ? 10000 : 5000;
+  //     let timer = setTimeout(() => setShowAlert(false), delay);
+  //     return () => {
+  //       clearTimeout(timer);
+  //     };
+  //   }, [alertObj]);
 
   const onLogin = (data, routerProps) => {
     //! authorization to make sure this is a user
@@ -117,11 +117,11 @@ const App = ({ auth, setAuth }) => {
     body: `Something's wrong with your registration!. Please try again.`,
   };
 
-  const renderAlert = () => {
-    return (
-      <AlertMessage variant={alertObj.variant} message={alertObj.message} />
-    );
-  };
+  //   const renderAlert = () => {
+  //     return (
+  //       <AlertMessage variant={alertObj.variant} message={alertObj.message} />
+  //     );
+  //   };
 
   const onLogout = () => {
     setShowLogoutModal(true);
@@ -168,11 +168,7 @@ const App = ({ auth, setAuth }) => {
       <Router>
         <div className="container-fluid p-0 main-container">
           <ScrollTop />
-          <NavBar
-            onLogout={onLogout}
-            showAlert={showAlert}
-            renderAlert={renderAlert}
-          />
+          <NavBar onLogout={onLogout} />
           <Switch>
             <Route exact path="/" render={() => <HomePage />} />
             <Route

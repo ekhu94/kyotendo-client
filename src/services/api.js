@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BACKEND_URL = "https://kyotendo-api.herokuapp.com/api/v1";
 const RAWG_URL = "https://api.rawg.io/api";
-const RAWG_KEY = process.env.REACT_APP_RAWG_KEY;
+// const RAWG_KEY = process.env.REACT_APP_RAWG_KEY;
 const YOUTUBE_KEY = process.env.REACT_APP_YOUTUBE_KEY;
 
 const token = () => localStorage.getItem("token");
