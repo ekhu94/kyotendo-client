@@ -48,7 +48,7 @@ const TopPosters = ({ forum }) => {
         (a, b) => counter[b] - counter[a]
       );
       return topUsers.slice(0, 5).map((u, i) => {
-        const userLink = forum.users.find((user) => user.id === u.id);
+        const userLink = forum.users.find((user) => user.username === u);
         return (
           <Media as="li" className="user-li mt-3">
             <Media.Body>
