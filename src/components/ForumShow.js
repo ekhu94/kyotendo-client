@@ -9,7 +9,6 @@ import "./ForumShow.css";
 import backgroundImg from "../assets/forum-background.jpg";
 import noPostImg from "../assets/sad-pikachu.jpg";
 import BackButton from "./BackButton";
-import NoPage from "./NoPage";
 import PageLoader from "./PageLoader";
 import PostObject from "./PostObject";
 import TopPosters from "./TopPosters";
@@ -31,7 +30,6 @@ const ForumShow = ({
   const [loaded, setLoaded] = useState(false);
   const [displayPosts, setDisplayPosts] = useState([]);
   const [term, setTerm] = useState("");
-  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     const search = setTimeout(() => {
@@ -44,8 +42,6 @@ const ForumShow = ({
           );
           setDisplayPosts(query);
         }
-      } else {
-        setNotFound(true);
       }
     }, 500);
 
@@ -149,34 +145,98 @@ const ForumShow = ({
 
   return (
     <>
-      {notFound ? (
-        <NoPage />
-      ) : (
-        <div
-          id="forum-container"
-          style={{ backgroundImage: `url(${backgroundImg})` }}
-        >
-          {loaded ? (
-            <Container fluid>
-              {/* <ScrollTop /> */}
-              <TopPostersTop forum={forum} />
-              <Row
-                className="justify-content-center"
-                style={{ marginTop: "10px" }}
+      <div
+        id="forum-container"
+        style={{ backgroundImage: `url(${backgroundImg})` }}
+      >
+        {loaded ? (
+          <Container fluid>
+            {/* <ScrollTop /> */}
+            <TopPostersTop forum={forum} />
+            <Row
+              className="justify-content-center"
+              style={{ marginTop: "10px" }}
+            >
+              <Card
+                className="mb-5 col-11 col-lg-8 mr-0 mr-lg-4"
+                style={{
+                  paddingLeft: "0",
+                  paddingRight: "0",
+                  borderRadius: "20px",
+                }}
               >
-                <Card
-                  className="mb-5 col-11 col-lg-8 mr-0 mr-lg-4"
+                <h1
+                  className="py-4 px-4 text-center"
                   style={{
-                    paddingLeft: "0",
-                    paddingRight: "0",
-                    borderRadius: "20px",
+                    color: "#fff",
+                    backgroundColor: "var(--blue-tertiary)",
+                    border: "none",
+                    textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
+                    letterSpacing: "0.3em",
+                    lineHeight: "1.5",
+                    borderTopLeftRadius: "20px",
+                    borderTopRightRadius: "20px",
+                    fontWeight: "500",
+                    fontSize: "2rem",
                   }}
                 >
-                  <h1
-                    className="py-4 px-4 text-center"
+                  {forum.name}
+                </h1>
+                <div className="mt-4 mb-3 ml-2">
+                  <BackButton label="back to all forums" url="/forums" />
+                </div>
+                <Row className="justify-content-center mb-3">
+                  <Input
+                    className="col-11"
+                    placeholder="Search for posts..."
+                    size="large"
+                    type="text"
+                    value={term}
+                    onChange={(e) => setTerm(e.target.value)}
+                  />
+                </Row>
+                {forum.posts && forum.posts.length !== 0 ? (
+                  <ul className="ul-unstyled pl-3 pl-md-4">
+                    {renderPosts(forum.posts)}
+                  </ul>
+                ) : (
+                  <>
+                    <h4 className="text-center my-5">
+                      Pika pi...there aren't any posts here yet.
+                    </h4>
+                    <img
+                      src={noPostImg}
+                      alt="noposts"
+                      style={{
+                        width: "40%",
+                        height: "auto",
+                        margin: "0 auto 3rem auto",
+                        textAlign: "center",
+                        borderBottomLeft: "20px",
+                        borderBottomRight: "20px",
+                      }}
+                    />
+                  </>
+                )}
+              </Card>
+              <div className="mr-4 col-11 col-md-3 d-none d-lg-block">
+                <Card
+                  className="position-fixed"
+                  style={{
+                    borderRadius: "20px",
+                    height: "auto",
+                  }}
+                >
+                  <h3
+                    id="users-title"
+                    className={`text-center mb-4 m-0 p-4 ${
+                      forum.posts && forum.posts.length !== 0
+                        ? ""
+                        : "no-post-header"
+                    }`}
                     style={{
                       color: "#fff",
-                      backgroundColor: "var(--blue-tertiary)",
+                      backgroundColor: "var(--red-secondary)",
                       border: "none",
                       textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
                       letterSpacing: "0.3em",
@@ -184,134 +244,66 @@ const ForumShow = ({
                       borderTopLeftRadius: "20px",
                       borderTopRightRadius: "20px",
                       fontWeight: "500",
-                      fontSize: "2rem",
                     }}
                   >
-                    {forum.name}
-                  </h1>
-                  <div className="mt-4 mb-3 ml-2">
-                    <BackButton label="back to all forums" url="/forums" />
+                    {forum.posts && forum.posts.length
+                      ? "Top Users"
+                      : "Start the party!"}
+                  </h3>
+                  <div className="px-5">
+                    <TopPosters forum={forum} />
+                    {!auth.user.id ? (
+                      <Row className="justify-content-center">
+                        <div
+                          style={{ color: "var(--dark)", marginTop: "16px" }}
+                          className="text-center"
+                        >
+                          Want to post here?
+                        </div>
+                      </Row>
+                    ) : null}
+                    {auth.user.id ? (
+                      <Link to={`/new/${forum.slug}/post`}>
+                        <Button
+                          variant="info"
+                          block
+                          className="p-3"
+                          style={{
+                            borderRadius: "18px",
+                            letterSpacing: "0.2rem",
+                            marginTop: "22px",
+                            marginBottom: "22px",
+                          }}
+                        >
+                          Create Post
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Link to={`/auth`}>
+                        <Button
+                          variant="info"
+                          block
+                          className="p-3"
+                          style={{
+                            borderRadius: "18px",
+                            letterSpacing: "0.2rem",
+                            marginTop: "6px",
+                            marginBottom: "22px",
+                          }}
+                        >
+                          Login/Signup
+                        </Button>
+                      </Link>
+                    )}
                   </div>
-                  <Row className="justify-content-center mb-3">
-                    <Input
-                      className="col-11"
-                      placeholder="Search for posts..."
-                      size="large"
-                      type="text"
-                      value={term}
-                      onChange={(e) => setTerm(e.target.value)}
-                    />
-                  </Row>
-                  {forum.posts && forum.posts.length !== 0 ? (
-                    <ul className="ul-unstyled pl-3 pl-md-4">
-                      {renderPosts(forum.posts)}
-                    </ul>
-                  ) : (
-                    <>
-                      <h4 className="text-center my-5">
-                        Pika pi...there aren't any posts here yet.
-                      </h4>
-                      <img
-                        src={noPostImg}
-                        alt="noposts"
-                        style={{
-                          width: "40%",
-                          height: "auto",
-                          margin: "0 auto 3rem auto",
-                          textAlign: "center",
-                          borderBottomLeft: "20px",
-                          borderBottomRight: "20px",
-                        }}
-                      />
-                    </>
-                  )}
                 </Card>
-                <div className="mr-4 col-11 col-md-3 d-none d-lg-block">
-                  <Card
-                    className="position-fixed"
-                    style={{
-                      borderRadius: "20px",
-                      height: "auto",
-                    }}
-                  >
-                    <h3
-                      id="users-title"
-                      className={`text-center mb-4 m-0 p-4 ${
-                        forum.posts && forum.posts.length !== 0
-                          ? ""
-                          : "no-post-header"
-                      }`}
-                      style={{
-                        color: "#fff",
-                        backgroundColor: "var(--red-secondary)",
-                        border: "none",
-                        textShadow: "5px 4px 6px rgba(0,0,0,0.67)",
-                        letterSpacing: "0.3em",
-                        lineHeight: "1.5",
-                        borderTopLeftRadius: "20px",
-                        borderTopRightRadius: "20px",
-                        fontWeight: "500",
-                      }}
-                    >
-                      {forum.posts && forum.posts.length
-                        ? "Top Users"
-                        : "Start the party!"}
-                    </h3>
-                    <div className="px-5">
-                      <TopPosters forum={forum} />
-                      {!auth.user.id ? (
-                        <Row className="justify-content-center">
-                          <div
-                            style={{ color: "var(--dark)", marginTop: "16px" }}
-                            className="text-center"
-                          >
-                            Want to post here?
-                          </div>
-                        </Row>
-                      ) : null}
-                      {auth.user.id ? (
-                        <Link to={`/new/${forum.slug}/post`}>
-                          <Button
-                            variant="info"
-                            block
-                            className="p-3"
-                            style={{
-                              borderRadius: "18px",
-                              letterSpacing: "0.2rem",
-                              marginTop: "22px",
-                              marginBottom: "22px",
-                            }}
-                          >
-                            Create Post
-                          </Button>
-                        </Link>
-                      ) : (
-                        <Link to={`/auth`}>
-                          <Button
-                            variant="info"
-                            block
-                            className="p-3"
-                            style={{
-                              borderRadius: "18px",
-                              letterSpacing: "0.2rem",
-                              marginTop: "6px",
-                              marginBottom: "22px",
-                            }}
-                          >
-                            Login/Signup
-                          </Button>
-                        </Link>
-                      )}
-                    </div>
-                  </Card>
-                </div>
-              </Row>
-            </Container>
-          ) : (
-            <PageLoader />
-          )}
-        </div>
-      )}
+              </div>
+            </Row>
+          </Container>
+        ) : (
+          <PageLoader />
+        )}
+      </div>
     </>
   );
 };
