@@ -7,6 +7,7 @@ import "./UserPage.css";
 
 import BackButton from "./BackButton";
 import DeleteModal from "./DeleteModal";
+import NoPage from "./NoPage";
 import PostObject from "./PostObject";
 import ProfileGameCard from "./ProfileGameCard";
 import ProfileVideoRow from "./ProfileVideoRow";
@@ -57,12 +58,15 @@ const UserPage = ({ userId, auth }) => {
   const [currentUser, setCurrentUser] = useState({});
   const [deleteVideo, setDeleteVideo] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
       if (userId) {
         const user = await api.rails.get(`/users/${userId}`);
         setCurrentUser(user.data);
+      } else {
+        setNotFound(true);
       }
     };
     getUser();
@@ -191,94 +195,102 @@ const UserPage = ({ userId, auth }) => {
   };
 
   return (
-    <div
-      className="profile-container pt-5"
-      style={{ backgroundImage: `url(${backgroundImg})` }}
-    >
-      {currentUser && currentUser.id ? (
-        <Container>
-          <BackButton label="back to home" url="/" />
-          <Row className="justify-content-center">
-            <Card
-              className="col-10 col-md-11 p-0 pb-4 mb-5"
-              style={{ borderRadius: "20px" }}
-            >
-              <h1 className="profile-header text-center py-4">
-                {currentUser.username}
-              </h1>
-              <Row className="justify-content-center align-items-center my-5">
-                {renderAvatar()}
-              </Row>
-              <h4 className="profile-sub-header text-center mt-2">
-                Joined on: {formatDate(currentUser.created_at)}
-              </h4>
-              <h4 className="profile-sub-header text-center mt-1">
-                Number of posts: {currentUser.posts.length}
-              </h4>
-              <h4 className="profile-sub-header text-center mt-1 mb-5">
-                Number of comments: {currentUser.comments.length}
-              </h4>
-              {currentUser.games && currentUser.games.length ? (
-                <>
-                  <h3
-                    style={{ letterSpacing: "0.2rem" }}
-                    className="text-center mb-3"
-                  >
-                    Game Collection
-                  </h3>
-                  <Row className="justify-content-center">
-                    {renderGamesCollection()}
-                  </Row>
-                </>
-              ) : null}
-              {currentUser.videos && currentUser.videos.length ? (
-                <>
-                  <h3
-                    style={{ letterSpacing: "0.2rem" }}
-                    className="text-center mt-5 mb-3"
-                  >
-                    Video Collection
-                  </h3>
-                  <Table size="lg" striped hover className="px-4 mb-5">
-                    <thead>
-                      <tr>
-                        <th className="pl-1 pl-md-5">Title</th>
-                        <th className="pl-1 pl-md-5">Game</th>
-                        {auth.user && auth.user.id === currentUser.id ? (
-                          <th className="text-center pr-1 pr-md-5">Remove</th>
-                        ) : null}
-                      </tr>
-                    </thead>
-                    <tbody>{renderVideosCollection()}</tbody>
-                  </Table>
-                </>
-              ) : null}
-              {currentUser.posts && currentUser.posts.length ? (
-                <>
-                  <h3
-                    style={{ letterSpacing: "0.2rem" }}
-                    className="text-center mt-4 mb-2"
-                  >
-                    Post Collection
-                  </h3>
-                  {renderUserPosts()}
-                </>
-              ) : null}
-            </Card>
-          </Row>
-        </Container>
+    <>
+      {notFound ? (
+        <NoPage />
       ) : (
-        <PageLoader />
+        <div
+          className="profile-container pt-5"
+          style={{ backgroundImage: `url(${backgroundImg})` }}
+        >
+          {currentUser && currentUser.id ? (
+            <Container>
+              <BackButton label="back to home" url="/" />
+              <Row className="justify-content-center">
+                <Card
+                  className="col-10 col-md-11 p-0 pb-4 mb-5"
+                  style={{ borderRadius: "20px" }}
+                >
+                  <h1 className="profile-header text-center py-4">
+                    {currentUser.username}
+                  </h1>
+                  <Row className="justify-content-center align-items-center my-5">
+                    {renderAvatar()}
+                  </Row>
+                  <h4 className="profile-sub-header text-center mt-2">
+                    Joined on: {formatDate(currentUser.created_at)}
+                  </h4>
+                  <h4 className="profile-sub-header text-center mt-1">
+                    Number of posts: {currentUser.posts.length}
+                  </h4>
+                  <h4 className="profile-sub-header text-center mt-1 mb-5">
+                    Number of comments: {currentUser.comments.length}
+                  </h4>
+                  {currentUser.games && currentUser.games.length ? (
+                    <>
+                      <h3
+                        style={{ letterSpacing: "0.2rem" }}
+                        className="text-center mb-3"
+                      >
+                        Game Collection
+                      </h3>
+                      <Row className="justify-content-center">
+                        {renderGamesCollection()}
+                      </Row>
+                    </>
+                  ) : null}
+                  {currentUser.videos && currentUser.videos.length ? (
+                    <>
+                      <h3
+                        style={{ letterSpacing: "0.2rem" }}
+                        className="text-center mt-5 mb-3"
+                      >
+                        Video Collection
+                      </h3>
+                      <Table size="lg" striped hover className="px-4 mb-5">
+                        <thead>
+                          <tr>
+                            <th className="pl-1 pl-md-5">Title</th>
+                            <th className="pl-1 pl-md-5">Game</th>
+                            {auth.user && auth.user.id === currentUser.id ? (
+                              <th className="text-center pr-1 pr-md-5">
+                                Remove
+                              </th>
+                            ) : null}
+                          </tr>
+                        </thead>
+                        <tbody>{renderVideosCollection()}</tbody>
+                      </Table>
+                    </>
+                  ) : null}
+                  {currentUser.posts && currentUser.posts.length ? (
+                    <>
+                      <h3
+                        style={{ letterSpacing: "0.2rem" }}
+                        className="text-center mt-4 mb-2"
+                      >
+                        Post Collection
+                      </h3>
+                      {renderUserPosts()}
+                    </>
+                  ) : null}
+                </Card>
+              </Row>
+            </Container>
+          ) : (
+            <PageLoader />
+          )}
+          <DeleteModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            item={deleteVideo}
+            onDeleteConfirm={onDeleteConfirm}
+            onBackClick={onBackClick}
+            data={deleteVideoProps}
+          />
+        </div>
       )}
-      <DeleteModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        item={deleteVideo}
-        onDeleteConfirm={onDeleteConfirm}
-        onBackClick={onBackClick}
-        data={deleteVideoProps}
-      />
-    </div>
+    </>
   );
 };
 

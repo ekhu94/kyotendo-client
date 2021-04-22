@@ -24,6 +24,7 @@ import DeletePostButton from "./DeletePostButton";
 import EditPostButton from "./EditPostButton";
 import NewCommentForm from "./NewCommentForm";
 import NoDeleteModal from "./NoDeleteModal";
+import NoPage from "./NoPage";
 import PageLoader from "./PageLoader";
 import ScrollTop from "./ScrollTop";
 import UpvoteButtons from "./UpvoteButtons";
@@ -40,6 +41,7 @@ const PostShow = ({
   const [loaded, setLoaded] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [notFound, setNotFound] = useState(false);
   // const [isOpen, setIsOpen] = useState(false)
   // const [user, setUser] = useState({});
 
@@ -58,6 +60,8 @@ const PostShow = ({
       setTimeout(() => {
         setLoaded(true);
       }, 500);
+    } else {
+      setNotFound(true);
     }
   }, [post]);
 
@@ -286,83 +290,89 @@ const PostShow = ({
 
   return (
     <>
-      <div
-        className="post-show-container"
-        style={{
-          backgroundImage: `url(${backgroundImg})`,
-          paddingBottom: "90px",
-        }}
-      >
-        {loaded ? (
-          <>
-            <ScrollTop />
-            <Container>
-              <Row className="justify-content-center">
-                <Card
-                  id="post-show-card"
-                  className="p-0 pb-5 col-10 col-md-8"
-                  style={{ borderRadius: "20px" }}
-                >
-                  <h1
-                    id="post-show-header"
-                    className="px-2 py-4 mb-4 text-center"
-                    style={{ letterSpacing: "0.5rem" }}
-                  >
-                    {post.forum.name}
-                  </h1>
-                  <BackButton
-                    label="back to all posts"
-                    url={`/forums/${post.forum.slug}`}
-                  />
-                  {/* post content */}
-                  {renderPostContent()}
-                  {auth.user && auth.user.id === post.user.id ? (
-                    <Row className="justify-content-center align-items-center mt-2">
-                      <div className="col-12 col-sm-5 col-md-4 text-center mb-3 mb-sm-0">
-                        <EditPostButton
-                          forumSlug={post.forum.slug}
-                          postId={post.id}
-                        />
-                      </div>
-                      <div className="col-12 col-sm-5 col-md-4 text-center">
-                        <DeletePostButton
-                          onPostDeleteClick={onPostDeleteClick}
-                        />
-                      </div>
-                    </Row>
-                  ) : null}
-                  <NewCommentForm
-                    user={post.user}
-                    post={post}
-                    onCommentCreate={onCommentCreate}
-                  />
-                  {/* comment list */}
-                  <CommentsList
-                    comments={post.comments}
-                    onCommentCreate={onCommentCreate}
-                    onDeleteClick={onDeleteClick}
-                  />
-                </Card>
-              </Row>
-            </Container>
-          </>
-        ) : (
-          <PageLoader />
-        )}
-      </div>
-      <DeleteModal
-        showModal={showDeleteModal}
-        setShowModal={setShowDeleteModal}
-        item={post}
-        onDeleteConfirm={onDeleteConfirm}
-        onBackClick={onDeleteBackClick}
-        data={postDeleteProps}
-      />
-      <NoDeleteModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        onBackClick={onBackClick}
-      />
+      {notFound ? (
+        <NoPage />
+      ) : (
+        <>
+          <div
+            className="post-show-container"
+            style={{
+              backgroundImage: `url(${backgroundImg})`,
+              paddingBottom: "90px",
+            }}
+          >
+            {loaded ? (
+              <>
+                <ScrollTop />
+                <Container>
+                  <Row className="justify-content-center">
+                    <Card
+                      id="post-show-card"
+                      className="p-0 pb-5 col-10 col-md-8"
+                      style={{ borderRadius: "20px" }}
+                    >
+                      <h1
+                        id="post-show-header"
+                        className="px-2 py-4 mb-4 text-center"
+                        style={{ letterSpacing: "0.5rem" }}
+                      >
+                        {post.forum.name}
+                      </h1>
+                      <BackButton
+                        label="back to all posts"
+                        url={`/forums/${post.forum.slug}`}
+                      />
+                      {/* post content */}
+                      {renderPostContent()}
+                      {auth.user && auth.user.id === post.user.id ? (
+                        <Row className="justify-content-center align-items-center mt-2">
+                          <div className="col-12 col-sm-5 col-md-4 text-center mb-3 mb-sm-0">
+                            <EditPostButton
+                              forumSlug={post.forum.slug}
+                              postId={post.id}
+                            />
+                          </div>
+                          <div className="col-12 col-sm-5 col-md-4 text-center">
+                            <DeletePostButton
+                              onPostDeleteClick={onPostDeleteClick}
+                            />
+                          </div>
+                        </Row>
+                      ) : null}
+                      <NewCommentForm
+                        user={post.user}
+                        post={post}
+                        onCommentCreate={onCommentCreate}
+                      />
+                      {/* comment list */}
+                      <CommentsList
+                        comments={post.comments}
+                        onCommentCreate={onCommentCreate}
+                        onDeleteClick={onDeleteClick}
+                      />
+                    </Card>
+                  </Row>
+                </Container>
+              </>
+            ) : (
+              <PageLoader />
+            )}
+          </div>
+          <DeleteModal
+            showModal={showDeleteModal}
+            setShowModal={setShowDeleteModal}
+            item={post}
+            onDeleteConfirm={onDeleteConfirm}
+            onBackClick={onDeleteBackClick}
+            data={postDeleteProps}
+          />
+          <NoDeleteModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            onBackClick={onBackClick}
+          />
+        </>
+      )}
     </>
   );
 };
